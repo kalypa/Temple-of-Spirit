@@ -237,7 +237,7 @@ MonoBehaviour:
     m_Value: 0
   m_ObsoleteScrollSpeed:
     m_OverrideState: 0
-    m_Value: 1
+    m_Value: 2
 --- !u!114 &1501199423866068322
 MonoBehaviour:
   m_ObjectHideFlags: 3
