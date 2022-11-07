@@ -24095,6 +24095,7 @@ MonoBehaviour:
   look: {x: 0, y: 0}
   jump: 0
   sprint: 0
+  hide: 0
   analogMovement: 0
   cursorLocked: 1
   cursorInputForLook: 1
@@ -24136,7 +24137,7 @@ MonoBehaviour:
   JumpTimeout: 0.1
   FallTimeout: 0.15
   Grounded: 1
-  GroundedOffset: -0.14
+  GroundedOffset: 0.4
   GroundedRadius: 0.5
   GroundLayers:
     serializedVersion: 2
@@ -24144,6 +24145,11 @@ MonoBehaviour:
   CinemachineCameraTarget: {fileID: 1092040337}
   TopClamp: 90
   BottomClamp: -90
+  player: {fileID: 737273904}
+  hideYScale: 0.4
+  hidePos: {x: 0, y: 0, z: 0}
+  originScale: {x: 0, y: 0, z: 0}
+  originPosition: {x: 0, y: 0, z: 0}
 --- !u!143 &737273910
 CharacterController:
   m_ObjectHideFlags: 0
@@ -60167,6 +60173,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cliff1_. (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8832183695111006673, guid: e0c3c73b01ff75e4fa74bb58211f6b67,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0c3c73b01ff75e4fa74bb58211f6b67, type: 3}

@@ -12,7 +12,7 @@ namespace StarterAssets
 		public Vector2 look;
 		public bool jump;
 		public bool sprint;
-
+		public bool hide;
 		[Header("Movement Settings")]
 		public bool analogMovement;
 
@@ -43,6 +43,11 @@ namespace StarterAssets
 		{
 			SprintInput(value.isPressed);
 		}
+
+		public void OnHide(InputValue value)
+		{
+			HideInput(value.isPressed);
+		}
 #endif
 
 
@@ -66,6 +71,11 @@ namespace StarterAssets
 			sprint = newSprintState;
 		}
 		
+		public void HideInput(bool newHideState)
+		{
+			hide = newHideState;
+		}
+
 		private void OnApplicationFocus(bool hasFocus)
 		{
 			SetCursorState(cursorLocked);
