@@ -563,18 +563,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 16046453}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &16046456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 16046455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bd5e5ddd242bd64581fb5ed9c0e0507, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!64 &16046457
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -18754,24 +18742,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 563755100}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &563755102 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7838338596344922897, guid: 6b436b3c3e7a0fd4b8c81e69c3e841aa,
-    type: 3}
-  m_PrefabInstance: {fileID: 563755100}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &563755103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 563755102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bd5e5ddd242bd64581fb5ed9c0e0507, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &565763552
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24095,7 +24065,6 @@ MonoBehaviour:
   look: {x: 0, y: 0}
   jump: 0
   sprint: 0
-  hide: 0
   analogMovement: 0
   cursorLocked: 1
   cursorInputForLook: 1
@@ -24145,11 +24114,6 @@ MonoBehaviour:
   CinemachineCameraTarget: {fileID: 1092040337}
   TopClamp: 90
   BottomClamp: -90
-  player: {fileID: 737273904}
-  hideYScale: 0.4
-  hidePos: {x: 0, y: 0, z: 0}
-  originScale: {x: 0, y: 0, z: 0}
-  originPosition: {x: 0, y: 0, z: 0}
 --- !u!143 &737273910
 CharacterController:
   m_ObjectHideFlags: 0

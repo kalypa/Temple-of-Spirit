@@ -1,5 +1,4 @@
-﻿using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -51,19 +50,9 @@ namespace StarterAssets
 		public float TopClamp = 90.0f;
 		[Tooltip("How far in degrees can you move the camera down")]
 		public float BottomClamp = -90.0f;
-		[Header("Player")]
-		[Tooltip("Playable GameObject")]
-		public GameObject player;
-        [Tooltip("Player's Y Scale when Player Hiding")]
-        public float hideYScale = 0.4f;
-		[Tooltip("Player's Y Position when Player Hiding")]
-		public Vector3 hidePos;
-		[Tooltip("Player's Origin Scale")]
-		public Vector3 originScale;
-		[Tooltip("Player's Origin Position")]
-        public Vector3 originPosition;
-        // cinemachine
-        private float _cinemachineTargetPitch;
+
+		// cinemachine
+		private float _cinemachineTargetPitch;
 
 		// player
 		private float _speed;
@@ -126,8 +115,6 @@ namespace StarterAssets
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
-			Hide();
-			Debug.Log(Grounded);
 		}
 
 		private void LateUpdate()
@@ -258,11 +245,6 @@ namespace StarterAssets
 				_verticalVelocity += Gravity * Time.deltaTime;
 			}
 		}
-
-		private void Hide()
-		{
-
-        }
 
 		private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
 		{
