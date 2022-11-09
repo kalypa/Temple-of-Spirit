@@ -251,7 +251,7 @@ namespace StarterAssets
 
 		private void Flash()
 		{
-	        flashLight.enabled = _input.Flash;
+	        flashLight.enabled = _input.flash;
 		}
 		private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
 		{
