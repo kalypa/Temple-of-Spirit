@@ -59,7 +59,8 @@ namespace StarterAssets
 		private float _rotationVelocity;
 		private float _verticalVelocity;
 		private float _terminalVelocity = 53.0f;
-
+		[SerializeField]
+		private Light flashLight;
 		// timeout deltatime
 		private float _jumpTimeoutDelta;
 		private float _fallTimeoutDelta;
@@ -115,7 +116,9 @@ namespace StarterAssets
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
-		}
+			Flash();
+
+        }
 
 		private void LateUpdate()
 		{
@@ -246,6 +249,10 @@ namespace StarterAssets
 			}
 		}
 
+		private void Flash()
+		{
+	        flashLight.enabled = _input.Flash;
+		}
 		private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
 		{
 			if (lfAngle < -360f) lfAngle += 360f;

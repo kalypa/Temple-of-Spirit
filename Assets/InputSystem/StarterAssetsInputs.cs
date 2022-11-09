@@ -1,6 +1,8 @@
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
+using static UnityEngine.Rendering.DebugUI;
+
 #endif
 
 namespace StarterAssets
@@ -12,7 +14,8 @@ namespace StarterAssets
 		public Vector2 look;
 		public bool jump;
 		public bool sprint;
-
+		public bool flash;
+		private bool isFlash = false;
 		[Header("Movement Settings")]
 		public bool analogMovement;
 
@@ -43,6 +46,13 @@ namespace StarterAssets
 		{
 			SprintInput(value.isPressed);
 		}
+
+		public void OnFlash(InputValue value)
+		{
+			Debug.Log("Flash");
+			isFlash = !isFlash;
+			FlashInput(isFlash);
+		}
 #endif
 
 
@@ -65,7 +75,10 @@ namespace StarterAssets
 		{
 			sprint = newSprintState;
 		}
-		
+		public void FlashInput(bool newFlashState)
+		{
+			flash = newFlashState;
+        }
 		private void OnApplicationFocus(bool hasFocus)
 		{
 			SetCursorState(cursorLocked);
