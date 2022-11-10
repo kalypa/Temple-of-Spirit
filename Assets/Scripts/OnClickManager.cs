@@ -1,3 +1,4 @@
+using InputSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class OnClickManager : MonoBehaviour
 
     public void OnClickInvenQuit()
     {
-        inventory.SetActive(false);     
+        InputSystems.Instance.inven = false;
+        inventory.SetActive(false);
     }
 }
