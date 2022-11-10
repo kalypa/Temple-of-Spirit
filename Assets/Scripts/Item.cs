@@ -26,9 +26,9 @@ public class Item
          
         for (int i = 0; i < ability.Length; i++)
         { 
-            ability[i] = new ItemAbility(itemObj.itemData.ability[i].Min, itemObj.itemData.ability[i].Max)
+            ability[i] = new ItemAbility()
             { 
-                characterStack = itemObj.itemData.ability[i].characterStack
+                batteryStack = itemObj.itemData.ability[i].batteryStack
             };
         }
     }

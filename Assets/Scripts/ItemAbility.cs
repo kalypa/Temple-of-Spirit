@@ -3,36 +3,25 @@ using System.Collections;
 using System.Collections.Generic; 
 using UnityEngine;
  
-public enum CharacterStack
+public enum BatteryStack
 { 
     Int, Hp, Str
 }
- 
+
 [Serializable]  
 public class ItemAbility 
 { 
-    public CharacterStack characterStack; 
+    public BatteryStack batteryStack; 
     public int valStack;
      
-    [SerializeField]
-    private int min;
-
-    [SerializeField]
-    private int max;
-      
-    public int Min => min;
-    public int Max => max;
-     
-    public ItemAbility(int min, int max)
+    public ItemAbility()
     { 
-        this.min = min;
-        this.max = max; 
         getStackVal();
     }
-     
+    
     public void getStackVal()
-    { 
-        valStack = UnityEngine.Random.Range(min, max);
+    {
+        valStack = 25;
     }
      
     public void addStackVal(ref int v)

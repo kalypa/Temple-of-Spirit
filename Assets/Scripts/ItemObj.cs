@@ -21,7 +21,7 @@ public class ItemObj : ScriptableObject
 { 
     public ItemType itemType; 
     public bool getFlagStackable;
-     
+    
     public Sprite itemIcon; 
     public GameObject objModelPrefab;
      
