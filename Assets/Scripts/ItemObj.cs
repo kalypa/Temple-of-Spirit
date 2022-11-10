@@ -27,25 +27,8 @@ public class ItemObj : ScriptableObject
      
     public Item itemData = new Item();
      
-    public List<string> boneNameLists = new List<string>();
-     
     [TextArea(15, 20)]
     public string itemSummery;
-     
-    private void OnValidate()
-    {
-        boneNameLists.Clear();
-        if (objModelPrefab == null || objModelPrefab.GetComponentInChildren<SkinnedMeshRenderer>() == null)
-        {
-            return;
-        }
-        SkinnedMeshRenderer renderer = objModelPrefab.GetComponentInChildren<SkinnedMeshRenderer>();
-        var bones = renderer.bones;
-        foreach (var t in bones)
-        { 
-            boneNameLists.Add(t.name);
-        }
-    }
      
     public Item createItemObj()
     { 
