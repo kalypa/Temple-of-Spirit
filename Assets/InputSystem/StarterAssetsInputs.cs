@@ -15,13 +15,19 @@ namespace StarterAssets
 		public bool jump;
 		public bool sprint;
 		public bool flash;
+		public bool inven;
 		private bool isFlash = false;
+		private bool isInven = false;
 		[Header("Movement Settings")]
 		public bool analogMovement;
 
-		[Header("Mouse Cursor Settings")]
+		[Header("Inventory")]
+		public GameObject inventory;
+
+        [Header("Mouse Cursor Settings")]
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
+
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 		public void OnMove(InputValue value)
@@ -49,10 +55,15 @@ namespace StarterAssets
 
 		public void OnFlash(InputValue value)
 		{
-			Debug.Log("Flash");
 			isFlash = !isFlash;
 			FlashInput(isFlash);
 		}
+
+		public void OnInventory(InputValue value)
+		{
+            isInven = !isInven;
+            InventoryInput(isInven);
+        }
 #endif
 
 
@@ -75,13 +86,28 @@ namespace StarterAssets
 		{
 			sprint = newSprintState;
 		}
+
 		public void FlashInput(bool newFlashState)
 		{
 			flash = newFlashState;
         }
-		private void OnApplicationFocus(bool hasFocus)
+
+		public void InventoryInput(bool newInvenState)
 		{
-			SetCursorState(cursorLocked);
+			inven = newInvenState;
+		}
+
+        private void OnApplicationFocus(bool hasFocus)
+		{
+			Debug.Log(inventory.gameObject.activeInHierarchy);
+			if(!inventory.gameObject.activeInHierarchy)
+			{
+                SetCursorState(cursorLocked);
+            }
+			else
+			{
+				Cursor.lockState = CursorLockMode.None;
+            }
 		}
 
 		private void SetCursorState(bool newState)
