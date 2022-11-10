@@ -226,9 +226,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: ae145300
-      m_LastClickedID: 0
-      m_ExpandedIDs: 18b7feff22d1ffff12fbffff4a7800003e7b0000c67c0000627d0000f27e000006800000828b0000d08d00009eab0000d2ab0000e4ab00009ce0000022fc000026fc000028fc00002afc00000c3a01002a680100f4f3010090660200b6660200
+      m_SelectedIDs: 5a760000
+      m_LastClickedID: 30298
+      m_ExpandedIDs: a274ffffa874ffffb874ffff1e77ffff2477ffff627cffff687cffff567fffff5c7fffff5699ffff5c99ffff589dffff5e9dffff729dffff429ffffff2d6ffffaed7ffff12fbffff187700003c7b0000567b0000f07e0000b68e0000a69100009e950000269f0000549f0000feae000018bf00002ebf000044bf0000dcc3000062e30000e00501000a3a01007e480100e66c01002873010068730100727301007a750100129e0100eab80100781e02007e2e0200323802007a660200
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -280,7 +280,7 @@ MonoBehaviour:
   - {fileID: 9}
   - {fileID: 10}
   m_Selected: 1
-  m_LastSelected: 3
+  m_LastSelected: 0
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -540,9 +540,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 78.83764, y: 49.93348, z: 18.953714}
+    m_Target: {x: 19.05601, y: 19.293047, z: 53.116344}
     speed: 2
-    m_Value: {x: 78.83764, y: 49.93348, z: 18.953714}
+    m_Value: {x: 19.05601, y: 19.293047, z: 53.116344}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -589,13 +589,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.27112573, y: 0.6554591, z: -0.2710992, w: 0.6512993}
+    m_Target: {x: 0.0669169, y: 0.55182076, z: -0.042343248, w: 0.8307671}
     speed: 2
-    m_Value: {x: 0.27101448, y: 0.6551901, z: -0.27098796, w: 0.65103203}
+    m_Value: {x: 0.0668851, y: 0.55155855, z: -0.042323127, w: 0.83037233}
   m_Size:
-    m_Target: 75.21661
+    m_Target: 52.709602
     speed: 2
-    m_Value: 75.21661
+    m_Value: 52.709602
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -785,22 +785,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Tensori/SkinlessZombie/Art/Animations
+    - Assets/Erbeilo3D/3D Model/Lamp/Prefab
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Tensori/SkinlessZombie/Art/Animations
+  - Assets/Erbeilo3D/3D Model/Lamp/Prefab
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\USER\Documents\Temple-of-Spirit
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 22.200012}
-    m_SelectedIDs: 7e165300
-    m_LastClickedID: 5445246
-    m_ExpandedIDs: 00000000208502002485020026850200288502002a8502002c8502002e8502003085020036850200388502003a850200ae8602007c1653008e165300b416530000ca9a3b
+    scrollPos: {x: 0, y: 79}
+    m_SelectedIDs: ca890200
+    m_LastClickedID: 166346
+    m_ExpandedIDs: 0000000046850200488502004a8502004c8502004e85020050850200528502005485020056850200588502005a8502005c8502005e8502006085020062850200648502004a8802009a89020000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -828,7 +828,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000020850200228502002485020026850200288502002a8502002c8502002e8502003085020036850200388502003a85020000ca9a3b
+    m_ExpandedIDs: 0000000046850200488502004a8502004c8502004e85020050850200528502005485020056850200588502005a8502005c8502005e85020060850200628502006485020000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -853,8 +853,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: ae145300
-    m_LastClickedInstanceID: 5444782
+    m_SelectedInstanceIDs: 5a760000
+    m_LastClickedInstanceID: 30298
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c62300001a850000621653006c165300
     m_RenameOverlay:
