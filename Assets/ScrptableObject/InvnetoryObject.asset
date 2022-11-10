@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bfe9e338ab19c84bbb9e0482bfd3535, type: 3}
   m_Name: InvnetoryObject
   m_EditorClassIdentifier: 
-  itemDBObj: {fileID: 0}
+  itemDBObj: {fileID: 11400000, guid: f72524201b13316498b2a2c099b8a1d3, type: 2}
   type: 0
   inventory:
     InvenSlots:

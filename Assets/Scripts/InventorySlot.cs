@@ -43,7 +43,6 @@ public class InvenSlot
      
     public void uploadSlot(Item item, int cnt)
     {
-        Debug.Log("upload" + cnt);
         if (cnt <= 0)
         {
             item = new Item();
