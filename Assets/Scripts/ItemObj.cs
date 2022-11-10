@@ -5,14 +5,15 @@ using UnityEngine;
 
 public enum ItemType : int  
 {
-    Hair,
-    Head,
-    Body, 
-    Pants,
-
-    Pauldrons,
-    LeftWeapon,
-    RightWeapon
+    DoorKey1,
+    DoorKey2,
+    DoorKey3,
+    DoorKey4,
+    ChestKey1,
+    ChestKey2,
+    Battery,
+    SwordPiece1,
+    SwordPiece2,
 }
  
 [CreateAssetMenu(fileName ="New Item", menuName = "Inventory System/Items/New Item")]
