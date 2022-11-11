@@ -28,7 +28,6 @@ namespace InputSystem
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
 
-
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 		public void OnMove(InputValue value)
 		{
@@ -105,7 +104,6 @@ namespace InputSystem
 		{
 			if(inventory.gameObject.activeSelf)
 			{
-				//Cursor.SetCursor()
                 Cursor.visible = inven;
             }
 			else

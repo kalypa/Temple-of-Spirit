@@ -14,6 +14,8 @@ public enum ItemType : int
     Battery,
     SwordPiece1,
     SwordPiece2,
+    SwordPiece3,
+    SacredSword
 }
  
 [CreateAssetMenu(fileName ="New Item", menuName = "Inventory System/Items/New Item")]

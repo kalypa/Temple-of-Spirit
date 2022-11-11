@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1450064d07109f9419fb17f62b2eb1f5, type: 3}
+  m_Name: SacredSword
+  m_EditorClassIdentifier: 
+  itemType: 9
+  getFlagStackable: 0
+  itemIcon: {fileID: 21300000, guid: 5aa109f1b15dcaf49b05c57d9e810b25, type: 3}
+  objModelPrefab: {fileID: 2173206865306580324, guid: 630e5ee2730cd724d91b850520a750a6,
+    type: 3}
+  itemData:
+    item_id: 10
+    item_name: Sacred_Sword
+    ability: []
+  itemSummery: "\uC0AC\uC6D0\uC758 \uADC0\uC911\uD55C \uC2E0\uBB3C\uC774\uB2E4..
+    \uB418\uB3CC\uB824 \uB193\uB294\uB2E4\uBA74 \uC81C\uBB3C\uC758 \uBD84\uB178\uB97C
+    \uC7A0\uC7AC\uC6B8\uC9C0\uB3C4?..."

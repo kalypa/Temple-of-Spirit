@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1450064d07109f9419fb17f62b2eb1f5, type: 3}
+  m_Name: Grtar
+  m_EditorClassIdentifier: 
+  itemType: 8
+  getFlagStackable: 0
+  itemIcon: {fileID: 21300000, guid: 42109a8d70924c24387af266c91855f6, type: 3}
+  objModelPrefab: {fileID: 5323515709212883640, guid: 5fed708a4f634994d860285653da02c8,
+    type: 3}
+  itemData:
+    item_id: 8
+    item_name: Grtar
+    ability: []
+  itemSummery: "\uC2E0\uBB3C\uC758 \uC190\uC7A1\uC774 \uC778\uAC83 \uAC19\uB2E4....
+    \uC65C \uB098\uBB34 \uBAA8\uC591\uC77C\uAE4C?..."

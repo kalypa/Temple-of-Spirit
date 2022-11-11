@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1450064d07109f9419fb17f62b2eb1f5, type: 3}
+  m_Name: DoorKey3
+  m_EditorClassIdentifier: 
+  itemType: 2
+  getFlagStackable: 0
+  itemIcon: {fileID: 21300000, guid: d7ce1175b59614947af5d8619744c887, type: 3}
+  objModelPrefab: {fileID: 374289202576707483, guid: cab7803b39ec83d4d82c773bcb36ce0a,
+    type: 3}
+  itemData:
+    item_id: 2
+    item_name: Yellow_Key
+    ability: []
+  itemSummery: "Door3\uC744 \uC5F4 \uC218 \uC788\uB294 \uC5F4\uC1E0\uC774\uB2E4.
+    \uB9CE\uC774 \uB0A1\uC544\uC11C \uD55C \uBC88 \uC4F0\uBA74 \uBABB\uC4F8 \uAC83
+    \uCC98\uB7FC \uBCF4\uC778\uB2E4."

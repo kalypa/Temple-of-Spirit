@@ -5,7 +5,7 @@ using UnityEngine;
  
 public enum BatteryStack
 { 
-    Int, Hp, Str
+    Int, Battery, Str
 }
 
 [Serializable]  
