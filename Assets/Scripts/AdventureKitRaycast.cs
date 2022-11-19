@@ -11,8 +11,6 @@ namespace AdventurePuzzleKit
         [SerializeField] private string exludeLayerName = null;
         private AKItemController raycasted_obj;
 
-        [Header("UI / Crosshair")]
-        [SerializeField] private Image crosshair = null;
         [HideInInspector] public bool doOnce;
 
         private bool isCrosshairActive;
@@ -31,16 +29,15 @@ namespace AdventurePuzzleKit
                     if (!doOnce)
                     {
                         raycasted_obj = hit.collider.gameObject.GetComponent<AKItemController>();
-                        raycasted_obj.Highlight(true);
-                        CrosshairChange(true);
                     }
 
                     isCrosshairActive = true;
                     doOnce = true;
 
-                    if (Input.GetKeyDown(AKInputManager.instance.pickupKey))
+                    if (InputSystem.InputSystems.Instance.pickup)
                     {
                         raycasted_obj.InteractionType();
+                        InputSystem.InputSystems.Instance.pickup = false;
                     }
                 }
             }
@@ -49,23 +46,9 @@ namespace AdventurePuzzleKit
             {
                 if (isCrosshairActive)
                 {
-                    raycasted_obj.Highlight(false);
-                    CrosshairChange(false);
+                    InputSystem.InputSystems.Instance.pickup = false;
                     doOnce = false;
                 }
-            }
-        }
-
-        void CrosshairChange(bool on)
-        {
-            if (on && !doOnce)
-            {
-                crosshair.color = Color.red;
-            }
-            else
-            {
-                crosshair.color = Color.white;
-                isCrosshairActive = false;
             }
         }
     }
