@@ -5,10 +5,10 @@ using UnityEngine;
 
 public enum ItemType : int  
 {
-    DoorKey1,
-    DoorKey2,
-    DoorKey3,
-    DoorKey4,
+    CloverKey,
+    SpadeKey,
+    HeartKey,
+    DiamondKey,
     ChestKey1,
     ChestKey2,
     Battery,
