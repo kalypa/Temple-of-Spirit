@@ -16,6 +16,7 @@ namespace InputSystem
 		public bool sprint;
 		public bool flash;
 		public bool inven;
+		public bool pickup;
 		private bool isFlash = false;
 		private bool isInven = false;
 		[Header("Movement Settings")]
@@ -63,6 +64,11 @@ namespace InputSystem
             isInven = !isInven;
             InventoryInput(isInven);
         }
+
+		public void OnPickUp(InputValue value)
+		{
+			PickUpInput(value.isPressed);
+		}
 #endif
 
 
@@ -95,6 +101,12 @@ namespace InputSystem
 		{
 			inven = newInvenState;
 		}
+
+		public void PickUpInput(bool newPickUpState)
+		{
+			pickup = newPickUpState;
+		}
+
 		private void Update()
 		{
 			CursorHide();
