@@ -16,9 +16,15 @@ public class DrawerController : SingleMonobehaviour<DrawerController>
     private Animator anim;
     public enum DrawerState { Close, Open }
     public DrawerState drawerState = DrawerState.Close;
+
     private void Start()
     {
         anim = drawer.GetComponent<Animator>();
+    }
+
+    public void Update()
+    {
+        Debug.Log(drawerState);
     }
 
     public void DrawerCheck()
@@ -26,7 +32,7 @@ public class DrawerController : SingleMonobehaviour<DrawerController>
         switch(drawerState)
         {
             case DrawerState.Open:
-                StartCoroutine(PlayDrawerOpenAnimation());
+                StartCoroutine(PlayDrawerCloseAnimation());
                 drawerState = DrawerState.Close;
                 InputSystem.InputSystems.Instance.drawer = false;
                 break;
@@ -40,7 +46,6 @@ public class DrawerController : SingleMonobehaviour<DrawerController>
 
     public IEnumerator PlayDrawerOpenAnimation()
     {
-        Debug.Log("Good");
         anim.Play(drawerOpenAnimation, 0, 0.0f);
         //DrawerOpenSound();
         yield return null;
