@@ -17,8 +17,9 @@ namespace InputSystem
 		public bool flash;
 		public bool inven;
 		public bool pickup;
+		public bool drawer;
 		private bool isFlash = false;
-		private bool isInven = false;
+		public bool isInven = false;
 		[Header("Movement Settings")]
 		public bool analogMovement;
 
@@ -69,6 +70,11 @@ namespace InputSystem
 		{
 			PickUpInput(value.isPressed);
 		}
+
+		public void OnDrawer(InputValue value)
+		{
+			DrawerInput(value.isPressed);
+		}
 #endif
 
 
@@ -105,6 +111,11 @@ namespace InputSystem
 		public void PickUpInput(bool newPickUpState)
 		{
 			pickup = newPickUpState;
+		}
+
+		public void DrawerInput(bool newDrawerState)
+		{
+			drawer = newDrawerState;
 		}
 
 		private void Update()

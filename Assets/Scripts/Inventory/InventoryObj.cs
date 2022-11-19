@@ -25,7 +25,7 @@ public class InventoryObj : ScriptableObject
     private Inventory inventory = new Inventory();
      
     public InvenSlot[] invenSlots => inventory.InvenSlots;
-     
+    
     public int getEmptySlotCnt
     {
         get

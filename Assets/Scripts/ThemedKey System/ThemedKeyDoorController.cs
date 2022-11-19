@@ -10,7 +10,7 @@ namespace ThemedKeySystem
         [Header("Door Properties")]
         [SerializeField] private DoorType _doorType = DoorType.None;
         private enum DoorType { None, HeartDoor, DiamondDoor, SpadeDoor, ClubDoor }
-        [Space(5)]
+
         [SerializeField] private GameObject animatedDoorKey = null;
 
         [Header("Sound Delays - Edit to increase delay")]

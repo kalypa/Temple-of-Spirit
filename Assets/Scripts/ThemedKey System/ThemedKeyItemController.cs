@@ -9,7 +9,7 @@ namespace ThemedKeySystem
         private ThemedKeyController keyController;
         private ThemedKeyDoorController doorController;
 
-        private enum ItemType { None, Door, Key }
+        private enum ItemType { None, Door, Key, Drawer }
 
         private void Awake()
         {
@@ -34,6 +34,9 @@ namespace ThemedKeySystem
                 case ItemType.Key:
                     keyController.KeyPickup();
                     break;
+                case ItemType.Drawer:
+                    break;
+
             }
         }
     }

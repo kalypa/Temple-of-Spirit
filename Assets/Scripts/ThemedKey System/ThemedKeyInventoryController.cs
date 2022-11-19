@@ -15,18 +15,24 @@ namespace ThemedKeySystem
         public static ThemedKeyInventoryController instance;
         public InventoryObj inventoryObject;
         public ItemDBObj databaseObject;
+        ItemObj cloverKey;
+        ItemObj spadeKey;
+        ItemObj heartKey;
+        ItemObj diamondKey;
         void Awake()
         {
             if (instance != null) { Destroy(gameObject); }
             else { instance = this; DontDestroyOnLoad(gameObject); }
         }
 
+        private void Start()
+        {
+            inventoryObject.Clear();
+            ItemInit();
+        }
+
         public void UpdateInventory(string keyName)
         {
-            ItemObj cloverKey = databaseObject.itemObjs[0];
-            ItemObj spadeKey = databaseObject.itemObjs[1];
-            ItemObj heartKey = databaseObject.itemObjs[2];
-            ItemObj diamondKey = databaseObject.itemObjs[3];
             Item key;
             if (databaseObject.itemObjs.Length > 0)
             {
@@ -59,6 +65,14 @@ namespace ThemedKeySystem
                 }
             }
            
+        }
+
+        private void ItemInit()
+        {
+            cloverKey = databaseObject.itemObjs[0];
+            spadeKey = databaseObject.itemObjs[1];
+            heartKey = databaseObject.itemObjs[2];
+            diamondKey = databaseObject.itemObjs[3];
         }
     }
 }
