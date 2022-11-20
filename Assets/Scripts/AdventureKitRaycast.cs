@@ -69,7 +69,7 @@ namespace AdventurePuzzleKit
                         doOnce = true;
                         if (InputSystem.InputSystems.Instance.drawer)
                         {
-                            DrawerController.Instance.DrawerCheck();
+                            drawer.DrawerCheck();
                         }
                     }
                     else

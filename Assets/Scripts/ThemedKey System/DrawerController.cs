@@ -6,8 +6,8 @@ using UnityEngine;
 public class DrawerController : SingleMonobehaviour<DrawerController>
 {
     [Header("Drawer Animation Name")]
-    [SerializeField] private string drawerOpenAnimation = "Open";
-    [SerializeField] private string drawerCloseAnimation = "Close";
+    [SerializeField] private string drawerOpenAnimation;
+    [SerializeField] private string drawerCloseAnimation;
 
     [Header("Drawer Sounds")]
     [SerializeField] private string drawerOpenSound = "DrawerOpen";
@@ -20,11 +20,6 @@ public class DrawerController : SingleMonobehaviour<DrawerController>
     private void Start()
     {
         anim = drawer.GetComponent<Animator>();
-    }
-
-    public void Update()
-    {
-        Debug.Log(drawerState);
     }
 
     public void DrawerCheck()
