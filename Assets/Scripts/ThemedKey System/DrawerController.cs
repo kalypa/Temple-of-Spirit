@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DrawerController : SingleMonobehaviour<DrawerController>
+public class DrawerController : MonoBehaviour
 {
     [Header("Drawer Animation Name")]
     [SerializeField] private string drawerOpenAnimation;

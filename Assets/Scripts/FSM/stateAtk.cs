@@ -9,7 +9,7 @@ public class stateAtk : State<MonsterFSM>
     private Animator animator; 
     private stateAtkController stateAtkCtrl;
     private IAtkAble iAtkAble; 
-      
+    
     protected int atkTriggerHash = Animator.StringToHash("Atk");
     protected int atkIndexHash = Animator.StringToHash("AtkIdx");
 
