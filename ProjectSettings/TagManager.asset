@@ -6,6 +6,7 @@ TagManager:
   tags:
   - InteractiveObject
   - Drawer
+  - Door
   layers:
   - Default
   - TransparentFX

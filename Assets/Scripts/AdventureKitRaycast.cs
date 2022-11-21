@@ -13,12 +13,14 @@ namespace AdventurePuzzleKit
         private DrawerController drawer;
         [SerializeField] private Image crosshair = null;
         [SerializeField] private GameObject pickUpText = null;
+        [SerializeField] private GameObject doorText = null;
         [SerializeField] private GameObject OpenText = null;
         [SerializeField] private GameObject CloseText = null;
         [HideInInspector] public bool doOnce;
 
         private bool isCrosshairActive;
         private const string pickupTag = "InteractiveObject";
+        private const string doorTag = "Door";
         private const string openTag = "Drawer";
 
         private void Update()
@@ -38,6 +40,24 @@ namespace AdventurePuzzleKit
                             raycasted_obj = hit.collider.gameObject.GetComponent<AKItemController>();
                             CrosshairChange(true);
                             pickUpText.SetActive(true);
+                        }
+
+                        isCrosshairActive = true;
+                        doOnce = true;
+
+                        if (InputSystem.InputSystems.Instance.pickup)
+                        {
+                            raycasted_obj.InteractionType();
+                            InputSystem.InputSystems.Instance.pickup = false;
+                        }
+                    }
+                    else if (hit.collider.CompareTag(doorTag))
+                    {
+                        if (!doOnce)
+                        {
+                            raycasted_obj = hit.collider.gameObject.GetComponent<AKItemController>();
+                            CrosshairChange(true);
+                            doorText.SetActive(true);
                         }
 
                         isCrosshairActive = true;
@@ -76,6 +96,7 @@ namespace AdventurePuzzleKit
                     {
                         if (isCrosshairActive)
                         {
+                            doorText.SetActive(false);
                             pickUpText.SetActive(false);
                             OpenText.SetActive(false);
                             CloseText.SetActive(false);
@@ -90,6 +111,7 @@ namespace AdventurePuzzleKit
                 {
                     if (isCrosshairActive)
                     {
+                        doorText.SetActive(false);
                         pickUpText.SetActive(false);
                         OpenText.SetActive(false);
                         CloseText.SetActive(false);
@@ -101,6 +123,7 @@ namespace AdventurePuzzleKit
             }
             else
             {
+                doorText.SetActive(false);
                 pickUpText.SetActive(false);
                 OpenText.SetActive(false);
                 CloseText.SetActive(false);
