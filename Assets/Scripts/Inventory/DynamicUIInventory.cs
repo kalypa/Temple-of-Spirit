@@ -34,13 +34,6 @@ public class DynamicUIInventory : UIInventory
             GameObject gameObj = Instantiate(prefabSlot, Vector3.zero, Quaternion.identity, transform);
             gameObj.GetComponent<RectTransform>().anchoredPosition = CalculatePosition(i);
 
-            AddEventAction(gameObj, EventTriggerType.PointerEnter, delegate {  OnEnterSlots(gameObj); });
-            AddEventAction(gameObj, EventTriggerType.PointerExit, delegate { OnExitSlots(gameObj); });
-            AddEventAction(gameObj, EventTriggerType.BeginDrag, delegate { OnStartDrag(gameObj); });
-            AddEventAction(gameObj, EventTriggerType.EndDrag, delegate { OnEndDrag(gameObj); });
-            AddEventAction(gameObj, EventTriggerType.Drag, delegate { OnMovingDrag(gameObj); });
-            AddEventAction(gameObj, EventTriggerType.PointerClick, (data) => { OnClick(gameObj, (PointerEventData)data); });
-
             inventoryObj.invenSlots[i].slotUI = gameObj;
             uiSlotLists.Add(gameObj, inventoryObj.invenSlots[i]);
             gameObj.name += ": " + i;
