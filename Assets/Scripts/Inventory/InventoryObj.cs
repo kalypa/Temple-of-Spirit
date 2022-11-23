@@ -44,9 +44,9 @@ public class InventoryObj : ScriptableObject
     }
 
     public Action<ItemObj> OnUseItemObj;
-     
+    
     public bool AddItem(Item item, int amount)
-    { 
+    {
         InvenSlot invenSlot = seachItemInInven(item); 
         if (!itemDBObj.itemObjs[item.item_id].getFlagStackable || invenSlot == null)
         { 
