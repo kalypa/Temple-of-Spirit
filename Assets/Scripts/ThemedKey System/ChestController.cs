@@ -11,10 +11,13 @@ public class ChestController : MonoBehaviour
     [SerializeField] private ChestType _chestType = ChestType.None;
     [SerializeField] private string doorOpenSound = "ThemedKeyDoorOpen";
     [SerializeField] private string lockedDoorSound = "ThemedKeyLockedDoor";
+    private MeshCollider colliders;
+    [SerializeField] private GameObject collideFixObj;
     private enum ChestType { None, RedChest, BlueChest }
     private void Start()
     {
         anim = GetComponent<Animation>();
+        colliders = GetComponent<MeshCollider>();
     }
 
     public void CheckChest()
@@ -25,6 +28,8 @@ public class ChestController : MonoBehaviour
                 if (ThemedKeyInventoryController.instance.hasRedKey)
                 {
                     StartCoroutine(PlayAnimation());
+                    colliders.enabled = false;
+                    collideFixObj.SetActive(true);
                 }
                 else
                 {
@@ -35,6 +40,8 @@ public class ChestController : MonoBehaviour
                 if (ThemedKeyInventoryController.instance.hasBlueKey)
                 {
                     StartCoroutine(PlayAnimation());
+                    colliders.enabled = false;
+                    collideFixObj.SetActive(true);
                 }
                 else
                 {
