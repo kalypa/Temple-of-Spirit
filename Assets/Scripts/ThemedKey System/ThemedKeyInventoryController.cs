@@ -11,6 +11,12 @@ namespace ThemedKeySystem
         [HideInInspector] public bool hasClubKey;
         [HideInInspector] public bool hasRedKey;
         [HideInInspector] public bool hasBlueKey;
+        [HideInInspector] public bool hasGrtar;
+        [HideInInspector] public bool hasHalgr;
+        [HideInInspector] public bool hasBattery;
+        [HideInInspector] public bool hasSword;
+        [HideInInspector] public bool hasSacredSword;
+        [HideInInspector] public bool hasFlashLight;
 
         private bool isOpen;
 
@@ -23,6 +29,12 @@ namespace ThemedKeySystem
         ItemObj diamondKey;
         ItemObj redKey;
         ItemObj blueKey;
+        ItemObj grtar;
+        ItemObj halgr;
+        ItemObj sword;
+        ItemObj sacredSword;
+        ItemObj battery;
+        ItemObj flashLight;
         void Awake()
         {
             if (instance != null) { Destroy(gameObject); }
@@ -81,6 +93,50 @@ namespace ThemedKeySystem
                     key = new Item(blueKey);
                     inventoryObject.AddItem(key, 1);
                 }
+
+
+                else if (keyName == "Grtar")
+                {
+                    hasGrtar = true;
+                    key = new Item(grtar);
+                    inventoryObject.AddItem(key, 1);
+                }
+
+                else if (keyName == "Halgr")
+                {
+                    hasHalgr = true;
+                    key = new Item(halgr);
+                    inventoryObject.AddItem(key, 1);
+                }
+                
+                else if (keyName == "SacredSword")
+                {
+                    hasSacredSword = true;
+                    key = new Item(sacredSword);
+                    inventoryObject.AddItem(key, 1);
+                }
+
+                else if(keyName == "Sword")
+                {
+                    hasSword = true;
+                    key = new Item(sword);
+                    inventoryObject.AddItem(key, 1);
+                }
+
+                else if (keyName == "Flashlight")
+                {
+                    hasFlashLight = true;
+                    key = new Item(flashLight);
+                    inventoryObject.AddItem(key, 1);
+                }
+
+                else if (keyName == "Battery")
+                {
+                    hasBattery = true;
+                    key = new Item(battery);
+                    inventoryObject.AddItem(key, 1);
+                }
+
             }
            
         }
@@ -93,6 +149,11 @@ namespace ThemedKeySystem
             diamondKey = databaseObject.itemObjs[3];
             redKey = databaseObject.itemObjs[4];
             blueKey = databaseObject.itemObjs[5];
+            grtar = databaseObject.itemObjs[6];
+            halgr = databaseObject.itemObjs[7];
+            sword = databaseObject.itemObjs[8];
+            battery = databaseObject.itemObjs[10];
+            flashLight = databaseObject.itemObjs[11];
         }
     }
 }

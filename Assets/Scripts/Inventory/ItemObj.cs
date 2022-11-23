@@ -12,6 +12,7 @@ public enum ItemType : int
     ChestKey1,
     ChestKey2,
     Battery,
+    Flashlight,
     SwordPiece1,
     SwordPiece2,
     SwordPiece3,
