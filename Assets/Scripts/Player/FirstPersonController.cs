@@ -1,6 +1,10 @@
-﻿using UnityEngine;
+﻿using ThemedKeySystem;
+using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using UnityEngine.Windows;
+
 #endif
 
 namespace InputSystem
@@ -44,12 +48,14 @@ namespace InputSystem
 		private float _rotationVelocity;
 		private float _verticalVelocity;
 		private float _terminalVelocity = 53.0f;
-		[SerializeField]
-		private Light flashLight;
-		[SerializeField]
-		private GameObject inventory;
-		// timeout deltatime
-		private float _jumpTimeoutDelta;
+		[SerializeField] private Light flashLight;
+		[SerializeField] private GameObject inventory;
+		[SerializeField] private GameObject batteryUI;
+		[SerializeField] private Slider battery;
+        [SerializeField] private ThemedKeyInventoryController controller;
+
+        // timeout deltatime
+        private float _jumpTimeoutDelta;
 		private float _fallTimeoutDelta;
 
 	
@@ -232,7 +238,12 @@ namespace InputSystem
 		private void Flash()
 		{
 	        flashLight.enabled = _input.flash;
-		}
+			batteryUI.SetActive(controller.hasFlashLight);
+			if(_input.flash)
+			{
+				battery.value -= 0.01f * Time.deltaTime;
+			}
+        }
 
 		private void Inven()
 		{

@@ -1,3 +1,4 @@
+using ThemedKeySystem;
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
@@ -30,8 +31,9 @@ namespace InputSystem
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
 
+        [SerializeField] private ThemedKeyInventoryController controller;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
-		public void OnMove(InputValue value)
+        public void OnMove(InputValue value)
 		{
 			MoveInput(value.Get<Vector2>());
 		}
@@ -56,8 +58,11 @@ namespace InputSystem
 
 		public void OnFlash(InputValue value)
 		{
-			isFlash = !isFlash;
-			FlashInput(isFlash);
+			if(controller.hasFlashLight)
+			{
+                isFlash = !isFlash;
+                FlashInput(isFlash);
+            }
 		}
 
 		public void OnInventory(InputValue value)
