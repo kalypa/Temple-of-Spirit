@@ -11,7 +11,7 @@ namespace ThemedKeySystem
         [Header("Key Pickup Sound")]
         [SerializeField] private string keySound = "ThemedKeyPickup";
 
-        public enum KeyTheme { None, Heart, Diamond, Club, Spade }
+        public enum KeyTheme { None, Heart, Diamond, Club, Spade, Red, Blue }
 
         public void KeyPickup()
         {
@@ -28,6 +28,12 @@ namespace ThemedKeySystem
                     break;
                 case KeyTheme.Spade:
                     ThemedKeyInventoryController.instance.UpdateInventory("Spade");
+                    break;
+                case KeyTheme.Red:
+                    ThemedKeyInventoryController.instance.UpdateInventory("Red");
+                    break;
+                case KeyTheme.Blue:
+                    ThemedKeyInventoryController.instance.UpdateInventory("Blue");
                     break;
             }
             PickupSound();
