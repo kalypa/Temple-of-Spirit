@@ -108,13 +108,6 @@ namespace ThemedKeySystem
                     key = new Item(halgr);
                     inventoryObject.AddItem(key, 1);
                 }
-                
-                else if (keyName == "SacredSword")
-                {
-                    hasSacredSword = true;
-                    key = new Item(sacredSword);
-                    inventoryObject.AddItem(key, 1);
-                }
 
                 else if(keyName == "Sword")
                 {
@@ -123,10 +116,10 @@ namespace ThemedKeySystem
                     inventoryObject.AddItem(key, 1);
                 }
 
-                else if (keyName == "Flashlight")
+                else if (keyName == "SacredSword")
                 {
-                    hasFlashLight = true;
-                    key = new Item(flashLight);
+                    hasSacredSword = true;
+                    key = new Item(sacredSword);
                     inventoryObject.AddItem(key, 1);
                 }
 
@@ -137,8 +130,15 @@ namespace ThemedKeySystem
                     inventoryObject.AddItem(key, 1);
                 }
 
+                else if (keyName == "Flashlight")
+                {
+                    hasFlashLight = true;
+                    key = new Item(flashLight);
+                    inventoryObject.AddItem(key, 1);
+                }
+
             }
-           
+
         }
 
         private void ItemInit()
@@ -152,6 +152,7 @@ namespace ThemedKeySystem
             grtar = databaseObject.itemObjs[6];
             halgr = databaseObject.itemObjs[7];
             sword = databaseObject.itemObjs[8];
+            sacredSword = databaseObject.itemObjs[9];
             battery = databaseObject.itemObjs[10];
             flashLight = databaseObject.itemObjs[11];
         }

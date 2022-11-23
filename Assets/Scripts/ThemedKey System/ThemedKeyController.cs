@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using AdventurePuzzleKit;
+using Unity.VisualScripting;
 
 namespace ThemedKeySystem
 {
@@ -8,10 +9,11 @@ namespace ThemedKeySystem
         [Header("Type of Key")]
         [SerializeField] private KeyTheme keyType = KeyTheme.None;
 
-        [Header("Key Pickup Sound")]
         [SerializeField] private string keySound = "ThemedKeyPickup";
+        [SerializeField] private string grtarSound = "GrtarPickUp";
+        [SerializeField] private string otherSound = "OtherPickUp";
 
-        public enum KeyTheme { None, Heart, Diamond, Club, Spade, Red, Blue }
+        public enum KeyTheme { None, Heart, Diamond, Club, Spade, Red, Blue, Grtar, Halgr, Sword, SacredSword, Battery, Flashlight }
 
         public void KeyPickup()
         {
@@ -35,6 +37,24 @@ namespace ThemedKeySystem
                 case KeyTheme.Blue:
                     ThemedKeyInventoryController.instance.UpdateInventory("Blue");
                     break;
+                case KeyTheme.Grtar:
+                    ThemedKeyInventoryController.instance.UpdateInventory("Grtar");
+                    break;
+                case KeyTheme.Halgr:
+                    ThemedKeyInventoryController.instance.UpdateInventory("Halgr");
+                    break;
+                case KeyTheme.Sword:
+                    ThemedKeyInventoryController.instance.UpdateInventory("Sword");
+                    break;
+                case KeyTheme.SacredSword:
+                    ThemedKeyInventoryController.instance.UpdateInventory("SacredSword");
+                    break;
+                case KeyTheme.Battery:
+                    ThemedKeyInventoryController.instance.UpdateInventory("Battery");
+                    break;
+                case KeyTheme.Flashlight:
+                    ThemedKeyInventoryController.instance.UpdateInventory("Flashlight");
+                    break;
             }
             PickupSound();
             gameObject.SetActive(false);
@@ -42,7 +62,25 @@ namespace ThemedKeySystem
 
         void PickupSound()
         {
-            AKAudioManager.instance.Play(keySound);
+            switch (keyType)
+            {
+                case KeyTheme.Heart:
+                case KeyTheme.Diamond:
+                case KeyTheme.Club:
+                case KeyTheme.Spade:
+                case KeyTheme.Red:
+                case KeyTheme.Blue:
+                    AKAudioManager.instance.Play(keySound);
+                    break;
+                case KeyTheme.Grtar:
+                case KeyTheme.Halgr:
+                case KeyTheme.Sword:
+                case KeyTheme.SacredSword:
+                case KeyTheme.Battery:
+                case KeyTheme.Flashlight:
+                    AKAudioManager.instance.Play(otherSound);
+                    break;
+            }
         }
     }
 }

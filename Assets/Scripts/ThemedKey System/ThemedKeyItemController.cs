@@ -11,7 +11,7 @@ namespace ThemedKeySystem
         private ChestController chestController;
         private FlashlightController flashlightController;
         private BatteryController batteryController;
-        private enum ItemType { None, Door, Key, Battery, Chest, FlashLight }
+        private enum ItemType { None, Door, Key, Chest }
 
         private void Awake()
         {
@@ -25,12 +25,6 @@ namespace ThemedKeySystem
                     break;
                 case ItemType.Key:
                     keyController = GetComponent<ThemedKeyController>();
-                    break;
-                case ItemType.Battery:
-                    batteryController = GetComponent<BatteryController>();
-                    break;
-                case ItemType.FlashLight:
-                    flashlightController = GetComponent<FlashlightController>();
                     break;
             }
         }
@@ -47,10 +41,6 @@ namespace ThemedKeySystem
                     break;
                 case ItemType.Key:
                     keyController.KeyPickup();
-                    break;
-                case ItemType.Battery:
-                    break;
-                case ItemType.FlashLight:
                     break;
             }
         }
