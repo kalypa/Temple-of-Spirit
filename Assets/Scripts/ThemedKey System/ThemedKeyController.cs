@@ -10,7 +10,6 @@ namespace ThemedKeySystem
         [SerializeField] private KeyTheme keyType = KeyTheme.None;
 
         [SerializeField] private string keySound = "ThemedKeyPickup";
-        [SerializeField] private string grtarSound = "GrtarPickUp";
         [SerializeField] private string otherSound = "OtherPickUp";
 
         public enum KeyTheme { None, Heart, Diamond, Club, Spade, Red, Blue, Grtar, Halgr, Sword, SacredSword, Battery, Flashlight }
