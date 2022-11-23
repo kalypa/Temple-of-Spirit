@@ -8,6 +8,12 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Erbeilo3D/Scenes/StartScene.unity
+    guid: 316e88bfaa6234049b8ae8d48ff73d15
+  - enabled: 1
+    path: Assets/Erbeilo3D/Scenes/MountainScene.unity
+    guid: 474a83e0836807145b401e5fb88e8692
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7,
       type: 2}
