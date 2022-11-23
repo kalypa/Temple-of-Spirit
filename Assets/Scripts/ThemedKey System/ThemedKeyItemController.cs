@@ -9,8 +9,6 @@ namespace ThemedKeySystem
         private ThemedKeyController keyController;
         private ThemedKeyDoorController doorController;
         private ChestController chestController;
-        private FlashlightController flashlightController;
-        private BatteryController batteryController;
         private enum ItemType { None, Door, Key, Chest }
 
         private void Awake()
