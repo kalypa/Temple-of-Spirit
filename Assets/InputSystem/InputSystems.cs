@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using static UnityEngine.Rendering.DebugUI;
-
 #endif
 
 namespace InputSystem
@@ -23,6 +22,7 @@ namespace InputSystem
 		public bool drawer;
 		public bool battery;
 		public bool pause;
+		public bool padlockClose;
 		private bool isFlash = false;
 		public bool isInven = false;
 		public bool isPause = false;
@@ -33,6 +33,7 @@ namespace InputSystem
 		[Header("Inventory")]
 		public GameObject inventory;
 		public GameObject pausePanel;
+		public GameObject startPanel;
         [Header("Mouse Cursor Settings")]
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
@@ -40,82 +41,106 @@ namespace InputSystem
         [SerializeField] private ThemedKeyInventoryController controller;
 		[SerializeField] private Slider batteryUI;
         [SerializeField] private string flashSound = "Flashlight";
-        [SerializeField] private AudioManager audioManager;
-
+		[SerializeField] private PlayerRaycast playerRaycast;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
         public void OnMove(InputValue value)
 		{
+			if(!startPanel.activeSelf)
 			MoveInput(value.Get<Vector2>());
 		}
 
 		public void OnLook(InputValue value)
 		{
-			if(pause == false)
+			if(!startPanel.activeSelf)
 			{
-                if (cursorInputForLook)
+                if (pause == false)
                 {
-                    LookInput(value.Get<Vector2>());
+                    if (cursorInputForLook)
+                    {
+                        LookInput(value.Get<Vector2>());
+                    }
                 }
-            }
-			else
-			{
-                LookInput(new Vector2(0, 0));
+                else
+                {
+                    LookInput(new Vector2(0, 0));
+                }
             }
 		}
 
 		public void OnJump(InputValue value)
 		{
-			JumpInput(value.isPressed);
+			//JumpInput(value.isPressed);
 		}
 
 		public void OnSprint(InputValue value)
 		{
-			SprintInput(value.isPressed);
+			//SprintInput(value.isPressed);
 		}
 
 		public void OnFlash(InputValue value)
 		{
-			if(controller.hasFlashLight && batteryUI.value > 0)
+            if (!startPanel.activeSelf)
 			{
-                isFlash = !isFlash;
-                FlashInput(isFlash);
-                audioManager.Play(flashSound);
+                if (controller.hasFlashLight && batteryUI.value > 0)
+                {
+                    isFlash = !isFlash;
+                    FlashInput(isFlash);
+                    AudioManager.instance.Play(flashSound);
+                }
             }
 		}
 
 		public void OnInventory(InputValue value)
 		{
-            isInven = !isInven;
-            InventoryInput(isInven);
+            if (!startPanel.activeSelf)
+			{
+                isInven = !isInven;
+                InventoryInput(isInven);
+            }
         }
 
 		public void OnPickUp(InputValue value)
 		{
-			PickUpInput(value.isPressed);
+            if (!startPanel.activeSelf && playerRaycast.rayhitF)
+                PickUpInput(value.isPressed);
 		}
 
 		public void OnDrawer(InputValue value)
 		{
-			DrawerInput(value.isPressed);
+            if (!startPanel.activeSelf && playerRaycast.rayhitE)
+                DrawerInput(value.isPressed);
 		}
 
 		public void OnBattery(InputValue value)
 		{
-            if (controller.hasFlashLight && batteryUI.value < 1)
+            if (!startPanel.activeSelf)
 			{
-                BatteryInput(value.isPressed);
+                if (controller.hasFlashLight && batteryUI.value < 1)
+                {
+                    BatteryInput(value.isPressed);
+                }
             }
 		}
 
 		public void OnPause(InputValue value)
 		{
-			isPause = !isPause;
-			PauseInput(isPause);
+            if (!startPanel.activeSelf)
+			{
+                isPause = !isPause;
+                PauseInput(isPause);
+            }
 		}
+
+		public void OnPadlockClose(InputValue value)
+		{
+            if (!startPanel.activeSelf && playerRaycast.rayhitM)
+                PadlockCloseInput(value.isPressed);
+		}
+
 #endif
 
 
-		public void MoveInput(Vector2 newMoveDirection)
+        public void MoveInput(Vector2 newMoveDirection)
 		{
 			move = newMoveDirection;
 		} 
@@ -165,6 +190,11 @@ namespace InputSystem
 		{
 			pause = newPauseState;
             isPanel = newPauseState;
+        }
+
+		public void PadlockCloseInput(bool newPadlockState)
+		{
+			padlockClose = newPadlockState;
         }
 
 		private void Update()

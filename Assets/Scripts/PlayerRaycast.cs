@@ -17,11 +17,15 @@ namespace ItemSystem
         [SerializeField] private GameObject OpenText = null;
         [SerializeField] private GameObject CloseText = null;
         [HideInInspector] public bool doOnce;
+        [HideInInspector] public bool rayhitE = false;
+        [HideInInspector] public bool rayhitF = false;
+        [HideInInspector] public bool rayhitM = false;
 
         private bool isCrosshairActive;
         private const string pickupTag = "InteractiveObject";
         private const string doorTag = "Door";
         private const string openTag = "Drawer";
+        private const string PadlockTag = "Padlock";
 
         private void Update()
         {
@@ -37,6 +41,9 @@ namespace ItemSystem
                     {
                         if (!doOnce)
                         {
+                            rayhitF = true;
+                            rayhitE = false;
+                            rayhitM = false;
                             raycasted_obj = hit.collider.gameObject.GetComponent<ItemController>();
                             CrosshairChange(true);
                             pickUpText.SetActive(true);
@@ -55,6 +62,9 @@ namespace ItemSystem
                     {
                         if (!doOnce)
                         {
+                            rayhitF = true;
+                            rayhitE = false;
+                            rayhitM = false;
                             raycasted_obj = hit.collider.gameObject.GetComponent<ItemController>();
                             CrosshairChange(true);
                             doorText.SetActive(true);
@@ -73,6 +83,9 @@ namespace ItemSystem
                     {
                         if (!doOnce)
                         {
+                            rayhitF = false;
+                            rayhitE = true;
+                            rayhitM = false;
                             drawer = hit.collider.gameObject.GetComponent<DrawerController>();
                             CrosshairChange(true);
                             if(drawer.drawerState == DrawerController.DrawerState.Close)
@@ -92,10 +105,41 @@ namespace ItemSystem
                             drawer.DrawerCheck();
                         }
                     }
+
+                    else if (hit.collider.CompareTag(PadlockTag))
+                    {
+                        if (!doOnce)
+                        {
+                            rayhitF = false;
+                            rayhitE = false;
+                            rayhitM = true;
+                            drawer = hit.collider.gameObject.GetComponent<DrawerController>();
+                            CrosshairChange(true);
+                            if (drawer.drawerState == DrawerController.DrawerState.Close)
+                            {
+                                OpenText.SetActive(true);
+                            }
+                            else if (drawer.drawerState == DrawerController.DrawerState.Open)
+                            {
+                                CloseText.SetActive(true);
+                            }
+                        }
+
+                        isCrosshairActive = true;
+                        doOnce = true;
+                        if (InputSystem.InputSystems.Instance.padlockClose)
+                        {
+                            drawer.DrawerCheck();
+                        }
+                    }
+
                     else
                     {
                         if (isCrosshairActive)
                         {
+                            rayhitF = false;
+                            rayhitE = false;
+                            rayhitM = false;
                             doorText.SetActive(false);
                             pickUpText.SetActive(false);
                             OpenText.SetActive(false);
@@ -111,6 +155,9 @@ namespace ItemSystem
                 {
                     if (isCrosshairActive)
                     {
+                        rayhitF = false;
+                        rayhitE = false;
+                        rayhitM = false;
                         doorText.SetActive(false);
                         pickUpText.SetActive(false);
                         OpenText.SetActive(false);
@@ -123,11 +170,15 @@ namespace ItemSystem
             }
             else
             {
+                rayhitF = false;
+                rayhitE = false;
+                rayhitM = false;
                 doorText.SetActive(false);
                 pickUpText.SetActive(false);
                 OpenText.SetActive(false);
                 CloseText.SetActive(false);
                 crosshair.enabled = false;
+                doOnce = false;
             }
         }
 

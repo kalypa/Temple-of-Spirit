@@ -1,5 +1,5 @@
 {
-    "name": "StarterAssets",
+    "name": "InputActions",
     "maps": [
         {
             "name": "Player",
@@ -90,6 +90,15 @@
                     "name": "Pause",
                     "type": "Button",
                     "id": "64e79e9c-a284-4d9b-ae4a-428a9d92ff4a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PadlockClose",
+                    "type": "Button",
+                    "id": "afc1ce27-e5a7-4ee7-a94f-77ccb5f722a7",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -336,6 +345,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f8496507-cd72-4502-9ba3-b191afe72b0f",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PadlockClose",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

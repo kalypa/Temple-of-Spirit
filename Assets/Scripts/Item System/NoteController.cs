@@ -5,7 +5,7 @@ namespace ItemInven
 {
     public class NoteController : SingleMonobehaviour<NoteController>
     {
-        private GameObject notePanel;
+        [SerializeField] private GameObject notePanel;
 
         public void ExpensionNote()
         {
