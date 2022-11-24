@@ -87,7 +87,7 @@ namespace ItemSystem
                             rayhitF = false;
                             rayhitE = true;
                             rayhitM = false;
-                            drawer = hit.collider.gameObject.GetComponent<DrawerController>();
+                            drawer = hit.collider.gameObject.GetComponent<DrawerController>();;
                             CrosshairChange(true);
                             if(drawer.drawerState == DrawerController.DrawerState.Close)
                             {
@@ -103,7 +103,7 @@ namespace ItemSystem
                         doOnce = true;
                         if (InputSystem.InputSystems.Instance.drawer)
                         {
-                            raycasted_obj.InteractionType();
+                            drawer.DrawerCheck();
                         }
                     }
 
@@ -114,6 +114,7 @@ namespace ItemSystem
                             rayhitF = true;
                             rayhitE = false;
                             rayhitM = true;
+                            raycasted_obj = hit.collider.gameObject.GetComponent<ItemController>();
                             doorText.SetActive(true);
                             CrosshairChange(true);
                         }

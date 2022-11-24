@@ -41,16 +41,20 @@ public class DrawerController : MonoBehaviour
 
     public IEnumerator PlayDrawerOpenAnimation()
     {
+        gameObject.tag = "Untagged";
         anim.Play(drawerOpenAnimation, 0, 0.0f);
         //DrawerOpenSound();
-        yield return null;
+        yield return new WaitForSeconds(1f);
+        gameObject.tag = "Drawer";
     }
 
     public IEnumerator PlayDrawerCloseAnimation()
     {
+        gameObject.tag = "Untagged";
         anim.Play(drawerCloseAnimation, 0, 0.0f);
         //DrawerCloseSound();
-        yield return null;
+        yield return new WaitForSeconds(1f);
+        gameObject.tag = "Drawer";
     }
 
     public void DrawerOpenSound()

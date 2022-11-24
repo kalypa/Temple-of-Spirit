@@ -28,7 +28,6 @@ namespace ItemSystem
             switch (_systemType)
             {
                 case SystemType.ThemedKeySys:
-                    UnityEngine.Debug.Log("d");
                     _themedKeyItemController.ObjectInteract(); 
                     break;
             }
