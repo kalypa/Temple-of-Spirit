@@ -13,12 +13,6 @@ public class OnClickManager : MonoBehaviour
         InputSystems.Instance.inven = false;
         inventory.SetActive(false);
     }
-
-    public void OnClickPauseSettingButton()
-    {
-        
-    }
-
     public void OnClickStartButton()
     {
         startPanel.SetActive(false);
