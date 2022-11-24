@@ -3,9 +3,8 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using System.Collections;
-using ItemSystem;
 
-namespace SafeUnlockSystem
+namespace ItemSystem
 {
     public class SafeController : MonoBehaviour
     {

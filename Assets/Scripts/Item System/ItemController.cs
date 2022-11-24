@@ -1,5 +1,7 @@
 ﻿using ItemInven;
 using UnityEngine;
+using InputSystem;
+using System.Diagnostics;
 
 namespace ItemSystem
 {
@@ -10,12 +12,14 @@ namespace ItemSystem
 
         private ThemedKeyItemController _themedKeyItemController;
 
-        private enum SystemType { None, ThemedKeySys, }
+        private enum SystemType { None, ThemedKeySys}
         private void Start()
         {
             switch (_systemType)
             {
-                case SystemType.ThemedKeySys: _themedKeyItemController = GetComponent<ThemedKeyItemController>(); break;
+                case SystemType.ThemedKeySys: 
+                    _themedKeyItemController = GetComponent<ThemedKeyItemController>(); 
+                    break;
             }
         }
 
@@ -23,7 +27,10 @@ namespace ItemSystem
         {
             switch (_systemType)
             {
-                case SystemType.ThemedKeySys: _themedKeyItemController.ObjectInteract(); break;
+                case SystemType.ThemedKeySys:
+                    UnityEngine.Debug.Log("d");
+                    _themedKeyItemController.ObjectInteract(); 
+                    break;
             }
         }
     }

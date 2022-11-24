@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using ItemSystem;
 namespace ItemInven
 {
     public class ThemedKeyItemController : MonoBehaviour
@@ -9,7 +9,8 @@ namespace ItemInven
         private ThemedKeyController keyController;
         private ThemedKeyDoorController doorController;
         private ChestController chestController;
-        private enum ItemType { None, Door, Key, Chest }
+        private SafeController safeController;
+        private enum ItemType { None, Door, Key, Chest, Safe }
 
         private void Awake()
         {
@@ -23,6 +24,9 @@ namespace ItemInven
                     break;
                 case ItemType.Key:
                     keyController = GetComponent<ThemedKeyController>();
+                    break;
+                case ItemType.Safe:
+                    safeController = GetComponent<SafeController>();
                     break;
             }
         }
@@ -39,6 +43,9 @@ namespace ItemInven
                     break;
                 case ItemType.Key:
                     keyController.KeyPickup();
+                    break;
+                case ItemType.Safe:
+                    safeController.ShowSafeLock();
                     break;
             }
         }

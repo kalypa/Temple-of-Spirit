@@ -11,6 +11,7 @@ namespace ItemSystem
         [SerializeField] private string exludeLayerName = null;
         private ItemController raycasted_obj;
         private DrawerController drawer;
+        private SafeController _safeController;
         [SerializeField] private Image crosshair = null;
         [SerializeField] private GameObject pickUpText = null;
         [SerializeField] private GameObject doorText = null;
@@ -102,7 +103,7 @@ namespace ItemSystem
                         doOnce = true;
                         if (InputSystem.InputSystems.Instance.drawer)
                         {
-                            drawer.DrawerCheck();
+                            raycasted_obj.InteractionType();
                         }
                     }
 
@@ -110,26 +111,18 @@ namespace ItemSystem
                     {
                         if (!doOnce)
                         {
-                            rayhitF = false;
+                            rayhitF = true;
                             rayhitE = false;
                             rayhitM = true;
-                            drawer = hit.collider.gameObject.GetComponent<DrawerController>();
+                            doorText.SetActive(true);
                             CrosshairChange(true);
-                            if (drawer.drawerState == DrawerController.DrawerState.Close)
-                            {
-                                OpenText.SetActive(true);
-                            }
-                            else if (drawer.drawerState == DrawerController.DrawerState.Open)
-                            {
-                                CloseText.SetActive(true);
-                            }
                         }
 
                         isCrosshairActive = true;
                         doOnce = true;
-                        if (InputSystem.InputSystems.Instance.padlockClose)
+                        if (InputSystem.InputSystems.Instance.pickup)
                         {
-                            drawer.DrawerCheck();
+                            raycasted_obj.InteractionType();
                         }
                     }
 
@@ -139,7 +132,6 @@ namespace ItemSystem
                         {
                             rayhitF = false;
                             rayhitE = false;
-                            rayhitM = false;
                             doorText.SetActive(false);
                             pickUpText.SetActive(false);
                             OpenText.SetActive(false);
@@ -157,7 +149,6 @@ namespace ItemSystem
                     {
                         rayhitF = false;
                         rayhitE = false;
-                        rayhitM = false;
                         doorText.SetActive(false);
                         pickUpText.SetActive(false);
                         OpenText.SetActive(false);
@@ -172,7 +163,6 @@ namespace ItemSystem
             {
                 rayhitF = false;
                 rayhitE = false;
-                rayhitM = false;
                 doorText.SetActive(false);
                 pickUpText.SetActive(false);
                 OpenText.SetActive(false);
