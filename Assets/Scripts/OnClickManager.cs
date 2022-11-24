@@ -2,13 +2,11 @@ using InputSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class OnClickManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject inventory;
-
+    [SerializeField] private GameObject inventory;
+    [SerializeField] private GameObject startPanel;
     public void OnClickInvenQuit()
     {
         InputSystems.Instance.isInven = false;
@@ -23,12 +21,14 @@ public class OnClickManager : MonoBehaviour
 
     public void OnClickStartButton()
     {
-        SceneManager.LoadScene("MountainScene");
+        startPanel.SetActive(false);
     }
+
     public void OnClickSettingButton()
     {
 
     }
+
     public void OnClickQuitButton()
     {
         Application.Quit();
