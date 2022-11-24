@@ -1,4 +1,5 @@
 using ItemInven;
+using ItemSystem;
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
@@ -38,6 +39,9 @@ namespace InputSystem
 
         [SerializeField] private ThemedKeyInventoryController controller;
 		[SerializeField] private Slider batteryUI;
+        [SerializeField] private string flashSound = "Flashlight";
+        [SerializeField] private AudioManager audioManager;
+
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
         public void OnMove(InputValue value)
 		{
@@ -75,6 +79,7 @@ namespace InputSystem
 			{
                 isFlash = !isFlash;
                 FlashInput(isFlash);
+                audioManager.Play(flashSound);
             }
 		}
 
