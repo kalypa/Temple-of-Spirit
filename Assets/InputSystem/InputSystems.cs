@@ -21,14 +21,17 @@ namespace InputSystem
 		public bool pickup;
 		public bool drawer;
 		public bool battery;
+		public bool pause;
 		private bool isFlash = false;
 		public bool isInven = false;
+		public bool isPause = false;
+		public bool isPanel = false;
 		[Header("Movement Settings")]
 		public bool analogMovement;
 
 		[Header("Inventory")]
 		public GameObject inventory;
-
+		public GameObject pausePanel;
         [Header("Mouse Cursor Settings")]
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
@@ -43,10 +46,17 @@ namespace InputSystem
 
 		public void OnLook(InputValue value)
 		{
-			if(cursorInputForLook)
+			if(pause == false)
 			{
-				LookInput(value.Get<Vector2>());
-			}
+                if (cursorInputForLook)
+                {
+                    LookInput(value.Get<Vector2>());
+                }
+            }
+			else
+			{
+                LookInput(new Vector2(0, 0));
+            }
 		}
 
 		public void OnJump(InputValue value)
@@ -91,6 +101,12 @@ namespace InputSystem
                 BatteryInput(value.isPressed);
             }
 		}
+
+		public void OnPause(InputValue value)
+		{
+			isPause = !isPause;
+			PauseInput(isPause);
+		}
 #endif
 
 
@@ -122,6 +138,7 @@ namespace InputSystem
 		public void InventoryInput(bool newInvenState)
 		{
 			inven = newInvenState;
+            isPanel = newInvenState;
 		}
 
 		public void PickUpInput(bool newPickUpState)
@@ -139,6 +156,12 @@ namespace InputSystem
             battery = newBatteryState;
 		}
 
+		public void PauseInput(bool newPauseState)
+		{
+			pause = newPauseState;
+            isPanel = newPauseState;
+        }
+
 		private void Update()
 		{
 			CursorHide();
@@ -146,13 +169,13 @@ namespace InputSystem
 
 		private void CursorHide()
 		{
-			if(inventory.gameObject.activeSelf)
+			if(inventory.activeSelf || pausePanel.activeSelf)
 			{
-                Cursor.visible = inven;
+                Cursor.visible = isPanel;
             }
 			else
 			{
-                Cursor.visible = inven;
+                Cursor.visible = isPanel;
             }
 			CursorLockModeState();
 
@@ -160,7 +183,7 @@ namespace InputSystem
 
 		private void CursorLockModeState()
 		{
-            Cursor.lockState = inven ? CursorLockMode.None : CursorLockMode.Confined;
+            Cursor.lockState = isPanel ? CursorLockMode.None : CursorLockMode.Confined;
         }
 	}
 	

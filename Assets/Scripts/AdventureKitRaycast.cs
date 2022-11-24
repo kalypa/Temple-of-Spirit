@@ -28,7 +28,7 @@ namespace AdventurePuzzleKit
             Vector3 fwd = transform.TransformDirection(Vector3.forward);
 
             int mask = 1 << LayerMask.NameToLayer(exludeLayerName) | layerMaskInteract.value;
-            if(InputSystem.InputSystems.Instance.isInven != true)
+            if(InputSystem.InputSystems.Instance.isInven != true && InputSystem.InputSystems.Instance.isPause != true)
             {
                 crosshair.enabled = true;
                 if (Physics.Raycast(transform.position, fwd, out RaycastHit hit, rayLength, mask))

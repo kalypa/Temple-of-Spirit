@@ -50,6 +50,7 @@ namespace InputSystem
 		private float _terminalVelocity = 53.0f;
 		[SerializeField] private Light flashLight;
 		[SerializeField] private GameObject inventory;
+		[SerializeField] private GameObject pausePanel;
 		[SerializeField] private GameObject batteryUI;
 		[SerializeField] private Slider battery;
         [SerializeField] private ThemedKeyInventoryController controller;
@@ -112,6 +113,7 @@ namespace InputSystem
 			Flash();
 			Inven();
 			ChargeBattery();
+			Pause();
         }
 
 		private void LateUpdate()
@@ -262,6 +264,18 @@ namespace InputSystem
             }
 		}
 
+		private void Pause()
+		{
+            pausePanel.SetActive(_input.pause);
+			if(_input.pause == true)
+			{
+                Time.timeScale = 0;
+            }
+			else
+			{
+                Time.timeScale = 1;
+            }
+        }
 		private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
 		{
 			if (lfAngle < -360f) lfAngle += 360f;
