@@ -111,6 +111,7 @@ namespace InputSystem
 			Move();
 			Flash();
 			Inven();
+			ChargeBattery();
         }
 
 		private void LateUpdate()
@@ -248,6 +249,15 @@ namespace InputSystem
 		private void Inven()
 		{
 			inventory.SetActive(_input.inven);
+		}
+
+		private void ChargeBattery()
+		{
+			if(_input.battery)
+			{
+				battery.value += 0.3f;
+				controller.DeleteInventory("Battery");
+			}
 		}
 
 		private static float ClampAngle(float lfAngle, float lfMin, float lfMax)

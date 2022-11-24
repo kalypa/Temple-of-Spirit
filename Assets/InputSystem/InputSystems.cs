@@ -2,6 +2,7 @@ using ThemedKeySystem;
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using static UnityEngine.Rendering.DebugUI;
 
 #endif
@@ -19,6 +20,7 @@ namespace InputSystem
 		public bool inven;
 		public bool pickup;
 		public bool drawer;
+		public bool battery;
 		private bool isFlash = false;
 		public bool isInven = false;
 		[Header("Movement Settings")]
@@ -32,6 +34,7 @@ namespace InputSystem
 		public bool cursorInputForLook = true;
 
         [SerializeField] private ThemedKeyInventoryController controller;
+		[SerializeField] private Slider batteryUI;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
         public void OnMove(InputValue value)
 		{
@@ -58,7 +61,7 @@ namespace InputSystem
 
 		public void OnFlash(InputValue value)
 		{
-			if(controller.hasFlashLight)
+			if(controller.hasFlashLight && batteryUI.value > 0)
 			{
                 isFlash = !isFlash;
                 FlashInput(isFlash);
@@ -79,6 +82,14 @@ namespace InputSystem
 		public void OnDrawer(InputValue value)
 		{
 			DrawerInput(value.isPressed);
+		}
+
+		public void OnBattery(InputValue value)
+		{
+            if (controller.hasFlashLight && batteryUI.value < 1)
+			{
+                BatteryInput(value.isPressed);
+            }
 		}
 #endif
 
@@ -121,6 +132,11 @@ namespace InputSystem
 		public void DrawerInput(bool newDrawerState)
 		{
 			drawer = newDrawerState;
+		}
+
+		public void BatteryInput(bool newBatteryState)
+		{
+            battery = newBatteryState;
 		}
 
 		private void Update()

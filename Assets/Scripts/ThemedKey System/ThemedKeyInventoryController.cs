@@ -141,6 +141,92 @@ namespace ThemedKeySystem
 
         }
 
+        public void DeleteInventory(string keyName)
+        {
+            Item key;
+            if (databaseObject.itemObjs.Length > 0)
+            {
+                if (keyName == "Heart")
+                {
+                    hasHeartKey = false;
+                    key = new Item(heartKey);
+                    inventoryObject.seachItemInInven(key).destoryItem();
+                }
+
+                else if (keyName == "Diamond")
+                {
+                    hasDiamondKey = false;
+                    key = new Item(diamondKey);
+                    inventoryObject.seachItemInInven(key).destoryItem();
+                }
+
+                else if (keyName == "Club")
+                {
+                    hasClubKey = false;
+                    key = new Item(cloverKey);
+                    inventoryObject.seachItemInInven(key).destoryItem();
+                }
+
+                else if (keyName == "Spade")
+                {
+                    hasSpadeKey = false;
+                    key = new Item(spadeKey);
+                    inventoryObject.seachItemInInven(key).destoryItem();
+                }
+
+                else if (keyName == "Red")
+                {
+                    hasRedKey = true;
+                    key = new Item(redKey);
+                    inventoryObject.seachItemInInven(key).destoryItem();
+                }
+
+                else if (keyName == "Blue")
+                {
+                    hasBlueKey = false;
+                    key = new Item(blueKey);
+                    inventoryObject.seachItemInInven(key).destoryItem();
+                }
+
+
+                else if (keyName == "Grtar")
+                {
+                    hasGrtar = false;
+                    key = new Item(grtar);
+                    inventoryObject.seachItemInInven(key).destoryItem();
+                }
+
+                else if (keyName == "Halgr")
+                {
+                    hasHalgr = false;
+                    key = new Item(halgr);
+                    inventoryObject.seachItemInInven(key).destoryItem();
+                }
+
+                else if (keyName == "Sword")
+                {
+                    hasSword = true;
+                    key = new Item(sword);
+                    inventoryObject.seachItemInInven(key).destoryItem();
+                }
+
+                else if (keyName == "SacredSword")
+                {
+                    hasSacredSword = true;
+                    key = new Item(sacredSword);
+                    inventoryObject.seachItemInInven(key).destoryItem();
+                }
+
+                else if (keyName == "Battery")
+                {
+                    hasBattery = true;
+                    key = new Item(battery);
+                    inventoryObject.seachItemInInven(key).minusCnt(1);
+                }
+
+            }
+
+        }
         private void ItemInit()
         {
             cloverKey = databaseObject.itemObjs[0];

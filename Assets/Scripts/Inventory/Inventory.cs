@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 public class Inventory
 { 
     public InvenSlot[] InvenSlots = new InvenSlot[24];
-     
+    
     public void Clear()
     {
         foreach (InvenSlot invenSlot in InvenSlots)

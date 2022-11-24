@@ -40,6 +40,7 @@ public class InvenSlot
     public void destoryItem() => uploadSlot(new Item(), 0);
      
     public void addCnt(int value) => uploadSlot(item, itemCnt += value);
+    public void minusCnt(int value) => uploadSlot(item, itemCnt -= value);
      
     public void uploadSlot(Item item, int cnt)
     {
