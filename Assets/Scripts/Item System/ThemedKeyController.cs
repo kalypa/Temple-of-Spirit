@@ -11,8 +11,9 @@ namespace ItemInven
 
         [SerializeField] private string keySound = "ThemedKeyPickup";
         [SerializeField] private string otherSound = "OtherPickUp";
+        [SerializeField] private string noteSound = "NoteOpen";
 
-        public enum KeyTheme { None, Heart, Diamond, Club, Spade, Red, Blue, Grtar, Halgr, Sword, SacredSword, Battery, Flashlight }
+        public enum KeyTheme { None, Heart, Diamond, Club, Spade, Red, Blue, Grtar, Halgr, Sword, SacredSword, Battery, Flashlight, Note }
 
         public void KeyPickup()
         {
@@ -54,6 +55,9 @@ namespace ItemInven
                 case KeyTheme.Flashlight:
                     ThemedKeyInventoryController.instance.UpdateInventory("Flashlight");
                     break;
+                case KeyTheme.Note:
+                    NoteController.Instance.ExpensionNote();
+                    break;
             }
             PickupSound();
             gameObject.SetActive(false);
@@ -78,6 +82,9 @@ namespace ItemInven
                 case KeyTheme.Battery:
                 case KeyTheme.Flashlight:
                     AudioManager.instance.Play(otherSound);
+                    break;
+                case KeyTheme.Note:
+                    AudioManager.instance.Play(noteSound);
                     break;
             }
         }
