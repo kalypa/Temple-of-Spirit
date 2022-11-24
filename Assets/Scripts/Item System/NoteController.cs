@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using InputSystem;
+
 namespace ItemInven
 {
     public class NoteController : SingleMonobehaviour<NoteController>
@@ -9,6 +11,7 @@ namespace ItemInven
 
         public void ExpensionNote()
         {
+            InputSystems.Instance.isPanel = true;
             notePanel.SetActive(true);
         }
 

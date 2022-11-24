@@ -53,7 +53,7 @@ namespace InputSystem
 		{
 			if(!startPanel.activeSelf)
 			{
-                if (pause == false)
+                if (pause == false && isPanel != true)
                 {
                     if (cursorInputForLook)
                     {

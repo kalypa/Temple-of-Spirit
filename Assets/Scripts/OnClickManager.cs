@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using ItemSystem;
 public class OnClickManager : MonoBehaviour
 {
     [SerializeField] private GameObject inventory;
@@ -16,6 +16,7 @@ public class OnClickManager : MonoBehaviour
     [SerializeField] private Sprite sprite_sound_Off;
     [SerializeField] private Sprite sprite_sound_On;
     [SerializeField] private Image  sound_Current;
+    [SerializeField] private string noteSound = "NoteOpen";
     public void OnClickInvenQuit()
     {
         //InputSystems.Instance.isInven = false;
@@ -42,6 +43,7 @@ public class OnClickManager : MonoBehaviour
     {
         Application.Quit();
     }
+
     public void OnClickSoundButton()
     {
 
@@ -55,5 +57,12 @@ public class OnClickManager : MonoBehaviour
         {
             sound_Current.sprite = sprite_sound_On;
         }
+    }
+
+    public void OnclickNoteQuit1()
+    {
+        InputSystems.Instance.isPanel = false;
+        notePanel1.SetActive(false);
+        AudioManager.instance.Play(noteSound);
     }
 }

@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using System.Collections;
+using InputSystem;
 
 namespace ItemSystem
 {
@@ -23,7 +24,7 @@ namespace ItemSystem
         [Header("Safe UI")]
         [SerializeField] private GameObject safeUI = null;
 
-        [Header("Safe Solution: 0-15")]
+        [Header("Safe Solution: 0-9")]
         [Range(0, 9)][SerializeField] private int safeSolutionNum1 = 0;
         [Range(0, 9)][SerializeField] private int safeSolutionNum2 = 0;
         [Range(0, 9)][SerializeField] private int safeSolutionNum3 = 0;
@@ -109,6 +110,7 @@ namespace ItemSystem
 
             disableClose = false;
             safeUI.SetActive(true);
+            InputSystems.Instance.isPanel = true;
             AudioManager.instance.Play(interactSound);
         }
 
@@ -116,26 +118,29 @@ namespace ItemSystem
         {
             if (!disableClose)
             {
-                if (InputSystem.InputSystems.Instance.padlockClose)
-                {
-                    if (isTriggerInteraction)
-                    {
-                        disableClose = true;
-                        triggerObject.SetActive(true);
-                    }
-
-                    safeUI.SetActive(false);
-                }
+                //if (InputSystem.InputSystems.Instance.padlockClose)
+                //{
+                //    if (isTriggerInteraction)
+                //    {
+                //        disableClose = true;
+                //        triggerObject.SetActive(true);
+                //    }
+                //    InputSystems.Instance.isPanel = false;
+                //    safeUI.SetActive(false);
+                //}
             }
+            Debug.Log(firstNumberUI.text + secondNumberUI.text + thirdNumberUI.text + fourthNumberUI.text);
+            Debug.Log(safeSolutionNum1.ToString("0") + safeSolutionNum2.ToString("0") + safeSolutionNum3.ToString("0") + safeSolutionNum4.ToString("0"));
         }
 
         private IEnumerator CheckCode()
         {
-            string playerInputNumber = firstNumberUI.text + secondNumberUI.text + thirdNumberUI.text;
+            string playerInputNumber = firstNumberUI.text + secondNumberUI.text + thirdNumberUI.text + fourthNumberUI.text;
             string safeSolution = safeSolutionNum1.ToString("0") + safeSolutionNum2.ToString("0") + safeSolutionNum3.ToString("0") + safeSolutionNum4.ToString("0");
 
             if (playerInputNumber == safeSolution)
             {
+                InputSystems.Instance.isPanel = false;
                 safeUI.SetActive(false);
                 safeModel.tag = "Untagged";
 
@@ -209,7 +214,7 @@ namespace ItemSystem
                 secondArrowUI.interactable = true;
                 thirdArrowUI.interactable = false;
                 fourthArrowUI.interactable = false;
-
+                lockNumberInt = 0;
                 secondNumberUI.text = lockNumberInt.ToString("0");
 
                 firstNumberUI.color = Color.gray;
@@ -236,7 +241,7 @@ namespace ItemSystem
                 secondNumber = false;
                 thirdNumber = true;
                 fourthNumber = false;
-
+                lockNumberInt = 0;
                 thirdNumberUI.text = lockNumberInt.ToString("0");
 
                 firstArrowUI.interactable = false;
@@ -268,7 +273,7 @@ namespace ItemSystem
                 secondNumber = false;
                 thirdNumber = false;
                 fourthNumber = true;
-
+                lockNumberInt = 0;
                 fourthNumberUI.text = lockNumberInt.ToString("0");
 
                 firstArrowUI.interactable = false;
@@ -343,15 +348,15 @@ namespace ItemSystem
 
             if (secondNumber && lockNumberSelection == 2)
             {
-                if (lockNumberInt >= 1)
+                if (lockNumberInt <= 8)
                 {
                     safeDial.transform.Rotate(0.0f, 0.0f, 22.5f, Space.Self);
-                    lockNumberInt--;
+                    lockNumberInt++;
                     secondNumberUI.text = lockNumberInt.ToString("0");
                 }
                 else
                 {
-                    lockNumberInt = 8;
+                    lockNumberInt = 0;
                     safeDial.transform.Rotate(0.0f, 0.0f, 22.5f, Space.Self);
                     secondNumberUI.text = lockNumberInt.ToString("0");
                 }
@@ -375,15 +380,15 @@ namespace ItemSystem
 
             if (fourthNumber && lockNumberSelection == 4)
             {
-                if (lockNumberInt >= 1)
+                if (lockNumberInt <= 8)
                 {
                     safeDial.transform.Rotate(0.0f, 0.0f, 22.5f, Space.Self);
-                    lockNumberInt--;
+                    lockNumberInt++;
                     fourthNumberUI.text = lockNumberInt.ToString("0");
                 }
                 else
                 {
-                    lockNumberInt = 8;
+                    lockNumberInt = 0;
                     safeDial.transform.Rotate(0.0f, 0.0f, 22.5f, Space.Self);
                     fourthNumberUI.text = lockNumberInt.ToString("0");
                 }
