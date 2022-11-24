@@ -256,8 +256,10 @@ namespace InputSystem
 			if(_input.battery)
 			{
 				battery.value += 0.3f;
-				controller.DeleteInventory("Battery");
-			}
+				controller?.DeleteInventory("Battery");
+				_input.battery = false;
+
+            }
 		}
 
 		private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
