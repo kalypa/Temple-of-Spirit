@@ -102,6 +102,7 @@ namespace ItemSystem
 
         public void ShowSafeLock()
         {
+            safeModel.tag = "Untagged";
             if (isTriggerInteraction)
             {
                 disableClose = false;
@@ -116,19 +117,6 @@ namespace ItemSystem
 
         private void Update()
         {
-            if (!disableClose)
-            {
-                //if (InputSystem.InputSystems.Instance.padlockClose)
-                //{
-                //    if (isTriggerInteraction)
-                //    {
-                //        disableClose = true;
-                //        triggerObject.SetActive(true);
-                //    }
-                //    InputSystems.Instance.isPanel = false;
-                //    safeUI.SetActive(false);
-                //}
-            }
             Debug.Log(firstNumberUI.text + secondNumberUI.text + thirdNumberUI.text + fourthNumberUI.text);
             Debug.Log(safeSolutionNum1.ToString("0") + safeSolutionNum2.ToString("0") + safeSolutionNum3.ToString("0") + safeSolutionNum4.ToString("0"));
         }
@@ -161,11 +149,14 @@ namespace ItemSystem
             }
             else
             {
+                InputSystems.Instance.isPanel = false;
                 AudioManager.instance.Play(lockRattle);
                 firstNumberUI.text = "0";
                 secondNumberUI.text = "0";
                 thirdNumberUI.text = "0";
                 fourthNumberUI.text = "0";
+                safeUI.SetActive(false);
+                safeModel.tag = "Padlock";
                 firstNumber = true;
                 secondNumber = false;
                 thirdNumber = false;
