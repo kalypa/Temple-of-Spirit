@@ -12,7 +12,7 @@ namespace ItemSystem
         private ItemController raycasted_obj;
         private DrawerController drawer;
         [SerializeField] private Image crosshair = null;
-        [SerializeField] private GameObject pickUpText = null;
+        [SerializeField] private TextMeshProUGUI pickUpText = null;
         [SerializeField] private GameObject doorText = null;
         [SerializeField] private GameObject OpenText = null;
         [SerializeField] private GameObject CloseText = null;
@@ -47,8 +47,10 @@ namespace ItemSystem
                             rayhitM = false;
                             raycasted_obj = hit.collider.gameObject.GetComponent<ItemController>();
                             CrosshairChange(true);
-                            pickUpText.SetActive(true);
-                            pickUpTextImage.transform.position = new Vector3(pickUpText.GetComponent<TextMeshPro>().GetPreferredValues().x + 10, -50, 0);
+                            pickUpText.text = hit.collider.name;
+                            pickUpTextImage.rectTransform.anchoredPosition = new Vector2(200, -50);
+                            pickUpText.gameObject.SetActive(true);
+
                         }
 
                         isCrosshairActive = true;
@@ -66,7 +68,6 @@ namespace ItemSystem
                         {
                             rayhitF = true;
                             rayhitE = false;
-                            rayhitM = false;
                             raycasted_obj = hit.collider.gameObject.GetComponent<ItemController>();
                             CrosshairChange(true);
                             doorText.SetActive(true);
@@ -87,7 +88,6 @@ namespace ItemSystem
                         {
                             rayhitF = false;
                             rayhitE = true;
-                            rayhitM = false;
                             drawer = hit.collider.gameObject.GetComponent<DrawerController>();;
                             CrosshairChange(true);
                             if(drawer.drawerState == DrawerController.DrawerState.Close)
@@ -114,7 +114,6 @@ namespace ItemSystem
                         {
                             rayhitF = true;
                             rayhitE = false;
-                            rayhitM = true;
                             raycasted_obj = hit.collider.gameObject.GetComponent<ItemController>();
                             doorText.SetActive(true);
                             CrosshairChange(true);
@@ -135,7 +134,7 @@ namespace ItemSystem
                             rayhitF = false;
                             rayhitE = false;
                             doorText.SetActive(false);
-                            pickUpText.SetActive(false);
+                            pickUpText.gameObject.SetActive(false);
                             OpenText.SetActive(false);
                             CloseText.SetActive(false);
                             InputSystem.InputSystems.Instance.pickup = false;
@@ -152,7 +151,7 @@ namespace ItemSystem
                         rayhitF = false;
                         rayhitE = false;
                         doorText.SetActive(false);
-                        pickUpText.SetActive(false);
+                        pickUpText.gameObject.SetActive(false);
                         OpenText.SetActive(false);
                         CloseText.SetActive(false);
                         InputSystem.InputSystems.Instance.pickup = false;
@@ -166,7 +165,7 @@ namespace ItemSystem
                 rayhitF = false;
                 rayhitE = false;
                 doorText.SetActive(false);
-                pickUpText.SetActive(false);
+                pickUpText.gameObject.SetActive(false);
                 OpenText.SetActive(false);
                 CloseText.SetActive(false);
                 crosshair.enabled = false;
