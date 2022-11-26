@@ -99,7 +99,7 @@ namespace ItemInven
 
         public void GameStart()
         {
-            Vignette playerEyeDown = GameManager.Instance.volumeObject.GetComponent<Vignette>();
+            Vignette playerEyeDown = GameManager.Instance.vignette;
             eyeClosing = playerEyeDown.center.value;
             DOTween.To(() => eyeClosing, y => eyeClosing = y, new Vector2(0.5f, 6.7f), 4f);
             GameManager.Instance.controller.enabled = false;

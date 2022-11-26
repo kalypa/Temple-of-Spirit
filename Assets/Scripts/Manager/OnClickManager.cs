@@ -47,7 +47,7 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
         GameManager.Instance.player.transform.position = playerFirstPos.transform.position;
         playercamera.transform.rotation = playerFirstPos.transform.rotation;
         GameManager.Instance.fog.SetActive(true);
-        GameManager.Instance.volumeObject.weight = 0.25f;
+        GameManager.Instance.volume.weight = 0.25f;
         invisibleWall.SetActive(true);
         GameManager.Instance.fadePanel.SetActive(true);
         startPanel.SetActive(false);
