@@ -6,8 +6,9 @@ using UnityEngine.UI;
 using ItemSystem;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.Rendering;
+using DG.Tweening;
 
-public class OnClickManager : MonoBehaviour
+public class OnClickManager : SingleMonobehaviour<OnClickManager>
 {
     [SerializeField] private GameObject inventory;
     [SerializeField] private GameObject startPanel;
@@ -20,20 +21,16 @@ public class OnClickManager : MonoBehaviour
     [SerializeField] private Sprite sprite_sound_On;
     [SerializeField] private Image  sound_Current;
     [SerializeField] private string noteSound = "NoteOpen";
-    [SerializeField] private GameObject player;
+    [SerializeField] private GameObject playercamera;
     [SerializeField] private GameObject playerFirstPos;
     [SerializeField] private GameObject invisibleWall;
-    [SerializeField] private GameObject mapPrefab;
-    [SerializeField] private GameObject fog;
-    [SerializeField] private Volume volumeObject;
-    [SerializeField] private GameObject fadePanel;
-    [SerializeField] private Image fadeImage;
-    private FirstPersonController controller;
-    private void Awake()
+    private Image fadeImage;
+    private float time = 4f;
+    private void Start()
     {
         InputSystems.Instance.isPanel = true;
-        controller = player.GetComponent<FirstPersonController>(); 
-        fadeImage = fadePanel.GetComponent<Image>();
+        GameManager.Instance.controller = GameManager.Instance.player.GetComponent<FirstPersonController>(); 
+        fadeImage = GameManager.Instance.fadePanel.GetComponent<Image>();
     }
 
     public void OnClickInvenQuit()
@@ -45,17 +42,22 @@ public class OnClickManager : MonoBehaviour
     public void OnClickStartButton()
     {
         InputSystems.Instance.isPanel = false;
-        controller.enabled = false;
-        //GameObject Map = Instantiate(mapPrefab);
-        player.transform.position = playerFirstPos.transform.position;
-        fog.SetActive(true);
-        volumeObject.weight = 0.25f;
-        controller.enabled = true;
+        GameManager.Instance.controller.enabled = false;
+        GameObject Map = Instantiate(GameManager.Instance.mapPrefab);
+        GameManager.Instance.player.transform.position = playerFirstPos.transform.position;
+        playercamera.transform.rotation = playerFirstPos.transform.rotation;
+        GameManager.Instance.fog.SetActive(true);
+        GameManager.Instance.volumeObject.weight = 0.25f;
         invisibleWall.SetActive(true);
-        fadePanel.SetActive(true);
+        GameManager.Instance.fadePanel.SetActive(true);
         startPanel.SetActive(false);
+        fadeImage.DOFade(0, time);
+        PlayerLock();
     }
-
+    private void PlayerLock()
+    {
+        GameManager.Instance.controller.enabled = true;
+    }
     public void OnClickSettingButton()
     {
         settingPanel.SetActive(true);

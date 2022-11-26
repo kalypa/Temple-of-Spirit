@@ -74,6 +74,10 @@ namespace InputSystem
                         LookInput(new Vector2(0, 0));
                     }
                 }
+                else
+                {
+                    LookInput(new Vector2(0, 0));
+                }
             }
 		}
 

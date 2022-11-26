@@ -115,12 +115,6 @@ namespace ItemSystem
             AudioManager.instance.Play(interactSound);
         }
 
-        private void Update()
-        {
-            Debug.Log(firstNumberUI.text + secondNumberUI.text + thirdNumberUI.text + fourthNumberUI.text);
-            Debug.Log(safeSolutionNum1.ToString("0") + safeSolutionNum2.ToString("0") + safeSolutionNum3.ToString("0") + safeSolutionNum4.ToString("0"));
-        }
-
         private IEnumerator CheckCode()
         {
             string playerInputNumber = firstNumberUI.text + secondNumberUI.text + thirdNumberUI.text + fourthNumberUI.text;
