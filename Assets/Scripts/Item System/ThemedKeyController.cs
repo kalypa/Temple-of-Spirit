@@ -17,7 +17,6 @@ namespace ItemInven
         [SerializeField] private string noteSound = "NoteOpen";
         private Quaternion falling = Quaternion.Euler(0, 180, 106.6f);
         private Vector3 enemySurprise;
-        private Vector2 eyeClosing;
         public enum KeyTheme { None, Heart, Diamond, Club, Spade, Red, Blue, Grtar, Halgr, Sword, SacredSword, Battery, Flashlight, Note }
         public void KeyPickup()
         {
@@ -99,9 +98,8 @@ namespace ItemInven
 
         public void GameStart()
         {
-            Vignette playerEyeDown = GameManager.Instance.vignette;
-            eyeClosing = playerEyeDown.center.value;
-            DOTween.To(() => eyeClosing, y => eyeClosing = y, new Vector2(0.5f, 6.7f), 4f);
+            Vignette playerEyeDown = VolumeChange.Instance.vignette;
+            DOTween.To(() => playerEyeDown.center.value, y => playerEyeDown.center.value = y, new Vector2(0.5f, -6.7f), 4f);
             GameManager.Instance.controller.enabled = false;
             GameManager.Instance.player.transform.DORotateQuaternion(falling, 0.5f);
             GameManager.Instance.player.transform.DOMoveX(GameManager.Instance.player.transform.position.x + 0.5f, 1f);

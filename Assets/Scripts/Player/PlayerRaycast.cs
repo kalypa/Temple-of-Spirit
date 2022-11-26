@@ -11,7 +11,6 @@ namespace ItemSystem
         [SerializeField] private string exludeLayerName = null;
         private ItemController raycasted_obj;
         private DrawerController drawer;
-        private SafeController _safeController;
         [SerializeField] private Image crosshair = null;
         [SerializeField] private GameObject pickUpText = null;
         [SerializeField] private GameObject doorText = null;

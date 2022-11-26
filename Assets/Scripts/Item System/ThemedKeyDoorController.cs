@@ -2,14 +2,15 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
-
+using UnityEngine.UI;
+using DG.Tweening;
 namespace ItemInven
 {
     public class ThemedKeyDoorController : MonoBehaviour
     {
         [Header("Door Properties")]
         [SerializeField] private DoorType _doorType = DoorType.None;
-        private enum DoorType { None, HeartDoor, DiamondDoor, SpadeDoor, ClubDoor }
+        private enum DoorType { None, HeartDoor, DiamondDoor, SpadeDoor, CloverDoor }
 
         [SerializeField] private GameObject animatedDoorKey = null;
 
@@ -27,6 +28,7 @@ namespace ItemInven
 
         [Header("Animation Event")]
         [SerializeField] private UnityEvent onUnlock = null;
+        [SerializeField] private Text lockedDoorText = null;
 
         private Animator anim;
 
@@ -46,6 +48,7 @@ namespace ItemInven
                     }
                     else
                     {
+                        StartCoroutine(DoorLockedText());
                         LockedDoorSound();
                     }
                     break;
@@ -56,16 +59,18 @@ namespace ItemInven
                     }
                     else
                     {
+                        StartCoroutine(DoorLockedText());
                         LockedDoorSound();
                     }
                     break;
-                case DoorType.ClubDoor:
+                case DoorType.CloverDoor:
                     if (ThemedKeyInventoryController.instance.hasClubKey)
                     {
                         StartCoroutine(PlayAnimation());
                     }
                     else
                     {
+                        StartCoroutine(DoorLockedText());
                         LockedDoorSound();
                     }
                     break;
@@ -76,6 +81,7 @@ namespace ItemInven
                     }
                     else
                     {
+                        StartCoroutine(DoorLockedText());
                         LockedDoorSound();
                     }
                     break;
@@ -96,7 +102,15 @@ namespace ItemInven
             onUnlock.Invoke();
             DoorOpenSound();            
         }
-
+        private IEnumerator DoorLockedText()
+        {
+            lockedDoorText.text = animatedDoorKey.name + "가 필요합니다";
+            lockedDoorText.gameObject.SetActive(true);
+            lockedDoorText.DOFade(0, 0.5f);
+            yield return new WaitForSeconds(1f);
+            lockedDoorText.gameObject.SetActive(false);
+            lockedDoorText.color = new Color(1, 1, 1, 1);
+        }
         public void DoorOpenSound()
         {
             AudioManager.instance.Play(doorOpenSound);

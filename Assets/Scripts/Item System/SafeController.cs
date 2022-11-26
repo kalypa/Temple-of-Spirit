@@ -55,7 +55,6 @@ namespace ItemSystem
         private bool thirdNumber;
         private bool fourthNumber;
 
-        private bool disableClose = false;
         private int lockNumberInt;
 
         [Header("Trigger Type - ONLY if using a trigger event")]
@@ -67,12 +66,6 @@ namespace ItemSystem
 
         void Awake()
         {
-            if (isTriggerInteraction)
-            {
-                disableClose = true;
-            }
-
-            disableClose = true;
             firstNumber = true;
             safeAnim = safeModel.gameObject.GetComponent<Animator>();
             safeBoxCollider = safeModel.gameObject.GetComponent<BoxCollider>();
@@ -105,11 +98,8 @@ namespace ItemSystem
             safeModel.tag = "Untagged";
             if (isTriggerInteraction)
             {
-                disableClose = false;
                 triggerObject.SetActive(false);
             }
-
-            disableClose = false;
             safeUI.SetActive(true);
             InputSystems.Instance.isPanel = true;
             AudioManager.instance.Play(interactSound);
@@ -135,7 +125,6 @@ namespace ItemSystem
                 safeBoxCollider.enabled = false;
                 if (isTriggerInteraction)
                 {
-                    disableClose = true;
                     triggerObject.SetActive(false);
                 }
 
