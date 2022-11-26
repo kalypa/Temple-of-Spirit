@@ -42,6 +42,7 @@ namespace InputSystem
 		[SerializeField] private Slider batteryUI;
         [SerializeField] private string flashSound = "Flashlight";
 		[SerializeField] private PlayerRaycast playerRaycast;
+		[SerializeField] private GameObject doorlockedText;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
         public void OnMove(InputValue value)
 		{
@@ -115,7 +116,7 @@ namespace InputSystem
 
 		public void OnPickUp(InputValue value)
 		{
-            if (!startPanel.activeSelf && playerRaycast.rayhitF)
+            if (!startPanel.activeSelf && playerRaycast.rayhitF && !doorlockedText.activeSelf)
                 PickUpInput(value.isPressed);
 		}
 

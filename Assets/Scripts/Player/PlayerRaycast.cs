@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 namespace ItemSystem
 {
     public class PlayerRaycast : MonoBehaviour
@@ -16,6 +16,7 @@ namespace ItemSystem
         [SerializeField] private GameObject doorText = null;
         [SerializeField] private GameObject OpenText = null;
         [SerializeField] private GameObject CloseText = null;
+        [SerializeField] private Image pickUpTextImage = null;
         [HideInInspector] public bool doOnce;
         [HideInInspector] public bool rayhitE = false;
         [HideInInspector] public bool rayhitF = false;
@@ -47,6 +48,7 @@ namespace ItemSystem
                             raycasted_obj = hit.collider.gameObject.GetComponent<ItemController>();
                             CrosshairChange(true);
                             pickUpText.SetActive(true);
+                            pickUpTextImage.transform.position = new Vector3(pickUpText.GetComponent<TextMeshPro>().GetPreferredValues().x + 10, -50, 0);
                         }
 
                         isCrosshairActive = true;

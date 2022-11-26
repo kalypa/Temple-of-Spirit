@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using DG.Tweening;
+using InputSystem;
 namespace ItemInven
 {
     public class ThemedKeyDoorController : MonoBehaviour
@@ -93,7 +94,6 @@ namespace ItemInven
             gameObject.tag = "Untagged";
             animatedDoorKey.SetActive(true);
             anim.Play(keyAnimation, 0, 0.0f);
-
             yield return new WaitForSeconds(keyAudioDelay);
             UnlockSound();
             yield return new WaitForSeconds(doorOpenDelay);
@@ -106,7 +106,8 @@ namespace ItemInven
         {
             lockedDoorText.text = animatedDoorKey.name + "가 필요합니다";
             lockedDoorText.gameObject.SetActive(true);
-            lockedDoorText.DOFade(0, 0.5f);
+            lockedDoorText.DOFade(0, 1f);
+            InputSystems.Instance.pickup = false;
             yield return new WaitForSeconds(1f);
             lockedDoorText.gameObject.SetActive(false);
             lockedDoorText.color = new Color(1, 1, 1, 1);

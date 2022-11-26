@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using ItemInven;
 using UnityEngine;
-
+using UnityEngine.UI;
+using InputSystem;
+using DG.Tweening;
 public class ChestController : MonoBehaviour
 {
     private Animation anim;
@@ -13,7 +15,8 @@ public class ChestController : MonoBehaviour
     [SerializeField] private string lockedDoorSound = "ThemedKeyLockedDoor";
     private MeshCollider colliders;
     [SerializeField] private GameObject collideFixObj;
-    private enum ChestType { None, RedChest, BlueChest }
+    [SerializeField] private Text lockedDoorText = null;
+    private enum ChestType { None, Red, Blue }
     private void Start()
     {
         anim = GetComponent<Animation>();
@@ -24,7 +27,7 @@ public class ChestController : MonoBehaviour
     {
         switch (_chestType)
         { 
-            case ChestType.RedChest:
+            case ChestType.Red:
                 if (ThemedKeyInventoryController.instance.hasRedKey)
                 {
                     StartCoroutine(PlayAnimation());
@@ -33,10 +36,11 @@ public class ChestController : MonoBehaviour
                 }
                 else
                 {
+                    StartCoroutine(DoorLockedText());
                     LockedDoorSound();
                 }
                 break;
-            case ChestType.BlueChest:
+            case ChestType.Blue:
                 if (ThemedKeyInventoryController.instance.hasBlueKey)
                 {
                     StartCoroutine(PlayAnimation());
@@ -45,6 +49,7 @@ public class ChestController : MonoBehaviour
                 }
                 else
                 {
+                    StartCoroutine(DoorLockedText());
                     LockedDoorSound();
                 }
                 break;
@@ -62,6 +67,17 @@ public class ChestController : MonoBehaviour
     public void DoorOpenSound()
     {
         AudioManager.instance.Play(doorOpenSound);
+    }
+
+    private IEnumerator DoorLockedText()
+    {
+        lockedDoorText.text = _chestType.ToString() + "Key가 필요합니다";
+        lockedDoorText.gameObject.SetActive(true);
+        lockedDoorText.DOFade(0, 1f);
+        InputSystems.Instance.pickup = false;
+        yield return new WaitForSeconds(1f);
+        lockedDoorText.gameObject.SetActive(false);
+        lockedDoorText.color = new Color(1, 1, 1, 1);
     }
 
     public void LockedDoorSound()
