@@ -53,16 +53,26 @@ namespace InputSystem
 		{
 			if(!startPanel.activeSelf)
 			{
-                if (pause == false && isPanel != true)
-                {
-                    if (cursorInputForLook)
+				if(pause == false)
+				{
+                    if (isPanel != true)
                     {
-                        LookInput(value.Get<Vector2>());
+                        if (cursorInputForLook)
+                        {
+                            LookInput(value.Get<Vector2>());
+                        }
                     }
-                }
-                else
-                {
-                    LookInput(new Vector2(0, 0));
+                    else if (isInven == true)
+					{
+                        if (cursorInputForLook)
+                        {
+                            LookInput(value.Get<Vector2>());
+                        }
+                    }
+                    else
+                    {
+                        LookInput(new Vector2(0, 0));
+                    }
                 }
             }
 		}
@@ -169,7 +179,7 @@ namespace InputSystem
 		{
 			inven = newInvenState;
             isPanel = newInvenState;
-		}
+        }
 
 		public void PickUpInput(bool newPickUpState)
 		{

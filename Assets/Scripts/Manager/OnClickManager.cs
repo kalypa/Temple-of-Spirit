@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using ItemSystem;
+using UnityEngine.InputSystem.XR;
+using UnityEngine.Rendering;
+
 public class OnClickManager : MonoBehaviour
 {
     [SerializeField] private GameObject inventory;
@@ -17,15 +20,40 @@ public class OnClickManager : MonoBehaviour
     [SerializeField] private Sprite sprite_sound_On;
     [SerializeField] private Image  sound_Current;
     [SerializeField] private string noteSound = "NoteOpen";
+    [SerializeField] private GameObject player;
+    [SerializeField] private GameObject playerFirstPos;
+    [SerializeField] private GameObject invisibleWall;
+    [SerializeField] private GameObject mapPrefab;
+    [SerializeField] private GameObject fog;
+    [SerializeField] private Volume volumeObject;
+    [SerializeField] private GameObject fadePanel;
+    [SerializeField] private Image fadeImage;
+    private FirstPersonController controller;
+    private void Awake()
+    {
+        InputSystems.Instance.isPanel = true;
+        controller = player.GetComponent<FirstPersonController>(); 
+        fadeImage = fadePanel.GetComponent<Image>();
+    }
+
     public void OnClickInvenQuit()
     {
-        //InputSystems.Instance.isInven = false;
-        //InputSystems.Instance.inven = false;
-        //inventory.SetActive(false);
+        InputSystems.Instance.isInven = false;
+        InputSystems.Instance.inven = false;
+        inventory.SetActive(false);
     }
     public void OnClickStartButton()
     {
-        //startPanel.SetActive(false);
+        InputSystems.Instance.isPanel = false;
+        controller.enabled = false;
+        //GameObject Map = Instantiate(mapPrefab);
+        player.transform.position = playerFirstPos.transform.position;
+        fog.SetActive(true);
+        volumeObject.weight = 0.25f;
+        controller.enabled = true;
+        invisibleWall.SetActive(true);
+        fadePanel.SetActive(true);
+        startPanel.SetActive(false);
     }
 
     public void OnClickSettingButton()
