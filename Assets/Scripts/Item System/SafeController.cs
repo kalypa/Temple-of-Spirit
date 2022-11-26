@@ -16,7 +16,7 @@ namespace ItemSystem
         [Header("Animation References")]
         [SerializeField] private string safeAnimationName = "SafeDoorOpen";
         private Animator safeAnim;
-
+        private BoxCollider safeBoxCollider;
         [Header("Animation Timers - Default: 1.0f / 0.5f")]
         [SerializeField] private float beforeAnimationStart = 1.0f;
         [SerializeField] private float beforeOpenDoor = 0.5f;
@@ -75,7 +75,7 @@ namespace ItemSystem
             disableClose = true;
             firstNumber = true;
             safeAnim = safeModel.gameObject.GetComponent<Animator>();
-
+            safeBoxCollider = safeModel.gameObject.GetComponent<BoxCollider>();
             firstNumberUI.color = Color.white;
             secondNumberUI.color = Color.gray;
             thirdNumberUI.color = Color.gray;
@@ -138,7 +138,7 @@ namespace ItemSystem
                 AudioManager.instance.Play(handleSpin);
                 yield return new WaitForSeconds(beforeOpenDoor);
                 AudioManager.instance.Play(doorOpen);
-
+                safeBoxCollider.enabled = false;
                 if (isTriggerInteraction)
                 {
                     disableClose = true;

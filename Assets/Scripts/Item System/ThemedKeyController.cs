@@ -60,7 +60,10 @@ namespace ItemInven
                     break;
             }
             PickupSound();
-            gameObject.SetActive(false);
+            if(keyType != KeyTheme.Note)
+            {
+                gameObject.SetActive(false);
+            }
         }
 
         void PickupSound()

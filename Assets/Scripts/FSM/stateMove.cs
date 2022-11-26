@@ -26,7 +26,7 @@ public class stateMove : State<MonsterFSM>
     { 
         agent?.SetDestination(stateMachineClass.target.position);
         animator?.SetBool(hashMove, true);
-        agent.speed = 4;
+        agent.speed = 5;
     }
      
     public override void OnUpdate(float deltaTime)
