@@ -43,9 +43,10 @@ namespace ItemInven
             switch (_doorType)
             {
                 case DoorType.HeartDoor:
-                    if (ThemedKeyInventoryController.instance.hasHeartKey)
+                    if (ThemedKeyInventoryController.Instance.hasHeartKey)
                     {
                         StartCoroutine(PlayAnimation());
+                        ThemedKeyInventoryController.Instance.DeleteInventory("Heart");
                     }
                     else
                     {
@@ -54,9 +55,10 @@ namespace ItemInven
                     }
                     break;
                 case DoorType.DiamondDoor:
-                    if (ThemedKeyInventoryController.instance.hasDiamondKey)
+                    if (ThemedKeyInventoryController.Instance.hasDiamondKey)
                     {
                         StartCoroutine(PlayAnimation());
+                        ThemedKeyInventoryController.Instance.DeleteInventory("Diamond");
                     }
                     else
                     {
@@ -65,9 +67,10 @@ namespace ItemInven
                     }
                     break;
                 case DoorType.CloverDoor:
-                    if (ThemedKeyInventoryController.instance.hasClubKey)
+                    if (ThemedKeyInventoryController.Instance.hasClubKey)
                     {
                         StartCoroutine(PlayAnimation());
+                        ThemedKeyInventoryController.Instance.DeleteInventory("Club");
                     }
                     else
                     {
@@ -76,9 +79,10 @@ namespace ItemInven
                     }
                     break;
                 case DoorType.SpadeDoor:
-                    if (ThemedKeyInventoryController.instance.hasSpadeKey)
+                    if (ThemedKeyInventoryController.Instance.hasSpadeKey)
                     {                      
                         StartCoroutine(PlayAnimation());
+                        ThemedKeyInventoryController.Instance.DeleteInventory("Spade");
                     }
                     else
                     {

@@ -28,11 +28,12 @@ public class ChestController : MonoBehaviour
         switch (_chestType)
         { 
             case ChestType.Red:
-                if (ThemedKeyInventoryController.instance.hasRedKey)
+                if (ThemedKeyInventoryController.Instance.hasRedKey)
                 {
                     StartCoroutine(PlayAnimation());
                     colliders.enabled = false;
                     collideFixObj.SetActive(true);
+                    ThemedKeyInventoryController.Instance.DeleteInventory("Red");
                 }
                 else
                 {
@@ -41,11 +42,12 @@ public class ChestController : MonoBehaviour
                 }
                 break;
             case ChestType.Blue:
-                if (ThemedKeyInventoryController.instance.hasBlueKey)
+                if (ThemedKeyInventoryController.Instance.hasBlueKey)
                 {
                     StartCoroutine(PlayAnimation());
                     colliders.enabled = false;
                     collideFixObj.SetActive(true);
+                    ThemedKeyInventoryController.Instance.DeleteInventory("Blue");
                 }
                 else
                 {

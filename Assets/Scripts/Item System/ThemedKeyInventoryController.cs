@@ -3,7 +3,7 @@ using ItemSystem;
 
 namespace ItemInven
 {
-    public class ThemedKeyInventoryController : MonoBehaviour
+    public class ThemedKeyInventoryController : SingleMonobehaviour<ThemedKeyInventoryController>
     {
         [HideInInspector] public bool hasHeartKey;
         [HideInInspector] public bool hasDiamondKey;
@@ -20,7 +20,6 @@ namespace ItemInven
 
         private bool isOpen;
 
-        public static ThemedKeyInventoryController instance;
         public InventoryObj inventoryObject;
         public ItemDBObj databaseObject;
         ItemObj cloverKey;
@@ -35,11 +34,6 @@ namespace ItemInven
         ItemObj sacredSword;
         ItemObj battery;
         ItemObj flashLight;
-        void Awake()
-        {
-            if (instance != null) { Destroy(gameObject); }
-            else { instance = this; DontDestroyOnLoad(gameObject); }
-        }
 
         private void Start()
         {
@@ -57,6 +51,7 @@ namespace ItemInven
                     hasHeartKey = true;
                     key = new Item(heartKey);
                     inventoryObject.AddItem(key, 1);
+
                 }
 
                 else if (keyName == "Diamond")

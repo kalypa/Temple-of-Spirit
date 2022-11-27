@@ -23,41 +23,42 @@ namespace ItemInven
             switch (keyType)
             {
                 case KeyTheme.Heart:
-                    ThemedKeyInventoryController.instance.UpdateInventory("Heart");
+                    ThemedKeyInventoryController.Instance.UpdateInventory("Heart");
                     break;
                 case KeyTheme.Diamond:
-                    ThemedKeyInventoryController.instance.UpdateInventory("Diamond");
+                    ThemedKeyInventoryController.Instance.UpdateInventory("Diamond");
                     break;
                 case KeyTheme.Club:
-                    ThemedKeyInventoryController.instance.UpdateInventory("Club");
+                    ThemedKeyInventoryController.Instance.UpdateInventory("Club");
                     break;
                 case KeyTheme.Spade:
-                    ThemedKeyInventoryController.instance.UpdateInventory("Spade");
+                    ThemedKeyInventoryController.Instance.UpdateInventory("Spade");
                     break;
                 case KeyTheme.Red:
-                    ThemedKeyInventoryController.instance.UpdateInventory("Red");
+                    ThemedKeyInventoryController.Instance.UpdateInventory("Red");
                     break;
                 case KeyTheme.Blue:
-                    ThemedKeyInventoryController.instance.UpdateInventory("Blue");
+                    ThemedKeyInventoryController.Instance.UpdateInventory("Blue");
                     break;
                 case KeyTheme.Grtar:
-                    ThemedKeyInventoryController.instance.UpdateInventory("Grtar");
+                    ThemedKeyInventoryController.Instance.UpdateInventory("Grtar");
                     break;
                 case KeyTheme.Halgr:
-                    ThemedKeyInventoryController.instance.UpdateInventory("Halgr");
+                    ThemedKeyInventoryController.Instance.UpdateInventory("Halgr");
                     break;
                 case KeyTheme.Sword:
-                    ThemedKeyInventoryController.instance.UpdateInventory("Sword");
+                    ThemedKeyInventoryController.Instance.UpdateInventory("Sword");
                     break;
                 case KeyTheme.SacredSword:
-                    ThemedKeyInventoryController.instance.UpdateInventory("SacredSword");
+                    ThemedKeyInventoryController.Instance.UpdateInventory("SacredSword");
+                    ThemedKeyInventoryController.Instance.DeleteInventory("SacredSword");
                     GameStart();
                     break;
                 case KeyTheme.Battery:
-                    ThemedKeyInventoryController.instance.UpdateInventory("Battery");
+                    ThemedKeyInventoryController.Instance.UpdateInventory("Battery");
                     break;
                 case KeyTheme.Flashlight:
-                    ThemedKeyInventoryController.instance.UpdateInventory("Flashlight");
+                    ThemedKeyInventoryController.Instance.UpdateInventory("Flashlight");
                     break;
                 case KeyTheme.Note:
                     NoteController.Instance.ExpensionNote();
@@ -98,15 +99,30 @@ namespace ItemInven
 
         public void GameStart()
         {
-            Vignette playerEyeDown = VolumeChange.Instance.vignette;
-            DOTween.To(() => playerEyeDown.center.value, y => playerEyeDown.center.value = y, new Vector2(0.5f, -6.7f), 4f);
             GameManager.Instance.controller.enabled = false;
-            GameManager.Instance.player.transform.DORotateQuaternion(falling, 0.5f);
+            DG.Tweening.Sequence sequence = DOTween.Sequence();
+            Vignette playerEyeDown = VolumeChange.Instance.vignette;
+            sequence.Append(DOTween.To(() => playerEyeDown.center.value, y => playerEyeDown.center.value = y, new Vector2(0.5f, -3f), 1f));
+            sequence.Append(DOTween.To(() => playerEyeDown.center.value, y => playerEyeDown.center.value = y, new Vector2(0.5f, -1f), 1f));
+            sequence.Append(DOTween.To(() => playerEyeDown.center.value, y => playerEyeDown.center.value = y, new Vector2(0.5f, -3f), 1f));
+            sequence.Append(DOTween.To(() => playerEyeDown.center.value, y => playerEyeDown.center.value = y, new Vector2(0.5f, -1f), 1f));
+            Invoke("PlayerFalling", 4f);
+            sequence.Insert(4, DOTween.To(() => playerEyeDown.center.value, y => playerEyeDown.center.value = y, new Vector2(0.5f, -6.7f), 7f));
+            Invoke("SurpriseEnemy", 4f);
+        }
+
+        private void PlayerFalling()
+        {
+            GameManager.Instance.player.transform.DORotateQuaternion(falling, 0.5f).SetEase(Ease.InQuad);
             GameManager.Instance.player.transform.DOMoveX(GameManager.Instance.player.transform.position.x + 0.5f, 1f);
-            enemySurprise = new Vector3(GameManager.Instance.player.transform.position.x + 0.693f, 11, GameManager.Instance.player.transform.position.z - 1f);
+        }
+
+        private void SurpriseEnemy()    
+        {
+            enemySurprise = new Vector3(GameManager.Instance.player.transform.position.x + 0.3f, 11, GameManager.Instance.player.transform.position.z - 1f);
             GameManager.Instance.enemy.transform.position = enemySurprise;
             GameManager.Instance.enemy.SetActive(true);
-            GameManager.Instance.enemy.transform.DOMoveY(10.1f, 1f);
+            GameManager.Instance.enemy.transform.DOMoveY(10.1f, 1f)/*.SetEase(Ease.InQuad)*/;
         }
     }
 }

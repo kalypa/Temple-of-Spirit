@@ -48,7 +48,7 @@ namespace ItemSystem
                             raycasted_obj = hit.collider.gameObject.GetComponent<ItemController>();
                             CrosshairChange(true);
                             pickUpText.text = hit.collider.name;
-                            pickUpTextImage.rectTransform.anchoredPosition = new Vector2(200, -50);
+                            pickUpTextImage.rectTransform.anchoredPosition = new Vector2(200, pickUpTextImage.rectTransform.anchoredPosition.y);
                             pickUpText.gameObject.SetActive(true);
 
                         }
