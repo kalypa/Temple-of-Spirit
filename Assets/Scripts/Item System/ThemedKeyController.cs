@@ -53,7 +53,6 @@ namespace ItemInven
                     break;
                 case KeyTheme.SacredSword:
                     ThemedKeyInventoryController.Instance.UpdateInventory("SacredSword");
-                    Invoke("GameStart", 0.5f);
                     break;
                 case KeyTheme.Battery:
                     ThemedKeyInventoryController.Instance.UpdateInventory("Battery");
@@ -69,6 +68,10 @@ namespace ItemInven
             if(keyType != KeyTheme.Note)
             {
                 gameObject.SetActive(false);
+            }
+            if(keyType == KeyTheme.SacredSword)
+            {
+                Invoke("GameStart", 0.5f);
             }
         }
 
@@ -130,32 +133,32 @@ namespace ItemInven
 
         private void Game()
         {
-            sequence.Append(DOTween.To(() => playerEyeDown.center.value, y => playerEyeDown.center.value = y, new Vector2(0.5f, 0.5f), 1f));
-            Invoke("Fade", 2f);
-        }
-
-        private void KillDo()
-        {
-            DOTween.Kill(OnClickManager.Instance.fadeImage);
-            DOTween.Kill(GameManager.Instance.player);
-            GameManager.Instance.fadePanel.SetActive(false);
-            OnClickManager.Instance.fadeImage.color = new Color(0, 0, 0, 1);
-        }
-
-        private void Fade()
-        {
+            sequence.Kill();
+            playerEyeDown.center.value = new Vector2(0.5f, 0.5f);
+            playerEyeDown.intensity.value = 0;
+            GameManager.Instance.enemy.SetActive(false);
+            GameManager.Instance.flashlight.SetActive(true);
+            GameManager.Instance.note.SetActive(true);
             GameManager.Instance.fadePanel.SetActive(true);
             GameManager.Instance.fog.SetActive(false);
             VolumeChange.Instance.volume.weight = 0.99f;
             OnClickManager.Instance.invisibleWall.SetActive(false);
             OnClickManager.Instance.invisibleWall2.SetActive(true);
             OnClickManager.Instance.fadeImage.DOFade(0, 4);
+            DOTween.Kill(GameManager.Instance.player);
             Invoke("KillDo", 5f);
             GameManager.Instance.player.transform.position = GameManager.Instance.startPos.position;
             GameManager.Instance.player.transform.rotation = Quaternion.Euler(0, 180, 0);
             GameManager.Instance.controller.enabled = true;
-            GameManager.Instance.enemy.SetActive(false);
             GameManager.Instance.ghost.SetActive(true);
+
+        }
+
+        private void KillDo()
+        {
+            DOTween.Kill(OnClickManager.Instance.fadeImage);
+            GameManager.Instance.fadePanel.SetActive(false);
+            OnClickManager.Instance.fadeImage.color = new Color(0, 0, 0, 1);
         }
     }
 }
