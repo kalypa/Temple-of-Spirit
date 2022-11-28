@@ -53,6 +53,9 @@ namespace ItemInven
                     break;
                 case KeyTheme.SacredSword:
                     ThemedKeyInventoryController.Instance.UpdateInventory("SacredSword");
+                    PickupSound();
+                    gameObject.SetActive(false);
+                    Invoke("GameStart", 0.5f);
                     break;
                 case KeyTheme.Battery:
                     ThemedKeyInventoryController.Instance.UpdateInventory("Battery");
@@ -64,14 +67,13 @@ namespace ItemInven
                     NoteController.Instance.ExpensionNote();
                     break;
             }
-            PickupSound();
-            if(keyType != KeyTheme.Note)
+            if (keyType != KeyTheme.SacredSword)
             {
-                gameObject.SetActive(false);
-            }
-            if(keyType == KeyTheme.SacredSword)
-            {
-                Invoke("GameStart", 0.5f);
+                PickupSound();
+                if (keyType != KeyTheme.Note)
+                {
+                    gameObject.SetActive(false);
+                }
             }
         }
 
