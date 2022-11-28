@@ -11889,6 +11889,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enviroment
       objectReference: {fileID: 0}
+    - target: {fileID: 71750685438281688, guid: f85af0adc18840c4a9b4c4d8026c3778,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 71750685438281691, guid: f85af0adc18840c4a9b4c4d8026c3778,
         type: 3}
       propertyPath: m_RootOrder

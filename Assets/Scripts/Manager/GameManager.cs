@@ -17,4 +17,5 @@ public class GameManager : SingleMonobehaviour<GameManager>
     public GameObject ghost;
     public GameObject flashlight;
     public GameObject note;
+    [HideInInspector] public Vignette playerEyeDown;
 }

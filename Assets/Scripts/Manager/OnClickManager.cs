@@ -43,6 +43,8 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
     }
     public void OnClickStartButton()
     {
+        GameManager.Instance.playerEyeDown.center.value = new Vector2(0.5f, 0.5f);
+        GameManager.Instance.playerEyeDown.intensity.value = 1;
         InputSystems.Instance.isPanel = false;
         GameManager.Instance.controller.enabled = false;
         GameObject Map = Instantiate(GameManager.Instance.mapPrefab);

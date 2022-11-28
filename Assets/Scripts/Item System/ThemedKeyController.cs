@@ -17,7 +17,6 @@ namespace ItemInven
         [SerializeField] private string noteSound = "NoteOpen";
         private Quaternion falling = Quaternion.Euler(0, 180, 106.6f);
         private Vector3 enemySurprise;
-        private Vignette playerEyeDown;
         private DG.Tweening.Sequence sequence;
         public enum KeyTheme { None, Heart, Diamond, Club, Spade, Red, Blue, Grtar, Halgr, Sword, SacredSword, Battery, Flashlight, Note }
         public void KeyPickup()
@@ -55,7 +54,7 @@ namespace ItemInven
                     ThemedKeyInventoryController.Instance.UpdateInventory("SacredSword");
                     PickupSound();
                     gameObject.SetActive(false);
-                    Invoke("GameStart", 0.5f);
+                    Invoke("GameStart", 1f);
                     break;
                 case KeyTheme.Battery:
                     ThemedKeyInventoryController.Instance.UpdateInventory("Battery");
@@ -108,13 +107,13 @@ namespace ItemInven
             ThemedKeyInventoryController.Instance.DeleteInventory("SacredSword");
             GameManager.Instance.controller.enabled = false;
             sequence = DOTween.Sequence();
-            playerEyeDown = VolumeChange.Instance.vignette;
-            sequence.Append(DOTween.To(() => playerEyeDown.center.value, y => playerEyeDown.center.value = y, new Vector2(0.5f, -3f), 1f));
-            sequence.Append(DOTween.To(() => playerEyeDown.center.value, y => playerEyeDown.center.value = y, new Vector2(0.5f, -1f), 1f));
-            sequence.Append(DOTween.To(() => playerEyeDown.center.value, y => playerEyeDown.center.value = y, new Vector2(0.5f, -3f), 1f));
-            sequence.Append(DOTween.To(() => playerEyeDown.center.value, y => playerEyeDown.center.value = y, new Vector2(0.5f, -1f), 1f));
+            GameManager.Instance.playerEyeDown = VolumeChange.Instance.vignette;
+            sequence.Append(DOTween.To(() => GameManager.Instance.playerEyeDown.center.value, y => GameManager.Instance.playerEyeDown.center.value = y, new Vector2(0.5f, -3f), 1f));
+            sequence.Append(DOTween.To(() => GameManager.Instance.playerEyeDown.center.value, y => GameManager.Instance.playerEyeDown.center.value = y, new Vector2(0.5f, -1f), 1f));
+            sequence.Append(DOTween.To(() => GameManager.Instance.playerEyeDown.center.value, y => GameManager.Instance.playerEyeDown.center.value = y, new Vector2(0.5f, -3f), 1f));
+            sequence.Append(DOTween.To(() => GameManager.Instance.playerEyeDown.center.value, y => GameManager.Instance.playerEyeDown.center.value = y, new Vector2(0.5f, -1f), 1f));
             Invoke("PlayerFalling", 4f);
-            sequence.Insert(4, DOTween.To(() => playerEyeDown.center.value, y => playerEyeDown.center.value = y, new Vector2(0.5f, -6.7f), 7f));
+            sequence.Insert(4, DOTween.To(() => GameManager.Instance.playerEyeDown.center.value, y => GameManager.Instance.playerEyeDown.center.value = y, new Vector2(0.5f, -6.7f), 7f));
             Invoke("SurpriseEnemy", 4f);
             Invoke("Game", 9f);
         }
@@ -136,14 +135,14 @@ namespace ItemInven
         private void Game()
         {
             sequence.Kill();
-            playerEyeDown.center.value = new Vector2(0.5f, 0.5f);
-            playerEyeDown.intensity.value = 0;
+            GameManager.Instance.playerEyeDown.center.value = new Vector2(0.5f, 0.5f);
+            GameManager.Instance.playerEyeDown.intensity.value = 0;
             GameManager.Instance.enemy.SetActive(false);
             GameManager.Instance.flashlight.SetActive(true);
             GameManager.Instance.note.SetActive(true);
             GameManager.Instance.fadePanel.SetActive(true);
             GameManager.Instance.fog.SetActive(false);
-            VolumeChange.Instance.volume.weight = 0.99f;
+            VolumeChange.Instance.volume.weight = 1f;
             OnClickManager.Instance.invisibleWall.SetActive(false);
             OnClickManager.Instance.invisibleWall2.SetActive(true);
             OnClickManager.Instance.fadeImage.DOFade(0, 4);
