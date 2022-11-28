@@ -34,6 +34,7 @@ public class ItemRandomSpawn : SingleMonobehaviour<ItemRandomSpawn>
             int random = Random.Range(start, end);
             spawnDoorKey = spawnPos[random];
             keys[i] = Instantiate(keys[i], spawnDoorKey.position, Quaternion.identity);
+            keys[i].transform.rotation = Quaternion.Euler(keys[i].transform.rotation.x, keys[i].transform.rotation.y, 180);
             keys[i].transform.SetParent(spawnDoorKey);
             notContain[i] = random;
             GetRandomNotContain(start, end, notContain);
