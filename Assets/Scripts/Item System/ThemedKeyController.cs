@@ -18,6 +18,7 @@ namespace ItemInven
         private Quaternion falling = Quaternion.Euler(0, 180, 106.6f);
         private Vector3 enemySurprise;
         private Vignette playerEyeDown;
+        private DG.Tweening.Sequence sequence;
         public enum KeyTheme { None, Heart, Diamond, Club, Spade, Red, Blue, Grtar, Halgr, Sword, SacredSword, Battery, Flashlight, Note }
         public void KeyPickup()
         {
@@ -52,7 +53,6 @@ namespace ItemInven
                     break;
                 case KeyTheme.SacredSword:
                     ThemedKeyInventoryController.Instance.UpdateInventory("SacredSword");
-                    ThemedKeyInventoryController.Instance.DeleteInventory("SacredSword");
                     Invoke("GameStart", 0.5f);
                     break;
                 case KeyTheme.Battery:
@@ -100,8 +100,9 @@ namespace ItemInven
 
         public void GameStart()
         {
+            ThemedKeyInventoryController.Instance.DeleteInventory("SacredSword");
             GameManager.Instance.controller.enabled = false;
-            DG.Tweening.Sequence sequence = DOTween.Sequence();
+            sequence = DOTween.Sequence();
             playerEyeDown = VolumeChange.Instance.vignette;
             sequence.Append(DOTween.To(() => playerEyeDown.center.value, y => playerEyeDown.center.value = y, new Vector2(0.5f, -3f), 1f));
             sequence.Append(DOTween.To(() => playerEyeDown.center.value, y => playerEyeDown.center.value = y, new Vector2(0.5f, -1f), 1f));
@@ -121,7 +122,7 @@ namespace ItemInven
 
         private void SurpriseEnemy()    
         {
-            enemySurprise = new Vector3(GameManager.Instance.player.transform.position.x + 0.3f, 11, GameManager.Instance.player.transform.position.z - 1f);
+            enemySurprise = new Vector3(GameManager.Instance.player.transform.position.x + 0.5f, 11, GameManager.Instance.player.transform.position.z - 1f);
             GameManager.Instance.enemy.transform.position = enemySurprise;
             GameManager.Instance.enemy.SetActive(true);
             GameManager.Instance.enemy.transform.DOMoveY(10.1f, 1.5f);
@@ -129,22 +130,32 @@ namespace ItemInven
 
         private void Game()
         {
+            sequence.Append(DOTween.To(() => playerEyeDown.center.value, y => playerEyeDown.center.value = y, new Vector2(0.5f, 0.5f), 1f));
+            Invoke("Fade", 2f);
+        }
+
+        private void KillDo()
+        {
+            DOTween.Kill(OnClickManager.Instance.fadeImage);
+            DOTween.Kill(GameManager.Instance.player);
+            GameManager.Instance.fadePanel.SetActive(false);
+            OnClickManager.Instance.fadeImage.color = new Color(0, 0, 0, 1);
+        }
+
+        private void Fade()
+        {
             GameManager.Instance.fadePanel.SetActive(true);
-            playerEyeDown.center.value = new Vector2(0.5f, 0.5f);
             GameManager.Instance.fog.SetActive(false);
             VolumeChange.Instance.volume.weight = 0.99f;
             OnClickManager.Instance.invisibleWall.SetActive(false);
             OnClickManager.Instance.invisibleWall2.SetActive(true);
             OnClickManager.Instance.fadeImage.DOFade(0, 4);
+            Invoke("KillDo", 5f);
             GameManager.Instance.player.transform.position = GameManager.Instance.startPos.position;
+            GameManager.Instance.player.transform.rotation = Quaternion.Euler(0, 180, 0);
             GameManager.Instance.controller.enabled = true;
+            GameManager.Instance.enemy.SetActive(false);
             GameManager.Instance.ghost.SetActive(true);
-            if (OnClickManager.Instance.fadeImage.color.a == 0)
-            {
-                GameManager.Instance.fadePanel.SetActive(false);
-                OnClickManager.Instance.fadeImage.color = new Color(0, 0, 0, 1);
-            }
-
         }
     }
 }

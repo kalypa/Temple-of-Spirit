@@ -54,13 +54,16 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
         GameManager.Instance.fadePanel.SetActive(true);
         startPanel.SetActive(false);
         fadeImage.DOFade(0, time);
-        if (fadeImage.color.a == 0)
-        {
-            GameManager.Instance.fadePanel.SetActive(false);
-            fadeImage.color = new Color(0, 0, 0, 1);
-        }
+        Invoke("KillDo", 4f);
         PlayerLock();
         itemManager.ItemSpawn();
+    }
+    private void KillDo()
+    {
+        Debug.Log("kill");
+        DOTween.Kill(fadeImage);
+        GameManager.Instance.fadePanel.SetActive(false);
+        fadeImage.color = new Color(0, 0, 0, 1);
     }
     private void PlayerLock()
     {
