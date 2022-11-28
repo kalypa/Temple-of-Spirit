@@ -23,9 +23,10 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
     [SerializeField] private string noteSound = "NoteOpen";
     [SerializeField] private GameObject playercamera;
     [SerializeField] private GameObject playerFirstPos;
-    [SerializeField] private GameObject invisibleWall;
     [SerializeField] private ItemRandomSpawn itemManager;
-    private Image fadeImage;
+    public GameObject invisibleWall;
+    public GameObject invisibleWall2;
+    [HideInInspector] public Image fadeImage;
     private float time = 4f;
     private void Start()
     {
@@ -43,17 +44,22 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
     public void OnClickStartButton()
     {
         InputSystems.Instance.isPanel = false;
-        //GameManager.Instance.controller.enabled = false;
-        //GameObject Map = Instantiate(GameManager.Instance.mapPrefab);
-        //GameManager.Instance.player.transform.position = playerFirstPos.transform.position;
-        //playercamera.transform.rotation = playerFirstPos.transform.rotation;
-        //GameManager.Instance.fog.SetActive(true);
-        //VolumeChange.Instance.volume.weight = 0.25f;
-        //invisibleWall.SetActive(true);
-        //GameManager.Instance.fadePanel.SetActive(true);
+        GameManager.Instance.controller.enabled = false;
+        GameObject Map = Instantiate(GameManager.Instance.mapPrefab);
+        GameManager.Instance.player.transform.position = playerFirstPos.transform.position;
+        playercamera.transform.rotation = playerFirstPos.transform.rotation;
+        GameManager.Instance.fog.SetActive(true);
+        VolumeChange.Instance.volume.weight = 0.25f;
+        invisibleWall.SetActive(true);
+        GameManager.Instance.fadePanel.SetActive(true);
         startPanel.SetActive(false);
-        //fadeImage.DOFade(0, time);
-        //PlayerLock();
+        fadeImage.DOFade(0, time);
+        if (fadeImage.color.a == 0)
+        {
+            GameManager.Instance.fadePanel.SetActive(false);
+            fadeImage.color = new Color(0, 0, 0, 1);
+        }
+        PlayerLock();
         itemManager.ItemSpawn();
     }
     private void PlayerLock()

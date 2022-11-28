@@ -12,5 +12,9 @@ public class GameManager : SingleMonobehaviour<GameManager>
     public GameObject fadePanel;
     public GameObject player;
     [HideInInspector] public FirstPersonController controller;
+    public Transform startPos;
     public GameObject enemy;
+    public GameObject ghost;
+    public GameObject flashlight;
+    public GameObject note;
 }
