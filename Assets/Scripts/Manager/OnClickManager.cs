@@ -107,4 +107,11 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
         notePanel1.SetActive(false);
         AudioManager.instance.Play(noteSound);
     }
+
+    public void OnclickNoteQuit2()
+    {
+        InputSystems.Instance.isPanel = false;
+        notePanel2.SetActive(false);
+        AudioManager.instance.Play(noteSound);
+    }
 }

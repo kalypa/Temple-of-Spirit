@@ -16,4 +16,5 @@ public class GameManager : SingleMonobehaviour<GameManager>
     public GameObject ghost;
     public GameObject flashlight;
     public GameObject note;
+    public GameObject note2;
 }

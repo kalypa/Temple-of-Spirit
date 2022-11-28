@@ -141,6 +141,7 @@ namespace ItemInven
             GameManager.Instance.enemy.SetActive(false);
             GameManager.Instance.flashlight.SetActive(true);
             GameManager.Instance.note.SetActive(true);
+            GameManager.Instance.note2.SetActive(true);
             GameManager.Instance.fog.SetActive(false);
             VolumeChange.Instance.volume.weight = 1f;
             OnClickManager.Instance.invisibleWall.SetActive(false);
