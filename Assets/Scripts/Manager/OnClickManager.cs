@@ -24,6 +24,7 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
     [SerializeField] private GameObject playercamera;
     [SerializeField] private GameObject playerFirstPos;
     [SerializeField] private GameObject invisibleWall;
+    [SerializeField] private ItemRandomSpawn itemManager;
     private Image fadeImage;
     private float time = 4f;
     private void Start()
@@ -53,6 +54,7 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
         startPanel.SetActive(false);
         //fadeImage.DOFade(0, time);
         //PlayerLock();
+        itemManager.ItemSpawn();
     }
     private void PlayerLock()
     {
