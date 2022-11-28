@@ -7,7 +7,6 @@ using UnityEngine.Rendering.HighDefinition;
 
 public class GameManager : SingleMonobehaviour<GameManager>
 {
-    public GameObject mapPrefab;
     public GameObject fog;
     public GameObject fadePanel;
     public GameObject player;
@@ -17,5 +16,4 @@ public class GameManager : SingleMonobehaviour<GameManager>
     public GameObject ghost;
     public GameObject flashlight;
     public GameObject note;
-    [HideInInspector] public Vignette playerEyeDown;
 }

@@ -43,11 +43,8 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
     }
     public void OnClickStartButton()
     {
-        GameManager.Instance.playerEyeDown.center.value = new Vector2(0.5f, 0.5f);
-        GameManager.Instance.playerEyeDown.intensity.value = 1;
         InputSystems.Instance.isPanel = false;
         GameManager.Instance.controller.enabled = false;
-        GameObject Map = Instantiate(GameManager.Instance.mapPrefab);
         GameManager.Instance.player.transform.position = playerFirstPos.transform.position;
         playercamera.transform.rotation = playerFirstPos.transform.rotation;
         GameManager.Instance.fog.SetActive(true);
@@ -59,6 +56,8 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
         Invoke("KillDo", 4f);
         PlayerLock();
         itemManager.ItemSpawn();
+        VolumeChange.Instance.vignette.center.value = new Vector2(0.5f, 0.5f);
+        VolumeChange.Instance.vignette.intensity.value = 1;
     }
     private void KillDo()
     {
