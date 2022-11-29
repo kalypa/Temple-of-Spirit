@@ -23,4 +23,5 @@ public class GameManager : SingleMonobehaviour<GameManager>
     public AudioClip escapeMusic;
     public AudioSource backgroundmusic;
     [HideInInspector] public bool isHiding;
+    public float playerHP = 3;
 }

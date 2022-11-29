@@ -44,6 +44,7 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
     public void OnClickStartButton()
     {
         GameManager.Instance.backgroundmusic.clip = GameManager.Instance.tutorialMusic;
+        GameManager.Instance.backgroundmusic.Play();
         InputSystems.Instance.isPanel = false;
         GameManager.Instance.controller.enabled = false;
         GameManager.Instance.player.transform.position = playerFirstPos.transform.position;

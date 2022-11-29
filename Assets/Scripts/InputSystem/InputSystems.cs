@@ -118,7 +118,7 @@ namespace InputSystem
 
 		public void OnBattery(InputValue value)
 		{
-            if (!startPanel.activeSelf)
+            if (!startPanel.activeSelf && ThemedKeyInventoryController.Instance.hasBattery)
 			{
                 if (controller.hasFlashLight && batteryUI.value < 1)
                 {

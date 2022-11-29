@@ -16,6 +16,7 @@ namespace ItemInven
         [SerializeField] private string keySound = "ThemedKeyPickup";
         [SerializeField] private string otherSound = "OtherPickUp";
         [SerializeField] private string noteSound = "NoteOpen";
+        [SerializeField] private string coughSound = "Cough";
         private Quaternion falling = Quaternion.Euler(0, 180, 106.6f);
         private Vector3 enemySurprise;
         private DG.Tweening.Sequence sequence;
@@ -105,7 +106,9 @@ namespace ItemInven
 
         public void GameStart()
         {
+            AudioManager.instance.Play(coughSound);
             GameManager.Instance.backgroundmusic.clip = GameManager.Instance.mainMusic;
+            GameManager.Instance.backgroundmusic.Play();
             ThemedKeyInventoryController.Instance.DeleteInventory("SacredSword");
             GameManager.Instance.controller.enabled = false;
             sequence = DOTween.Sequence();
@@ -138,6 +141,8 @@ namespace ItemInven
         {
             sequence.Kill();
             GameManager.Instance.fadePanel.SetActive(true);
+            GameManager.Instance.player.transform.position = GameManager.Instance.startPos.position;
+            GameManager.Instance.player.transform.rotation = Quaternion.Euler(0, 180, 0);
             VolumeChange.Instance.vignette.center.value = new Vector2(0.5f, 0.5f);
             VolumeChange.Instance.vignette.intensity.value = 0;
             GameManager.Instance.enemy.SetActive(false);
@@ -148,9 +153,9 @@ namespace ItemInven
             VolumeChange.Instance.volume.weight = 1f;
             OnClickManager.Instance.invisibleWall.SetActive(false);
             OnClickManager.Instance.invisibleWall2.SetActive(true);
-            OnClickManager.Instance.fadeImage.DOFade(0, 8);
+            OnClickManager.Instance.fadeImage.DOFade(0, 4);
             DOTween.Kill(GameManager.Instance.player);
-            Invoke("KillDo", 8f);
+            Invoke("KillDo", 4f);
 
         }
 
@@ -159,8 +164,6 @@ namespace ItemInven
             DOTween.Kill(OnClickManager.Instance.fadeImage);
             GameManager.Instance.fadePanel.SetActive(false);
             OnClickManager.Instance.fadeImage.color = new Color(0, 0, 0, 1);
-            GameManager.Instance.player.transform.position = GameManager.Instance.startPos.position;
-            GameManager.Instance.player.transform.rotation = Quaternion.Euler(0, 180, 0);
             GameManager.Instance.controller.enabled = true;
             GameManager.Instance.ghost.SetActive(true);
 
