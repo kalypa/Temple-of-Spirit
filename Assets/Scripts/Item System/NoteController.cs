@@ -5,7 +5,7 @@ using InputSystem;
 
 namespace ItemInven
 {
-    public class NoteController : SingleMonobehaviour<NoteController>
+    public class NoteController : MonoBehaviour
     {
         [SerializeField] private GameObject notePanel;
 

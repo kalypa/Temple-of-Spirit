@@ -34,6 +34,7 @@ public class ItemRandomSpawn : SingleMonobehaviour<ItemRandomSpawn>
             int random = Random.Range(start, end);
             spawnDoorKey = spawnPos[random];
             keys[i] = Instantiate(keys[i], spawnDoorKey.position, Quaternion.identity);
+            DeleteString(keys[i]);  
             keys[i].transform.rotation = Quaternion.Euler(keys[i].transform.rotation.x, keys[i].transform.rotation.y, 180);
             keys[i].transform.SetParent(spawnDoorKey);
             notContain[i] = random;
@@ -48,6 +49,7 @@ public class ItemRandomSpawn : SingleMonobehaviour<ItemRandomSpawn>
             int random = Random.Range(start2, end2);
             spawnChestKey = spawnChestPos[random];
             chestkeys[i] = Instantiate(chestkeys[i], spawnChestKey.position, Quaternion.identity);
+            DeleteString(chestkeys[i]);
             chestkeys[i].transform.SetParent(spawnChestKey);
             notContain2[i] = random;
             GetRandomNotContain(start2, end2, notContain2);
@@ -60,6 +62,7 @@ public class ItemRandomSpawn : SingleMonobehaviour<ItemRandomSpawn>
             int random = Random.Range(start3, end3);
             spawnBattery = spawnBatteryPos[random];
             battery[i] = Instantiate(battery[i], spawnBattery.position, Quaternion.identity);
+            DeleteString(battery[i]);
             battery[i].transform.SetParent(spawnBattery);
             notContain3[i] = random;
             GetRandomNotContain(start3, end3, notContain3);
@@ -77,5 +80,13 @@ public class ItemRandomSpawn : SingleMonobehaviour<ItemRandomSpawn>
         var random = new System.Random();
         int index = random.Next(min, max - exclude.Count);
         return range.ElementAt(index);
+    }
+    private void DeleteString(GameObject k)
+    {
+        int index = k.name.IndexOf("(Clone)");
+        if (index > 0)
+        {
+            k.name = k.name.Substring(0, index);
+        }
     }
 }
