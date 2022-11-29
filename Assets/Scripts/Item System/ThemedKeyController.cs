@@ -55,7 +55,7 @@ namespace ItemInven
                     ThemedKeyInventoryController.Instance.UpdateInventory("SacredSword");
                     PickupSound();
                     gameObject.SetActive(false);
-                    Invoke("GameStart", 0.5f);
+                    GameStart();
                     break;
                 case KeyTheme.Battery:
                     ThemedKeyInventoryController.Instance.UpdateInventory("Battery");

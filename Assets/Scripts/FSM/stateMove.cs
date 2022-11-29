@@ -32,7 +32,7 @@ public class stateMove : State<MonsterFSM>
     public override void OnUpdate(float deltaTime)
     { 
         Transform target= stateMachineClass.SearchMonster();  
-        if (target && !stateMachineClass.getFlagAtk)
+        if (target && !stateMachineClass.getFlagAtk && !GameManager.Instance.isHiding)
         { 
             agent.SetDestination(stateMachineClass.target.position);
              

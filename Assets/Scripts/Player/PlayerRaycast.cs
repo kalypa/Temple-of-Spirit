@@ -16,17 +16,19 @@ namespace ItemSystem
         [SerializeField] private GameObject doorText = null;
         [SerializeField] private GameObject OpenText = null;
         [SerializeField] private GameObject CloseText = null;
+        [SerializeField] private GameObject hideText = null;
+        [SerializeField] private GameObject getOutText = null;
         [SerializeField] private Image pickUpTextImage = null;
         [HideInInspector] public bool doOnce;
         [HideInInspector] public bool rayhitE = false;
         [HideInInspector] public bool rayhitF = false;
-        [HideInInspector] public bool rayhitM = false;
 
         private bool isCrosshairActive;
         private const string pickupTag = "InteractiveObject";
         private const string doorTag = "Door";
         private const string openTag = "Drawer";
         private const string PadlockTag = "Padlock";
+        private const string hideTag = "Closet";
 
         private void Update()
         {
@@ -44,7 +46,6 @@ namespace ItemSystem
                         {
                             rayhitF = true;
                             rayhitE = false;
-                            rayhitM = false;
                             raycasted_obj = hit.collider.gameObject.GetComponent<ItemController>();
                             CrosshairChange(true);
                             pickUpText.text = hit.collider.name;
@@ -108,6 +109,35 @@ namespace ItemSystem
                         }
                     }
 
+                    else if (hit.collider.CompareTag(hideTag))
+                    {
+                        if (!doOnce)
+                        {
+                            rayhitF = true;
+                            rayhitE = false;
+                            raycasted_obj = hit.collider.gameObject.GetComponent<ItemController>();
+                            CrosshairChange(true);
+                            if(!GameManager.Instance.isHiding)
+                            {
+                                hideText.gameObject.SetActive(true);
+                            }
+                            else
+                            {
+                                getOutText.gameObject.SetActive(true);
+                            }
+
+                        }
+
+                        isCrosshairActive = true;
+                        doOnce = true;
+
+                        if (InputSystem.InputSystems.Instance.pickup)
+                        {
+                            raycasted_obj.InteractionType();
+                            InputSystem.InputSystems.Instance.pickup = false;
+                        }
+                    }
+
                     else if (hit.collider.CompareTag(PadlockTag))
                     {
                         if (!doOnce)
@@ -137,6 +167,8 @@ namespace ItemSystem
                             pickUpText.gameObject.SetActive(false);
                             OpenText.SetActive(false);
                             CloseText.SetActive(false);
+                            getOutText.gameObject.SetActive(false);
+                            hideText.gameObject.SetActive(false);
                             InputSystem.InputSystems.Instance.pickup = false;
                             CrosshairChange(false);
                             doOnce = false;
@@ -154,6 +186,8 @@ namespace ItemSystem
                         pickUpText.gameObject.SetActive(false);
                         OpenText.SetActive(false);
                         CloseText.SetActive(false);
+                        getOutText.gameObject.SetActive(false);
+                        hideText.gameObject.SetActive(false);
                         InputSystem.InputSystems.Instance.pickup = false;
                         CrosshairChange(false);
                         doOnce = false;
@@ -168,6 +202,8 @@ namespace ItemSystem
                 pickUpText.gameObject.SetActive(false);
                 OpenText.SetActive(false);
                 CloseText.SetActive(false);
+                getOutText.gameObject.SetActive(false);
+                hideText.gameObject.SetActive(false);
                 crosshair.enabled = false;
                 doOnce = false;
             }

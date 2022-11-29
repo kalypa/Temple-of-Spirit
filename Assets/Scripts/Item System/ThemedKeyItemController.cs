@@ -10,7 +10,8 @@ namespace ItemInven
         private ThemedKeyDoorController doorController;
         private ChestController chestController;
         private SafeController safeController;
-        private enum ItemType { None, Door, Key, Chest, Safe }
+        private ClosetController closetController;
+        private enum ItemType { None, Door, Key, Chest, Safe, Closet }
 
         private void Awake()
         {
@@ -27,6 +28,9 @@ namespace ItemInven
                     break;
                 case ItemType.Safe:
                     safeController = GetComponent<SafeController>();
+                    break;
+                case ItemType.Closet:
+                    closetController = GetComponent<ClosetController>();
                     break;
             }
         }
@@ -46,6 +50,9 @@ namespace ItemInven
                     break;
                 case ItemType.Safe:
                     safeController.ShowSafeLock();
+                    break;
+                case ItemType.Closet:
+                    closetController.Hiding();
                     break;
             }
         }

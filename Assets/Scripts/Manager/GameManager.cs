@@ -21,4 +21,5 @@ public class GameManager : SingleMonobehaviour<GameManager>
     public AudioClip tutorialMusic;
     public AudioClip mainMusic;
     public AudioClip escapeMusic;
+    [HideInInspector] public bool isHiding;
 }
