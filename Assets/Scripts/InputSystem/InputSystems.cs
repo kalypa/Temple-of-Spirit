@@ -23,7 +23,7 @@ namespace InputSystem
 		public bool battery;
 		public bool pause;
 		public bool padlockClose;
-		private bool isFlash = false;
+		public bool isFlash = false;
 		public bool isInven = false;
 		public bool isPause = false;
 		public bool isPanel = false;

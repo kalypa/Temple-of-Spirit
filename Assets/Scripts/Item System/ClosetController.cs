@@ -13,21 +13,18 @@ public class ClosetController : MonoBehaviour
     [SerializeField] private PlayerRaycast playerRaycast;
     private void Update()
     {
-
+        if (GameManager.Instance.isHiding == true)
         {
-            if (GameManager.Instance.isHiding == true)
+            playerRaycast.rayhitF = true;
+            if (InputSystem.InputSystems.Instance.pickup)
             {
-                playerRaycast.rayhitF = true;
-                if (InputSystem.InputSystems.Instance.pickup)
-                {
-                    getOutText.SetActive(false);
-                    GameManager.Instance.isHiding = false;
-                    GameManager.Instance.player.transform.position = getOutPos.position;
-                    closetDoor.transform.rotation = Quaternion.Euler(-90, -52.06f, -90);
-                    GameManager.Instance.controller.enabled = true;
-                    playerRaycast.rayhitF = false;
-                    InputSystem.InputSystems.Instance.pickup = false;
-                }
+                getOutText.SetActive(false);
+                GameManager.Instance.isHiding = false;
+                GameManager.Instance.player.transform.position = getOutPos.position;
+                closetDoor.transform.rotation = Quaternion.Euler(-90, -52.06f, -90);
+                GameManager.Instance.controller.enabled = true;
+                playerRaycast.rayhitF = false;
+                InputSystem.InputSystems.Instance.pickup = false;
             }
         }
     }

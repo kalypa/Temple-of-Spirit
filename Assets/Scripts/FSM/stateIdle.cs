@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
  
 public class stateIdle : State<MonsterFSM>
@@ -39,7 +40,6 @@ public class stateIdle : State<MonsterFSM>
     {
         if (stateMachineClass.target)
         {
-            Debug.Log(stateMachineClass.getFlagAtk);
             if (stateMachineClass.getFlagAtk)
             {
                 stateMachine.ChangeState<stateAtk>();
@@ -53,9 +53,5 @@ public class stateIdle : State<MonsterFSM>
         {
             stateMachine.ChangeState<stateRoaming>();
         }
-    }
-     
-    public override void OnEnd()
-    {
     }
 } 

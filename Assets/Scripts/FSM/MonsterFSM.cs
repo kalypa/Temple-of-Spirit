@@ -38,7 +38,10 @@ public class MonsterFSM : MonoBehaviour
 
     public virtual Transform SearchMonster()
     {
-        return target;
+        if (!GameManager.Instance.isHiding)
+            return target;
+        else
+            return null;
     }
 
 
@@ -60,7 +63,7 @@ public class MonsterFSM : MonoBehaviour
         posTarget = null;
         if (posTargets.Length > 0) {
             posTargetsIdx = Random.Range(0, posTargets.Length);
-            posTarget = posTargets[posTargetsIdx]; 
+            posTarget = posTargets[posTargetsIdx];
         }
 
         posTargetsIdx = Random.Range(0, posTargets.Length);

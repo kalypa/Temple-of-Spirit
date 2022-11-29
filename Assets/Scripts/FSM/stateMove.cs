@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class stateMove : State<MonsterFSM>
-{ 
+{
     private Animator animator; 
     private CharacterController characterController; 
     private NavMeshAgent agent;
@@ -23,16 +23,19 @@ public class stateMove : State<MonsterFSM>
     }
     
     public override void OnStart()
-    { 
+    {
+        GameManager.Instance.backgroundmusic.clip = GameManager.Instance.escapeMusic;
+        GameManager.Instance.backgroundmusic.Play();
         agent?.SetDestination(stateMachineClass.target.position);
         animator?.SetBool(hashMove, true);
         agent.speed = 5;
     }
      
     public override void OnUpdate(float deltaTime)
-    { 
-        Transform target= stateMachineClass.SearchMonster();  
-        if (target && !stateMachineClass.getFlagAtk && !GameManager.Instance.isHiding)
+    {
+
+        Transform target = stateMachineClass.SearchMonster();
+        if (target !=  null && !stateMachineClass.getFlagAtk && !GameManager.Instance.isHiding)
         { 
             agent.SetDestination(stateMachineClass.target.position);
              
@@ -47,7 +50,9 @@ public class stateMove : State<MonsterFSM>
     }
      
     public override void OnEnd()
-    { 
+    {
+        GameManager.Instance.backgroundmusic.clip = GameManager.Instance.mainMusic;
+        GameManager.Instance.backgroundmusic.Play();
         animator?.SetBool(hashMove, false);
         animator?.SetFloat(hashMoveSpeed, 0); 
         agent.ResetPath();

@@ -26,13 +26,12 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
     [SerializeField] private ItemRandomSpawn itemManager;
     public GameObject invisibleWall;
     public GameObject invisibleWall2;
-    [HideInInspector] public Image fadeImage;
     private float time = 4f;
     private void Start()
     {
         InputSystems.Instance.isPanel = true;
-        GameManager.Instance.controller = GameManager.Instance.player.GetComponent<FirstPersonController>(); 
-        fadeImage = GameManager.Instance.fadePanel.GetComponent<Image>();
+        GameManager.Instance.controller = GameManager.Instance.player.GetComponent<FirstPersonController>();
+        GameManager.Instance.fadeImage = GameManager.Instance.fadePanel.GetComponent<Image>();
     }
 
     public void OnClickInvenQuit()
@@ -54,7 +53,7 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
         invisibleWall.SetActive(true);
         GameManager.Instance.fadePanel.SetActive(true);
         startPanel.SetActive(false);
-        fadeImage.DOFade(0, time);
+        GameManager.Instance.fadeImage.DOFade(0, time);
         Invoke("KillDo", 4f);
         PlayerLock();
         itemManager.ItemSpawn();
@@ -63,10 +62,9 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
     }
     private void KillDo()
     {
-        Debug.Log("kill");
-        DOTween.Kill(fadeImage);
+        DOTween.Kill(GameManager.Instance.fadeImage);
         GameManager.Instance.fadePanel.SetActive(false);
-        fadeImage.color = new Color(0, 0, 0, 1);
+        GameManager.Instance.fadeImage.color = new Color(0, 0, 0, 1);
     }
     private void PlayerLock()
     {

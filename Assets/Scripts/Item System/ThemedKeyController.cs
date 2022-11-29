@@ -106,6 +106,7 @@ namespace ItemInven
 
         public void GameStart()
         {
+            
             AudioManager.instance.Play(coughSound);
             GameManager.Instance.backgroundmusic.clip = GameManager.Instance.mainMusic;
             GameManager.Instance.backgroundmusic.Play();
@@ -153,7 +154,7 @@ namespace ItemInven
             VolumeChange.Instance.volume.weight = 1f;
             OnClickManager.Instance.invisibleWall.SetActive(false);
             OnClickManager.Instance.invisibleWall2.SetActive(true);
-            OnClickManager.Instance.fadeImage.DOFade(0, 4);
+            GameManager.Instance.fadeImage.DOFade(0, 4);
             DOTween.Kill(GameManager.Instance.player);
             Invoke("KillDo", 4f);
 
@@ -161,9 +162,9 @@ namespace ItemInven
 
         private void KillDo()
         {
-            DOTween.Kill(OnClickManager.Instance.fadeImage);
+            DOTween.Kill(GameManager.Instance.fadeImage);
             GameManager.Instance.fadePanel.SetActive(false);
-            OnClickManager.Instance.fadeImage.color = new Color(0, 0, 0, 1);
+            GameManager.Instance.fadeImage.color = new Color(0, 0, 0, 1);
             GameManager.Instance.controller.enabled = true;
             GameManager.Instance.ghost.SetActive(true);
 
