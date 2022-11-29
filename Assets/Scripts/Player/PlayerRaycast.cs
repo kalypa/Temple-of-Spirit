@@ -17,7 +17,6 @@ namespace ItemSystem
         [SerializeField] private GameObject OpenText = null;
         [SerializeField] private GameObject CloseText = null;
         [SerializeField] private GameObject hideText = null;
-        [SerializeField] private GameObject getOutText = null;
         [SerializeField] private Image pickUpTextImage = null;
         [HideInInspector] public bool doOnce;
         [HideInInspector] public bool rayhitE = false;
@@ -121,10 +120,6 @@ namespace ItemSystem
                             {
                                 hideText.gameObject.SetActive(true);
                             }
-                            else
-                            {
-                                getOutText.gameObject.SetActive(true);
-                            }
 
                         }
 
@@ -167,7 +162,6 @@ namespace ItemSystem
                             pickUpText.gameObject.SetActive(false);
                             OpenText.SetActive(false);
                             CloseText.SetActive(false);
-                            getOutText.gameObject.SetActive(false);
                             hideText.gameObject.SetActive(false);
                             InputSystem.InputSystems.Instance.pickup = false;
                             CrosshairChange(false);
@@ -186,7 +180,6 @@ namespace ItemSystem
                         pickUpText.gameObject.SetActive(false);
                         OpenText.SetActive(false);
                         CloseText.SetActive(false);
-                        getOutText.gameObject.SetActive(false);
                         hideText.gameObject.SetActive(false);
                         InputSystem.InputSystems.Instance.pickup = false;
                         CrosshairChange(false);
@@ -202,7 +195,6 @@ namespace ItemSystem
                 pickUpText.gameObject.SetActive(false);
                 OpenText.SetActive(false);
                 CloseText.SetActive(false);
-                getOutText.gameObject.SetActive(false);
                 hideText.gameObject.SetActive(false);
                 crosshair.enabled = false;
                 doOnce = false;

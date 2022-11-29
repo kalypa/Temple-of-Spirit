@@ -105,6 +105,7 @@ namespace ItemInven
 
         public void GameStart()
         {
+            GameManager.Instance.backgroundmusic.clip = GameManager.Instance.mainMusic;
             ThemedKeyInventoryController.Instance.DeleteInventory("SacredSword");
             GameManager.Instance.controller.enabled = false;
             sequence = DOTween.Sequence();
@@ -149,11 +150,7 @@ namespace ItemInven
             OnClickManager.Instance.invisibleWall2.SetActive(true);
             OnClickManager.Instance.fadeImage.DOFade(0, 8);
             DOTween.Kill(GameManager.Instance.player);
-            Invoke("KillDo", 8.5f);
-            GameManager.Instance.player.transform.position = GameManager.Instance.startPos.position;
-            GameManager.Instance.player.transform.rotation = Quaternion.Euler(0, 180, 0);
-            GameManager.Instance.controller.enabled = true;
-            GameManager.Instance.ghost.SetActive(true);
+            Invoke("KillDo", 8f);
 
         }
 
@@ -162,6 +159,11 @@ namespace ItemInven
             DOTween.Kill(OnClickManager.Instance.fadeImage);
             GameManager.Instance.fadePanel.SetActive(false);
             OnClickManager.Instance.fadeImage.color = new Color(0, 0, 0, 1);
+            GameManager.Instance.player.transform.position = GameManager.Instance.startPos.position;
+            GameManager.Instance.player.transform.rotation = Quaternion.Euler(0, 180, 0);
+            GameManager.Instance.controller.enabled = true;
+            GameManager.Instance.ghost.SetActive(true);
+
         }
     }
 }
