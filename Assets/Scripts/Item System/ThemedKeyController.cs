@@ -10,6 +10,7 @@ namespace ItemInven
     public class ThemedKeyController : MonoBehaviour
     {
         [Header("Type of Key")]
+        [SerializeField] private NoteController noteController;
         [SerializeField] private KeyTheme keyType = KeyTheme.None;
 
         [SerializeField] private string keySound = "ThemedKeyPickup";
@@ -63,7 +64,7 @@ namespace ItemInven
                     ThemedKeyInventoryController.Instance.UpdateInventory("Flashlight");
                     break;
                 case KeyTheme.Note:
-                    NoteController.Instance.ExpensionNote();
+                    noteController.ExpensionNote();
                     break;
             }
             if (keyType != KeyTheme.SacredSword)
