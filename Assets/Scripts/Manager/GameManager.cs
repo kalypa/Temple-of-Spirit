@@ -1,3 +1,4 @@
+using Cinemachine;
 using InputSystem;
 using System.Collections;
 using System.Collections.Generic;
@@ -22,6 +23,10 @@ public class GameManager : SingleMonobehaviour<GameManager>
     public AudioClip mainMusic;
     public AudioClip escapeMusic;
     public AudioSource backgroundmusic;
+    public CinemachineVirtualCamera deadCam;
+    public CinemachineVirtualCamera playerCam;
+    //public cinemachine
     [HideInInspector] public bool isHiding;
     public float playerHP = 3;
+
 }

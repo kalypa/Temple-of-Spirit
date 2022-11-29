@@ -23,22 +23,22 @@ public class stateAtk : State<MonsterFSM>
 
     public override void OnStart()
     {   
-        if (iAtkAble == null || iAtkAble.nowAtkBehaviour == null)
-        {
-            stateMachine.ChangeState<stateIdle>();
-            return;
-        }
+        //if (iAtkAble == null || iAtkAble.nowAtkBehaviour == null)
+        //{
+        //    stateMachine.ChangeState<stateIdle>();
+        //    return;
+        //}
         
         stateAtkCtrl.stateAtkControllerStartHandler += delegateAtkStateStart; 
         stateAtkCtrl.stateAtkControllerEndHandler += delegateAtkStateEnd;
          
-        Debug.Log(iAtkAble.nowAtkBehaviour.aniMotionIdx + ": " + iAtkAble.nowAtkBehaviour.atkRange);
-   
-        animator?.SetInteger(atkIndexHash, iAtkAble.nowAtkBehaviour.aniMotionIdx);
-         
+        //Debug.Log(iAtkAble.nowAtkBehaviour.aniMotionIdx + ": " + iAtkAble.nowAtkBehaviour.atkRange);
+
         animator?.SetTrigger(atkTriggerHash);
+        GameManager.Instance.playerCam.Priority = 8;
+        GameManager.Instance.deadCam.gameObject.SetActive(true);
     }
-     
+    
     public void delegateAtkStateStart()
     { 
         UnityEngine.Debug.Log("delegateAtkStateStart()");
@@ -46,7 +46,8 @@ public class stateAtk : State<MonsterFSM>
 
     public void delegateAtkStateEnd()
     { 
-        UnityEngine.Debug.Log("delegateAtkStateEnd()"); 
+        UnityEngine.Debug.Log("delegateAtkStateEnd()");
+        GameManager.Instance.deadCam.gameObject.SetActive(false);
         stateMachine.ChangeState<stateIdle>();
     }
      
