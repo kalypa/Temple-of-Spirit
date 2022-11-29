@@ -17,4 +17,8 @@ public class GameManager : SingleMonobehaviour<GameManager>
     public GameObject flashlight;
     public GameObject note;
     public GameObject note2;
+    public AudioClip startSceneMusic;
+    public AudioClip tutorialMusic;
+    public AudioClip mainMusic;
+    public AudioClip escapeMusic;
 }
