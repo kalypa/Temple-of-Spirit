@@ -116,7 +116,7 @@ namespace ItemSystem
                             rayhitE = false;
                             raycasted_obj = hit.collider.gameObject.GetComponent<ItemController>();
                             CrosshairChange(true);
-                            if(!GameManager.Instance.isHiding)
+                            if(!ClosetController.Instance.isHiding)
                             {
                                 hideText.gameObject.SetActive(true);
                             }

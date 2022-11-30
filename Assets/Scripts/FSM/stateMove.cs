@@ -35,7 +35,7 @@ public class stateMove : State<MonsterFSM>
     {
 
         Transform target = stateMachineClass.SearchMonster();
-        if (target !=  null && !stateMachineClass.getFlagAtk && !GameManager.Instance.isHiding)
+        if (target !=  null && !stateMachineClass.getFlagAtk)
         { 
             agent.SetDestination(stateMachineClass.target.position);
              

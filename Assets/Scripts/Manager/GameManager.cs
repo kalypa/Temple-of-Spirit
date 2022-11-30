@@ -29,7 +29,6 @@ public class GameManager : SingleMonobehaviour<GameManager>
     public CinemachineVirtualCamera deadCam;
     public CinemachineVirtualCamera playerCam;
     //public cinemachine
-    [HideInInspector] public bool isHiding;
     [HideInInspector] public bool isAtk;
     public float playerHP = 3;
 

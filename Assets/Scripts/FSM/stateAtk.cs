@@ -19,7 +19,7 @@ public class stateAtk : State<MonsterFSM>
 
     public override void OnStart()
     {
-        if(!GameManager.Instance.isHiding)
+        if(!ClosetController.Instance.isHiding)
         {
             animator?.SetTrigger(atkTriggerHash);
             InputSystems.Instance.flash = false;
@@ -44,7 +44,7 @@ public class stateAtk : State<MonsterFSM>
 
     public override void OnEnd()
     {
-        if(!GameManager.Instance.isHiding)
+        if(!ClosetController.Instance.isHiding)
         {
             GameManager.Instance.deadCam.gameObject.SetActive(false);
             GameManager.Instance.Restart();
