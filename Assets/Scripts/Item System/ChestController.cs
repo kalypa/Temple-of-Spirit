@@ -28,7 +28,7 @@ public class ChestController : MonoBehaviour
         switch (_chestType)
         { 
             case ChestType.Red:
-                if (ThemedKeyInventoryController.Instance.hasRedKey)
+                if (GameManager.Instance.hasRedKey)
                 {
                     StartCoroutine(PlayAnimation());
                     colliders.enabled = false;
@@ -42,7 +42,7 @@ public class ChestController : MonoBehaviour
                 }
                 break;
             case ChestType.Blue:
-                if (ThemedKeyInventoryController.Instance.hasBlueKey)
+                if (GameManager.Instance.hasBlueKey)
                 {
                     StartCoroutine(PlayAnimation());
                     colliders.enabled = false;

@@ -5,18 +5,6 @@ namespace ItemInven
 {
     public class ThemedKeyInventoryController : SingleMonobehaviour<ThemedKeyInventoryController>
     {
-        [HideInInspector] public bool hasHeartKey;
-        [HideInInspector] public bool hasDiamondKey;
-        [HideInInspector] public bool hasSpadeKey;
-        [HideInInspector] public bool hasClubKey;
-        [HideInInspector] public bool hasRedKey;
-        [HideInInspector] public bool hasBlueKey;
-        [HideInInspector] public bool hasGrtar;
-        [HideInInspector] public bool hasHalgr;
-        [HideInInspector] public bool hasBattery;
-        [HideInInspector] public bool hasSword;
-        [HideInInspector] public bool hasSacredSword;
-        [HideInInspector] public bool hasFlashLight;
 
         [SerializeField] private GameObject endingGrtar;
         [SerializeField] private GameObject endingHalgr;
@@ -52,7 +40,7 @@ namespace ItemInven
             {
                 if (keyName == "Heart")
                 {
-                    hasHeartKey = true;
+                    GameManager.Instance.hasHeartKey = true;
                     key = new Item(heartKey);
                     inventoryObject.AddItem(key, 1);
 
@@ -60,35 +48,35 @@ namespace ItemInven
 
                 else if (keyName == "Diamond")
                 {
-                    hasDiamondKey = true;
+                    GameManager.Instance.hasDiamondKey = true;
                     key = new Item(diamondKey);
                     inventoryObject.AddItem(key, 1);
                 }
 
                 else if (keyName == "Club")
                 {
-                    hasClubKey = true;
+                    GameManager.Instance.hasClubKey = true;
                     key = new Item(cloverKey);
                     inventoryObject.AddItem(key, 1);
                 }
 
                 else if (keyName == "Spade")
                 {
-                    hasSpadeKey = true;
+                    GameManager.Instance.hasSpadeKey = true;
                     key = new Item(spadeKey);
                     inventoryObject.AddItem(key, 1);
                 }
 
                 else if(keyName == "Red")
                 {
-                    hasRedKey = true;
+                    GameManager.Instance.hasRedKey = true;
                     key = new Item(redKey);
                     inventoryObject.AddItem(key, 1);
                 }
 
                 else if (keyName == "Blue")
                 {
-                    hasBlueKey = true;
+                    GameManager.Instance.hasBlueKey = true;
                     key = new Item(blueKey);
                     inventoryObject.AddItem(key, 1);
                 }
@@ -96,7 +84,7 @@ namespace ItemInven
 
                 else if (keyName == "Grtar")
                 {
-                    hasGrtar = true;
+                    GameManager.Instance.hasGrtar = true;
                     key = new Item(grtar);
                     endingGrtar.tag = "Put";
                     inventoryObject.AddItem(key, 1);
@@ -104,7 +92,7 @@ namespace ItemInven
 
                 else if (keyName == "Halgr")
                 {
-                    hasHalgr = true;
+                    GameManager.Instance.hasHalgr = true;
                     key = new Item(halgr);
                     endingHalgr.tag = "Put";
                     inventoryObject.AddItem(key, 1);
@@ -112,7 +100,7 @@ namespace ItemInven
 
                 else if(keyName == "Sword")
                 {
-                    hasSword = true;
+                    GameManager.Instance.hasSword = true;
                     key = new Item(sword);
                     endingSword.tag = "Put";
                     inventoryObject.AddItem(key, 1);
@@ -120,21 +108,21 @@ namespace ItemInven
 
                 else if (keyName == "SacredSword")
                 {
-                    hasSacredSword = true;
+                    GameManager.Instance.hasSacredSword = true;
                     key = new Item(sacredSword);
                     inventoryObject.AddItem(key, 1);
                 }
 
                 else if (keyName == "Battery")
                 {
-                    hasBattery = true;
+                    GameManager.Instance.hasBattery = true;
                     key = new Item(battery);
                     inventoryObject.AddItem(key, 1);
                 }
 
                 else if (keyName == "Flashlight")
                 {
-                    hasFlashLight = true;
+                    GameManager.Instance.hasFlashLight = true;
                     key = new Item(flashLight);
                     inventoryObject.AddItem(key, 1);
                 }
@@ -150,42 +138,42 @@ namespace ItemInven
             {
                 if (keyName == "Heart")
                 {
-                    hasHeartKey = false;
+                    GameManager.Instance.hasHeartKey = false;
                     key = new Item(heartKey);
                     inventoryObject?.seachItemInInven(key).destoryItem();
                 }
 
                 else if (keyName == "Diamond")
                 {
-                    hasDiamondKey = false;
+                    GameManager.Instance.hasDiamondKey = false;
                     key = new Item(diamondKey);
                     inventoryObject?.seachItemInInven(key).destoryItem();
                 }
 
                 else if (keyName == "Club")
                 {
-                    hasClubKey = false;
+                    GameManager.Instance.hasClubKey = false;
                     key = new Item(cloverKey);
                     inventoryObject?.seachItemInInven(key).destoryItem();
                 }
 
                 else if (keyName == "Spade")
                 {
-                    hasSpadeKey = false;
+                    GameManager.Instance.hasSpadeKey = false;
                     key = new Item(spadeKey);
                     inventoryObject?.seachItemInInven(key).destoryItem();
                 }
 
                 else if (keyName == "Red")
                 {
-                    hasRedKey = true;
+                    GameManager.Instance.hasRedKey = true;
                     key = new Item(redKey);
                     inventoryObject?.seachItemInInven(key)?.destoryItem();
                 }
 
                 else if (keyName == "Blue")
                 {
-                    hasBlueKey = false;
+                    GameManager.Instance.hasBlueKey = false;
                     key = new Item(blueKey);
                     inventoryObject?.seachItemInInven(key)?.destoryItem();
                 }
@@ -193,28 +181,28 @@ namespace ItemInven
 
                 else if (keyName == "Grtar")
                 {
-                    hasGrtar = false;
+                    GameManager.Instance.hasGrtar = false;
                     key = new Item(grtar);
                     inventoryObject?.seachItemInInven(key)?.destoryItem();
                 }
 
                 else if (keyName == "Halgr")
                 {
-                    hasHalgr = false;
+                    GameManager.Instance.hasHalgr = false;
                     key = new Item(halgr);
                     inventoryObject?.seachItemInInven(key)?.destoryItem();
                 }
 
                 else if (keyName == "Sword")
                 {
-                    hasSword = false;
+                    GameManager.Instance.hasSword = false;
                     key = new Item(sword);
                     inventoryObject?.seachItemInInven(key)?.destoryItem();
                 }
 
                 else if (keyName == "SacredSword")
                 {
-                    hasSacredSword = false;
+                    GameManager.Instance.hasSacredSword = false;
                     key = new Item(sacredSword);
                     inventoryObject?.seachItemInInven(key).destoryItem();
                 }
@@ -224,7 +212,7 @@ namespace ItemInven
                     key = new Item(battery);
                     if (inventoryObject?.seachItemInInven(key).itemCnt == 1)
                     {
-                        hasBattery = false;
+                        GameManager.Instance.hasBattery = false;
                     }
                     inventoryObject?.seachItemInInven(key).minusCnt(1);
                 }

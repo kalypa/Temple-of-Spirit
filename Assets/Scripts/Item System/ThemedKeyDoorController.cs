@@ -43,7 +43,7 @@ namespace ItemInven
             switch (_doorType)
             {
                 case DoorType.HeartDoor:
-                    if (ThemedKeyInventoryController.Instance.hasHeartKey)
+                    if (GameManager.Instance.hasHeartKey)
                     {
                         StartCoroutine(PlayAnimation());
                         ThemedKeyInventoryController.Instance.DeleteInventory("Heart");
@@ -55,7 +55,7 @@ namespace ItemInven
                     }
                     break;
                 case DoorType.DiamondDoor:
-                    if (ThemedKeyInventoryController.Instance.hasDiamondKey)
+                    if (GameManager.Instance.hasDiamondKey)
                     {
                         StartCoroutine(PlayAnimation());
                         ThemedKeyInventoryController.Instance.DeleteInventory("Diamond");
@@ -67,7 +67,7 @@ namespace ItemInven
                     }
                     break;
                 case DoorType.CloverDoor:
-                    if (ThemedKeyInventoryController.Instance.hasClubKey)
+                    if (GameManager.Instance.hasClubKey)
                     {
                         StartCoroutine(PlayAnimation());
                         ThemedKeyInventoryController.Instance.DeleteInventory("Club");
@@ -79,7 +79,7 @@ namespace ItemInven
                     }
                     break;
                 case DoorType.SpadeDoor:
-                    if (ThemedKeyInventoryController.Instance.hasSpadeKey)
+                    if (GameManager.Instance.hasSpadeKey)
                     {                      
                         StartCoroutine(PlayAnimation());
                         ThemedKeyInventoryController.Instance.DeleteInventory("Spade");

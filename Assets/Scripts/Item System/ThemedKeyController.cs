@@ -112,6 +112,7 @@ namespace ItemInven
             GameManager.Instance.backgroundmusic.Play();
             ThemedKeyInventoryController.Instance.DeleteInventory("SacredSword");
             GameManager.Instance.controller.enabled = false;
+            GameManager.Instance.playerInput.enabled = false;
             sequence = DOTween.Sequence();
             Vignette playerEyeDown = VolumeChange.Instance.vignette;
             sequence.Append(DOTween.To(() => playerEyeDown.center.value, y => playerEyeDown.center.value = y, new Vector2(0.5f, -3f), 1f));
@@ -166,6 +167,7 @@ namespace ItemInven
             GameManager.Instance.fadePanel.SetActive(false);
             GameManager.Instance.fadeImage.color = new Color(0, 0, 0, 1);
             GameManager.Instance.controller.enabled = true;
+            GameManager.Instance.playerInput.enabled = true;
             GameManager.Instance.ghost.SetActive(true);
 
         }

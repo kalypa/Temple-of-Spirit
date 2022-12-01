@@ -86,7 +86,7 @@ namespace InputSystem
 		{
             if (!startPanel.activeSelf)
 			{
-                if (controller.hasFlashLight && batteryUI.value > 0)
+                if (GameManager.Instance.hasFlashLight && batteryUI.value > 0)
                 {
                     isFlash = !isFlash;
                     FlashInput(isFlash);
@@ -118,9 +118,9 @@ namespace InputSystem
 
 		public void OnBattery(InputValue value)
 		{
-            if (!startPanel.activeSelf && ThemedKeyInventoryController.Instance.hasBattery)
+            if (!startPanel.activeSelf && GameManager.Instance.hasBattery)
 			{
-                if (controller.hasFlashLight && batteryUI.value < 1)
+                if (GameManager.Instance.hasFlashLight && batteryUI.value < 1)
                 {
                     BatteryInput(value.isPressed);
                 }

@@ -241,7 +241,7 @@ namespace InputSystem
 		private void Flash()
 		{
 	        flashLight.enabled = _input.flash;
-            batteryUI.SetActive(controller.hasFlashLight);
+            batteryUI.SetActive(GameManager.Instance.hasFlashLight);
 			if(_input.flash)
 			{
                 battery.value -= 0.01f * Time.deltaTime;
