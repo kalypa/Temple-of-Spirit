@@ -32,13 +32,19 @@ public class ItemRandomSpawn : SingleMonobehaviour<ItemRandomSpawn>
         for (int i = 0; i < keys.Length; i++)
         {
             int random = Random.Range(start, end);
-            spawnDoorKey = spawnPos[random];
+            notContain[i] = random;
+            if(i > 0)
+            {
+                spawnDoorKey = spawnPos[GetRandomNotContain(start, end, notContain)];
+            }
+            else
+            {
+                spawnDoorKey = spawnPos[random];
+            }
             keys[i] = Instantiate(keys[i], spawnDoorKey.position, Quaternion.identity);
             DeleteString(keys[i]);  
             keys[i].transform.rotation = Quaternion.Euler(keys[i].transform.rotation.x, keys[i].transform.rotation.y, 180);
             keys[i].transform.SetParent(spawnDoorKey);
-            notContain[i] = random;
-            GetRandomNotContain(start, end, notContain);
         }
     }
 
@@ -47,12 +53,18 @@ public class ItemRandomSpawn : SingleMonobehaviour<ItemRandomSpawn>
         for (int i = 0; i < chestkeys.Length; i++)
         {
             int random = Random.Range(start2, end2);
-            spawnChestKey = spawnChestPos[random];
+            notContain2[i] = random;
+            if(i > 0)
+            {
+                spawnChestKey = spawnChestPos[GetRandomNotContain(start2, end2, notContain2)];
+            }
+            else
+            {
+                spawnChestKey = spawnChestPos[random];
+            }
             chestkeys[i] = Instantiate(chestkeys[i], spawnChestKey.position, Quaternion.identity);
             DeleteString(chestkeys[i]);
             chestkeys[i].transform.SetParent(spawnChestKey);
-            notContain2[i] = random;
-            GetRandomNotContain(start2, end2, notContain2);
         }
     }
     private void BatterySpawn()
@@ -60,12 +72,18 @@ public class ItemRandomSpawn : SingleMonobehaviour<ItemRandomSpawn>
         for(int i = 0; i < battery.Length; i++)
         {
             int random = Random.Range(start3, end3);
-            spawnBattery = spawnBatteryPos[random];
+            notContain3[i] = random;
+            if (i > 0)
+            {
+                spawnBattery = spawnBatteryPos[GetRandomNotContain(start3, end3, notContain3)];
+            }
+            else
+            {
+                spawnBattery = spawnBatteryPos[random];
+            }
             battery[i] = Instantiate(battery[i], spawnBattery.position, Quaternion.identity);
             DeleteString(battery[i]);
             battery[i].transform.SetParent(spawnBattery);
-            notContain3[i] = random;
-            GetRandomNotContain(start3, end3, notContain3);
         }
     }
 

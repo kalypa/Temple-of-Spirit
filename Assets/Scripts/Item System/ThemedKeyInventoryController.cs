@@ -18,6 +18,10 @@ namespace ItemInven
         [HideInInspector] public bool hasSacredSword;
         [HideInInspector] public bool hasFlashLight;
 
+        [SerializeField] private GameObject endingGrtar;
+        [SerializeField] private GameObject endingHalgr;
+        [SerializeField] private GameObject endingSword;
+
         private bool isOpen;
 
         public InventoryObj inventoryObject;
@@ -94,6 +98,7 @@ namespace ItemInven
                 {
                     hasGrtar = true;
                     key = new Item(grtar);
+                    endingGrtar.tag = "Put";
                     inventoryObject.AddItem(key, 1);
                 }
 
@@ -101,6 +106,7 @@ namespace ItemInven
                 {
                     hasHalgr = true;
                     key = new Item(halgr);
+                    endingHalgr.tag = "Put";
                     inventoryObject.AddItem(key, 1);
                 }
 
@@ -108,6 +114,7 @@ namespace ItemInven
                 {
                     hasSword = true;
                     key = new Item(sword);
+                    endingSword.tag = "Put";
                     inventoryObject.AddItem(key, 1);
                 }
 
@@ -214,8 +221,11 @@ namespace ItemInven
 
                 else if (keyName == "Battery")
                 {
-                    hasBattery = false;
                     key = new Item(battery);
+                    if (inventoryObject?.seachItemInInven(key).itemCnt == 1)
+                    {
+                        hasBattery = false;
+                    }
                     inventoryObject?.seachItemInInven(key).minusCnt(1);
                 }
 

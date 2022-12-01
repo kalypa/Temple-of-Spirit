@@ -9,6 +9,7 @@ TagManager:
   - Door
   - Padlock
   - Closet
+  - Put
   layers:
   - Default
   - TransparentFX

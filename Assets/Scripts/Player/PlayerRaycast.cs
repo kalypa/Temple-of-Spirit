@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using ItemInven;
+
 namespace ItemSystem
 {
     public class PlayerRaycast : MonoBehaviour
@@ -17,6 +19,7 @@ namespace ItemSystem
         [SerializeField] private GameObject OpenText = null;
         [SerializeField] private GameObject CloseText = null;
         [SerializeField] private GameObject hideText = null;
+        [SerializeField] private GameObject putText = null;
         [SerializeField] private Image pickUpTextImage = null;
         [HideInInspector] public bool doOnce;
         [HideInInspector] public bool rayhitE = false;
@@ -28,6 +31,7 @@ namespace ItemSystem
         private const string openTag = "Drawer";
         private const string PadlockTag = "Padlock";
         private const string hideTag = "Closet";
+        private const string putTag = "Put";
 
         private void Update()
         {
@@ -133,6 +137,27 @@ namespace ItemSystem
                         }
                     }
 
+                    else if (hit.collider.CompareTag(putTag))
+                    {
+                        if (!doOnce)
+                        {
+                            rayhitF = true;
+                            rayhitE = false;
+                            raycasted_obj = hit.collider.gameObject.GetComponent<ItemController>();
+                            CrosshairChange(true);
+                            putText.gameObject.SetActive(true);
+                        }
+
+                        isCrosshairActive = true;
+                        doOnce = true;
+
+                        if (InputSystem.InputSystems.Instance.pickup)
+                        {
+                            raycasted_obj.InteractionType();
+                            InputSystem.InputSystems.Instance.pickup = false;
+                        }
+                    }
+
                     else if (hit.collider.CompareTag(PadlockTag))
                     {
                         if (!doOnce)
@@ -163,6 +188,7 @@ namespace ItemSystem
                             OpenText.SetActive(false);
                             CloseText.SetActive(false);
                             hideText.gameObject.SetActive(false);
+                            putText.gameObject.SetActive(false);
                             InputSystem.InputSystems.Instance.pickup = false;
                             CrosshairChange(false);
                             doOnce = false;
@@ -181,6 +207,7 @@ namespace ItemSystem
                         OpenText.SetActive(false);
                         CloseText.SetActive(false);
                         hideText.gameObject.SetActive(false);
+                        putText.gameObject.SetActive(false);
                         InputSystem.InputSystems.Instance.pickup = false;
                         CrosshairChange(false);
                         doOnce = false;
@@ -196,6 +223,7 @@ namespace ItemSystem
                 OpenText.SetActive(false);
                 CloseText.SetActive(false);
                 hideText.gameObject.SetActive(false);
+                putText.gameObject.SetActive(false);
                 crosshair.enabled = false;
                 doOnce = false;
             }
