@@ -14,7 +14,7 @@ public class MonsterFSM : MonoBehaviour
     public Transform[] posTargets;
     public Transform posTarget = null;
     private int posTargetsIdx = 0;
-     
+    public GameObject posParent;
     public float atkRange;
 
     protected virtual void Start()
@@ -29,6 +29,10 @@ public class MonsterFSM : MonoBehaviour
 
 
         fov = GetComponent<FieldOfView>();
+        for(int i = 0; i < posParent.transform.childCount; i++)
+        {
+            posTargets[i] = posParent.transform.GetChild(i);
+        }
     }
 
     protected virtual void Update()
