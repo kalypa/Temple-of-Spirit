@@ -29,6 +29,7 @@ public class EndingController : SingleMonobehaviour<EndingController>
 
     public void HappyEnding()
     {
+        GameManager.Instance.ghost.SetActive(false);
         GameManager.Instance.controller.enabled = false;
         GameManager.Instance.fadeImage.DOFade(0, 4);
         Invoke("KillDo", 4f);
@@ -57,5 +58,19 @@ public class EndingController : SingleMonobehaviour<EndingController>
     {
         endingEnemy.SetActive(true);
         this.gameObject.transform.DORotate(new Vector3(0, 270, 0), 8f);
+        Invoke("End", 9f);
+        Invoke("ReGame", 13f);
+    }
+
+    private void End()
+    {
+        GameManager.Instance.endingPanel.SetActive(true);
+        OnClickManager.Instance.startPanel.SetActive(true);
+    }
+
+    private void ReGame()
+    {
+        GameManager.Instance.endingPanel.SetActive(false);
+        DataManager.Instance.RestartInit();
     }
 }

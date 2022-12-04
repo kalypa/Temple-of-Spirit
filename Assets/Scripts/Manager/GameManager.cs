@@ -11,10 +11,6 @@ using UnityEngine.InputSystem;
 
 public class GameManager : SingleMonobehaviour<GameManager>
 {
-    public List<int> playerHPData = new List<int>();
-    public List<bool> hasItemData = new List<bool>();
-    public List<Transform[]> objectData = new List<Transform[]>();
-    public List<GameObject> katanaData = new List<GameObject>();
     public GameObject fog;
     public GameObject fadePanel;
     [HideInInspector] public Image fadeImage;
@@ -40,6 +36,9 @@ public class GameManager : SingleMonobehaviour<GameManager>
     public GameObject chests;
     public Transform[] chestChilds;
     public GameObject katana;
+    public GameObject endingPanel;
+    public AudioSource walk;
+    public Transform enemyStartPos;
     [HideInInspector] public bool hasHeartKey;
     [HideInInspector] public bool hasDiamondKey;
     [HideInInspector] public bool hasSpadeKey;
@@ -57,12 +56,15 @@ public class GameManager : SingleMonobehaviour<GameManager>
 
     private void Start()
     {
+        walk = player.GetComponent<AudioSource>();
         ObjectInit(drawers, drawerChilds);
         ObjectInit(chests, chestChilds);
     }
 
     public void Restart()
     {
+        playerDeathStack += 1;
+        ghost.transform.position = enemyStartPos.position;
         StartCoroutine(GetAtk());
     }
 

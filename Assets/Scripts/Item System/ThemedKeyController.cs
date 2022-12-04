@@ -106,7 +106,7 @@ namespace ItemInven
 
         public void GameStart()
         {
-            
+            GameManager.Instance.walk.enabled = false;
             AudioManager.instance.Play(coughSound);
             GameManager.Instance.backgroundmusic.clip = GameManager.Instance.mainMusic;
             GameManager.Instance.backgroundmusic.Play();
@@ -168,6 +168,7 @@ namespace ItemInven
             GameManager.Instance.fadeImage.color = new Color(0, 0, 0, 1);
             GameManager.Instance.controller.enabled = true;
             GameManager.Instance.playerInput.enabled = true;
+            GameManager.Instance.walk.enabled = true;
             GameManager.Instance.ghost.SetActive(true);
 
         }

@@ -15,21 +15,10 @@ public class Item
         item_name = "";
     }
      
-    public ItemAbility[] ability;
      
     public Item(ItemObj itemObj)
     {
         item_name = itemObj.name;
         item_id = itemObj.itemData.item_id;
-         
-        ability = new ItemAbility[itemObj.itemData.ability.Length];
-         
-        for (int i = 0; i < ability.Length; i++)
-        { 
-            ability[i] = new ItemAbility()
-            { 
-                batteryStack = itemObj.itemData.ability[i].batteryStack
-            };
-        }
     }
 } 

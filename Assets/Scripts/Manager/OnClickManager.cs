@@ -11,7 +11,6 @@ using DG.Tweening;
 public class OnClickManager : SingleMonobehaviour<OnClickManager>
 {
     [SerializeField] private GameObject inventory;
-    [SerializeField] private GameObject startPanel;
     [SerializeField] private GameObject notePanel1;
     [SerializeField] private GameObject notePanel2;
     [SerializeField] private GameObject notePanel3;
@@ -24,6 +23,8 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
     [SerializeField] private GameObject playercamera;
     [SerializeField] private GameObject playerFirstPos;
     [SerializeField] private ItemRandomSpawn itemManager;
+    [SerializeField] private Transform enemyStartPos;
+    public GameObject startPanel;
     public GameObject invisibleWall;
     public GameObject invisibleWall2;
     private float time = 4f;
@@ -42,6 +43,7 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
     }
     public void OnClickStartButton()
     {
+        GameManager.Instance.ghost.transform.position = enemyStartPos.position;
         GameManager.Instance.backgroundmusic.clip = GameManager.Instance.tutorialMusic;
         GameManager.Instance.backgroundmusic.Play();
         InputSystems.Instance.isPanel = false;

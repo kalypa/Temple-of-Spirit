@@ -6,7 +6,6 @@ using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 public class stateAtk : State<MonsterFSM>
 {
-
     private Animator animator; 
     
     protected int atkTriggerHash = Animator.StringToHash("Atk");
@@ -21,12 +20,12 @@ public class stateAtk : State<MonsterFSM>
     {
         if(!ClosetController.Instance.isHiding)
         {
-            animator?.SetTrigger(atkTriggerHash);
+            GameManager.Instance.player.transform.position = GameManager.Instance.startPos.position;
+            GameManager.Instance.controller.enabled = false;
             InputSystems.Instance.flash = false;
             InputSystems.Instance.isFlash = false;
-            GameManager.Instance.controller.enabled = false;
-            GameManager.Instance.player.transform.position = GameManager.Instance.startPos.position;
             GameManager.Instance.deadCam.gameObject.SetActive(true);
+            AtkAnim();
         }
         else
         {
@@ -46,8 +45,20 @@ public class stateAtk : State<MonsterFSM>
     {
         if(!ClosetController.Instance.isHiding)
         {
-            GameManager.Instance.deadCam.gameObject.SetActive(false);
-            GameManager.Instance.Restart();
+            if(GameManager.Instance.playerDeathStack <= 3)
+            {
+                GameManager.Instance.deadCam.gameObject.SetActive(false);
+                GameManager.Instance.Restart();
+            }
+            else
+            {
+
+            }
         }
+    }
+
+    private void AtkAnim()
+    {
+        animator?.SetTrigger(atkTriggerHash);
     }
 }
