@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ItemInven;
-public class EndingItemController : MonoBehaviour
+public class EndingItemController : SingleMonobehaviour<EndingItemController>
 {
     [SerializeField] private ThemedKeyInventoryController themedKeyInventoryController;
-    [SerializeField] private GameObject sword;
-    [SerializeField] private GameObject grtar;
-    [SerializeField] private GameObject halgr;
+    public GameObject sword;
+    public GameObject grtar;
+    public GameObject halgr;
     [HideInInspector] public bool isEnd;
     public enum KatanaPiece
     { Sword, Grtar, Halgr }

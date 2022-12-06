@@ -44,6 +44,7 @@ public class GameManager : SingleMonobehaviour<GameManager>
     public Transform badendingPos;
     public GameObject blood;
     public GameObject endingPlayer;
+    public GameObject sacredSword;
     [HideInInspector] public bool hasHeartKey;
     [HideInInspector] public bool hasDiamondKey;
     [HideInInspector] public bool hasSpadeKey;

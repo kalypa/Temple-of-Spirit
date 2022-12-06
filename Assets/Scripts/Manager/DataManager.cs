@@ -53,6 +53,10 @@ public class DataManager : SingleMonobehaviour<DataManager>
         {
             controller[i].drawerState = DrawerState.Close;
         }
+        GameManager.Instance.sacredSword.SetActive(true);
+        EndingItemController.Instance.sword.SetActive(false);
+        EndingItemController.Instance.grtar.SetActive(false);
+        EndingItemController.Instance.halgr.SetActive(false);
         ItemRandomSpawn.Instance.notContain = new int[100];
         ItemRandomSpawn.Instance.notContain2 = new int[100];
         ItemRandomSpawn.Instance.notContain3 = new int[100];
