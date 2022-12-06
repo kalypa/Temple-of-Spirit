@@ -2,7 +2,8 @@ using InputSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using ItemSystem;
+using static DrawerController;
 
 public class DataManager : SingleMonobehaviour<DataManager>
 {
@@ -10,6 +11,8 @@ public class DataManager : SingleMonobehaviour<DataManager>
     [HideInInspector] public Transform[] originDoorPos;
     [HideInInspector] public Transform[] originChestPos;
     [HideInInspector] public GameObject originKatana;
+    public InventoryObj inventoryObject;
+    private DrawerController[] controller;
 
     private void Start()
     {
@@ -17,6 +20,7 @@ public class DataManager : SingleMonobehaviour<DataManager>
         originDoorPos = GameManager.Instance.doors;
         originChestPos = GameManager.Instance.chestChilds;
         originKatana = GameManager.Instance.katana;
+        controller = FindObjectsOfType<DrawerController>();
     }
 
     public void RestartInit()
@@ -25,10 +29,33 @@ public class DataManager : SingleMonobehaviour<DataManager>
         GameManager.Instance.backgroundmusic.clip = GameManager.Instance.startSceneMusic;
         GameManager.Instance.backgroundmusic.Play();
         GameManager.Instance.endingPlayer.SetActive(false);
-        GameManager.Instance.drawerChilds = originDrawerPos;
-        GameManager.Instance.doors = originDoorPos;
-        GameManager.Instance.chestChilds = originChestPos;
-        GameManager.Instance.katana = originKatana;
+        inventoryObject.Clear();
+
+        for(int i = 0; i < ItemRandomSpawn.Instance.spawnPos.Length; i++)
+        {
+            GameObject child = ItemRandomSpawn.Instance.spawnPos[i].GetComponentInChildren<GameObject>();
+            Destroy(child);
+        }
+
+        for (int i = 0; i < ItemRandomSpawn.Instance.spawnChestPos.Length; i++)
+        {
+            GameObject child = ItemRandomSpawn.Instance.spawnChestPos[i].GetComponentInChildren<GameObject>();
+            Destroy(child);
+        }
+
+        for (int i = 0; i < ItemRandomSpawn.Instance.spawnBatteryPos.Length; i++)
+        {
+            GameObject child = ItemRandomSpawn.Instance.spawnBatteryPos[i].GetComponentInChildren<GameObject>();
+            Destroy(child);
+        }
+
+        for(int i = 0; i < controller.Length; i++)
+        {
+            controller[i].drawerState = DrawerState.Close;
+        }
+        ItemRandomSpawn.Instance.notContain = new int[100];
+        ItemRandomSpawn.Instance.notContain2 = new int[100];
+        ItemRandomSpawn.Instance.notContain3 = new int[100];
         GameManager.Instance.hasHeartKey = false;
         GameManager.Instance.hasDiamondKey = false;
         GameManager.Instance.hasSpadeKey = false;

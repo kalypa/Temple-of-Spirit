@@ -19,6 +19,7 @@ public class ClosetController : SingleMonobehaviour<ClosetController>
             playerRaycast.rayhitF = true;
             if (InputSystem.InputSystems.Instance.pickup)
             {
+                AudioManager.instance.Play("ClosetOpen");
                 getOutText.SetActive(false);
                 isHiding = false;
                 GameManager.Instance.player.transform.position = getOutPos.transform.position;
@@ -33,6 +34,7 @@ public class ClosetController : SingleMonobehaviour<ClosetController>
     {
         if(!isHiding)
         {
+            AudioManager.instance.Play("ClosetClose");
             isHiding = true;
             GameManager.Instance.player.transform.position = hidePos.transform.position;
             GameManager.Instance.player.transform.rotation = Quaternion.identity;

@@ -5,21 +5,21 @@ using UnityEngine;
 
 public class ItemRandomSpawn : SingleMonobehaviour<ItemRandomSpawn>
 {
-    [SerializeField] private Transform[] spawnPos;
-    [SerializeField] private Transform[] spawnChestPos;
-    [SerializeField] private Transform[] spawnBatteryPos;
-    [SerializeField] private GameObject[] keys;
-    [SerializeField] private GameObject[] chestkeys;
-    [SerializeField] private GameObject[] battery;
+    public Transform[] spawnPos;
+    public Transform[] spawnChestPos;
+    public Transform[] spawnBatteryPos;
+    public GameObject[] keys;
+    public GameObject[] chestkeys;
+    public GameObject[] battery;
     private Transform spawnDoorKey;
     private Transform spawnChestKey;
     private Transform spawnBattery;
     private int start = 0, end = 41;
     private int start2 = 0, end2 = 14;
     private int start3 = 0, end3 = 55;
-    private int[] notContain = new int[100];
-    private int[] notContain2 = new int[100];
-    private int[] notContain3 = new int[100];
+    public int[] notContain = new int[100];
+    public int[] notContain2 = new int[100];
+    public int[] notContain3 = new int[100];
     public void ItemSpawn()
     {
         DoorKeySpawn();

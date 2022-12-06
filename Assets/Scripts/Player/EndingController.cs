@@ -79,7 +79,7 @@ public class EndingController : SingleMonobehaviour<EndingController>
     private void PlayerDead()
     {
         gameObject.transform.position = GameManager.Instance.badendingPos.position;
-        AudioManager.instance.Play("Scream");
+        AudioManager.instance.Play("Blood");
         GameManager.Instance.blood.SetActive(true);
         Invoke("End", 9f);
         Invoke("ReGame", 13f);

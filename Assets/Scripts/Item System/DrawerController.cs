@@ -43,7 +43,7 @@ public class DrawerController : MonoBehaviour
     {
         gameObject.tag = "Untagged";
         anim.Play(drawerOpenAnimation, 0, 0.0f);
-        //DrawerOpenSound();
+        DrawerOpenSound();
         yield return new WaitForSeconds(1f);
         gameObject.tag = "Drawer";
     }
@@ -52,7 +52,7 @@ public class DrawerController : MonoBehaviour
     {
         gameObject.tag = "Untagged";
         anim.Play(drawerCloseAnimation, 0, 0.0f);
-        //DrawerCloseSound();
+        DrawerCloseSound();
         yield return new WaitForSeconds(1f);
         gameObject.tag = "Drawer";
     }

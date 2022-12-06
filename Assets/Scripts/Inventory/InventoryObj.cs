@@ -21,8 +21,7 @@ public class InventoryObj : ScriptableObject
      
     public InterfaceType type;
      
-    [SerializeField]
-    private Inventory inventory = new Inventory();
+    [SerializeField] private Inventory inventory = new Inventory();
      
     public InvenSlot[] invenSlots => inventory.InvenSlots;
     
