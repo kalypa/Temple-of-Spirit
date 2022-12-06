@@ -112,6 +112,7 @@ namespace ItemInven
             GameManager.Instance.backgroundmusic.Play();
             ThemedKeyInventoryController.Instance.DeleteInventory("SacredSword");
             GameManager.Instance.controller.enabled = false;
+            GameManager.Instance.walk.enabled = false;
             GameManager.Instance.playerInput.enabled = false;
             sequence = DOTween.Sequence();
             Vignette playerEyeDown = VolumeChange.Instance.vignette;
@@ -136,6 +137,7 @@ namespace ItemInven
             enemySurprise = new Vector3(GameManager.Instance.player.transform.position.x + 0.5f, 11, GameManager.Instance.player.transform.position.z - 1f);
             GameManager.Instance.enemy.transform.position = enemySurprise;
             GameManager.Instance.enemy.SetActive(true);
+            AudioManager.instance.Play("Rising");
             GameManager.Instance.enemy.transform.DOMoveY(10.1f, 1.5f);
         }
 
@@ -143,8 +145,10 @@ namespace ItemInven
         {
             sequence.Kill();
             GameManager.Instance.fadePanel.SetActive(true);
+            GameManager.Instance.dayText.text = "Day " + GameManager.Instance.playerDeathStack.ToString();
+            GameManager.Instance.dayText.gameObject.SetActive(true);
             GameManager.Instance.player.transform.position = GameManager.Instance.startPos.position;
-            GameManager.Instance.player.transform.rotation = Quaternion.Euler(0, 180, 0);
+            GameManager.Instance.player.transform.rotation = Quaternion.Euler(0, 90, 0);
             VolumeChange.Instance.vignette.center.value = new Vector2(0.5f, 0.5f);
             VolumeChange.Instance.vignette.intensity.value = 0;
             GameManager.Instance.enemy.SetActive(false);
@@ -156,6 +160,7 @@ namespace ItemInven
             OnClickManager.Instance.invisibleWall.SetActive(false);
             OnClickManager.Instance.invisibleWall2.SetActive(true);
             GameManager.Instance.fadeImage.DOFade(0, 4);
+            GameManager.Instance.dayText.DOFade(0, 4);
             DOTween.Kill(GameManager.Instance.player);
             Invoke("KillDo", 4f);
 
@@ -164,9 +169,13 @@ namespace ItemInven
         private void KillDo()
         {
             DOTween.Kill(GameManager.Instance.fadeImage);
-            GameManager.Instance.fadePanel.SetActive(false);
+            DOTween.Kill(GameManager.Instance.dayText);
             GameManager.Instance.fadeImage.color = new Color(0, 0, 0, 1);
+            GameManager.Instance.dayText.color = new Color(1, 1, 1, 1);
+            GameManager.Instance.fadePanel.SetActive(false);
+            GameManager.Instance.dayText.gameObject.SetActive(false);
             GameManager.Instance.controller.enabled = true;
+            GameManager.Instance.walk.enabled = true;
             GameManager.Instance.playerInput.enabled = true;
             GameManager.Instance.walk.enabled = true;
             GameManager.Instance.ghost.SetActive(true);

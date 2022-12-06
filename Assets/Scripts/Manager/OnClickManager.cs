@@ -7,6 +7,7 @@ using ItemSystem;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.Rendering;
 using DG.Tweening;
+using UnityEngine.Windows;
 
 public class OnClickManager : SingleMonobehaviour<OnClickManager>
 {
@@ -15,7 +16,34 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
     [SerializeField] private GameObject notePanel2;
     [SerializeField] private GameObject notePanel3;
     [SerializeField] private GameObject notePanel4;
+    [SerializeField] private GameObject notePanel5;
+    [SerializeField] private GameObject notePanel6;
+    [SerializeField] private GameObject notePanel7;
+    [SerializeField] private GameObject notePanel8;
+    [SerializeField] private GameObject notePanel9;
+    [SerializeField] private GameObject notePanel10;
+    [SerializeField] private GameObject notePanel11;
+    [SerializeField] private GameObject notePanel12;
+    [SerializeField] private GameObject notePanel13;
+    [SerializeField] private GameObject notePanel14;
+    [SerializeField] private GameObject notePanel15;
+    [SerializeField] private GameObject note1;
+    [SerializeField] private GameObject note2;
+    [SerializeField] private GameObject note3;
+    [SerializeField] private GameObject note4;
+    [SerializeField] private GameObject note5;
+    [SerializeField] private GameObject note6;
+    [SerializeField] private GameObject note7;
+    [SerializeField] private GameObject note8;
+    [SerializeField] private GameObject note9;
+    [SerializeField] private GameObject note10;
+    [SerializeField] private GameObject note11;
+    [SerializeField] private GameObject note12;
+    [SerializeField] private GameObject note13;
+    [SerializeField] private GameObject note14;
+    [SerializeField] private GameObject note15;
     [SerializeField] private GameObject settingPanel;
+    [SerializeField] private GameObject pausePanel;
     [SerializeField] private Sprite sprite_sound_Off;
     [SerializeField] private Sprite sprite_sound_On;
     [SerializeField] private Image  sound_Current;
@@ -24,6 +52,8 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
     [SerializeField] private GameObject playerFirstPos;
     [SerializeField] private ItemRandomSpawn itemManager;
     [SerializeField] private Transform enemyStartPos;
+    [SerializeField] private PlayerRaycast playerRaycast;
+    private InputSystems _input;
     public GameObject startPanel;
     public GameObject invisibleWall;
     public GameObject invisibleWall2;
@@ -43,7 +73,7 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
     }
     public void OnClickStartButton()
     {
-        GameManager.Instance.ghost.transform.position = enemyStartPos.position;
+        GameManager.Instance.walk.enabled = false;
         GameManager.Instance.backgroundmusic.clip = GameManager.Instance.tutorialMusic;
         GameManager.Instance.backgroundmusic.Play();
         InputSystems.Instance.isPanel = false;
@@ -56,6 +86,7 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
         GameManager.Instance.fadePanel.SetActive(true);
         startPanel.SetActive(false);
         GameManager.Instance.fadeImage.DOFade(0, time);
+        GameManager.Instance.walk.enabled = true;
         Invoke("KillDo", 4f);
         PlayerLock();
         itemManager.ItemSpawn();
@@ -72,11 +103,13 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
     {
         GameManager.Instance.controller.enabled = true;
     }
+
     public void OnClickSettingButton()
     {
         settingPanel.SetActive(true);
         Time.timeScale = 0;
     }
+
     public void OnClickCloseButtonSetting()
     {
         settingPanel.SetActive(false);
@@ -106,6 +139,7 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
     public void OnclickNoteQuit1()
     {
         InputSystems.Instance.isPanel = false;
+        note1.tag = "InteractiveObject";
         notePanel1.SetActive(false);
         AudioManager.instance.Play(noteSound);
     }
@@ -113,7 +147,93 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
     public void OnclickNoteQuit2()
     {
         InputSystems.Instance.isPanel = false;
+        note2.tag = "InteractiveObject";
         notePanel2.SetActive(false);
+        AudioManager.instance.Play(noteSound);
+    }
+
+    public void OnclickNoteQuit3()
+    {
+        InputSystems.Instance.isPanel = false;
+        note3.tag = "InteractiveObject";
+        notePanel3.SetActive(false);
+        AudioManager.instance.Play(noteSound);
+    }
+
+    public void OnclickNoteQuit4()
+    {
+        InputSystems.Instance.isPanel = false;
+        note4.tag = "InteractiveObject";
+        notePanel4.SetActive(false);
+        AudioManager.instance.Play(noteSound);
+    }
+
+    public void OnclickNoteQuit5()
+    {
+        InputSystems.Instance.isPanel = false;
+        note5.tag = "InteractiveObject";
+        notePanel5.SetActive(false);
+        AudioManager.instance.Play(noteSound);
+    }
+
+    public void OnclickNoteQuit6()
+    {
+        InputSystems.Instance.isPanel = false;
+        note6.tag = "InteractiveObject";
+        notePanel6.SetActive(false);
+        AudioManager.instance.Play(noteSound);
+    }
+
+    public void OnclickNoteQuit7()
+    {
+        InputSystems.Instance.isPanel = false;
+        note7.tag = "InteractiveObject";
+        notePanel7.SetActive(false);
+        AudioManager.instance.Play(noteSound);
+    }
+
+    public void OnclickNoteQuit8()
+    {
+        InputSystems.Instance.isPanel = false;
+        note8.tag = "InteractiveObject";
+        notePanel8.SetActive(false);
+        AudioManager.instance.Play(noteSound);
+    }
+
+    public void OnclickNoteQuit9()
+    {
+        InputSystems.Instance.isPanel = false;
+        note9.tag = "InteractiveObject";
+        notePanel9.SetActive(false);
+        AudioManager.instance.Play(noteSound);
+    }
+
+    public void OnclickNoteQuit10()
+    {
+        InputSystems.Instance.isPanel = false;
+        note10.tag = "InteractiveObject";
+        notePanel10.SetActive(false);
+        AudioManager.instance.Play(noteSound);
+    }
+
+    public void OnClickNextPageButton1()
+    {
+        notePanel2.SetActive(false);
+        notePanel3.SetActive(true);
+        AudioManager.instance.Play(noteSound);
+    }
+
+    public void OnClickNextPageButton2()
+    {
+        notePanel3.SetActive(false);
+        notePanel4.SetActive(true);
+        AudioManager.instance.Play(noteSound);
+    }
+
+    public void OnClickNextPageButton3()
+    {
+        notePanel4.SetActive(false);
+        notePanel5.SetActive(true);
         AudioManager.instance.Play(noteSound);
     }
 }

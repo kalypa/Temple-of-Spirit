@@ -1,7 +1,9 @@
 using Cinemachine;
 using DG.Tweening;
+using ItemSystem;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Rendering;
@@ -23,19 +25,47 @@ public class EndingController : SingleMonobehaviour<EndingController>
     {
         if (!agent.pathPending && (agent.remainingDistance <= agent.stoppingDistance + 0.01f) && isEnd == true)
         {
-            Invoke("Bad", 4f);
+            Invoke("Good", 4f);
         }
     }
 
     public void HappyEnding()
     {
-        GameManager.Instance.ghost.SetActive(false);
-        GameManager.Instance.controller.enabled = false;
-        GameManager.Instance.fadeImage.DOFade(0, 4);
-        Invoke("KillDo", 4f);
+        EndingVolume();
+        EndSceneStart();
         Escape();
     }
 
+    public void SadEnding()
+    {
+        SadSceneStart();
+        Invoke("KillDo", 10f);
+        PlayerDead();
+    }
+
+    private void SadSceneStart()
+    {
+        GameManager.Instance.flashLight.enabled = true;
+        GameManager.Instance.fadePanel.SetActive(true);
+        GameManager.Instance.ghost.SetActive(false);
+        GameManager.Instance.controller.enabled = false;
+        GameManager.Instance.walk.enabled = false;
+    }
+
+    private void EndingVolume()
+    {
+        VolumeChange.Instance.vignette.intensity.value = 1;
+        GameManager.Instance.fog.SetActive(true);
+        VolumeChange.Instance.volume.weight = 0.25f;
+    }
+    private void EndSceneStart()
+    {
+        GameManager.Instance.ghost.SetActive(false);
+        GameManager.Instance.controller.enabled = false;
+        GameManager.Instance.walk.enabled = false;
+        GameManager.Instance.fadeImage.DOFade(0, 4);
+        Invoke("KillDo", 4f);
+    }
     private void Escape()
     {
         agent.SetDestination(target.position);
@@ -46,6 +76,15 @@ public class EndingController : SingleMonobehaviour<EndingController>
             return;
         }
     }
+    private void PlayerDead()
+    {
+        gameObject.transform.position = GameManager.Instance.badendingPos.position;
+        AudioManager.instance.Play("Scream");
+        GameManager.Instance.blood.SetActive(true);
+        Invoke("End", 9f);
+        Invoke("ReGame", 13f);
+
+    }
 
     private void KillDo()
     {
@@ -54,16 +93,18 @@ public class EndingController : SingleMonobehaviour<EndingController>
         GameManager.Instance.fadeImage.color = new Color(0, 0, 0, 1);
     }
 
-    private void Bad()
+    private void Good()
     {
         endingEnemy.SetActive(true);
         this.gameObject.transform.DORotate(new Vector3(0, 270, 0), 8f);
+        AudioManager.instance.Play("Rising");
         Invoke("End", 9f);
         Invoke("ReGame", 13f);
     }
 
     private void End()
     {
+        GameManager.Instance.fadePanel.SetActive(false);
         GameManager.Instance.endingPanel.SetActive(true);
         OnClickManager.Instance.startPanel.SetActive(true);
     }
@@ -71,6 +112,7 @@ public class EndingController : SingleMonobehaviour<EndingController>
     private void ReGame()
     {
         GameManager.Instance.endingPanel.SetActive(false);
+        GameManager.Instance.blood.SetActive(false);
         DataManager.Instance.RestartInit();
     }
 }

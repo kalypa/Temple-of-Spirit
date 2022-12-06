@@ -16,9 +16,11 @@ public class GameManager : SingleMonobehaviour<GameManager>
     [HideInInspector] public Image fadeImage;
     public GameObject player;
     [HideInInspector] public FirstPersonController controller;
+    public Light flashLight;
     public Transform startPos;
     public GameObject enemy;
     public GameObject ghost;
+    public GameObject endingEnemy;
     public GameObject flashlight;
     public GameObject note;
     public GameObject note2;
@@ -38,7 +40,10 @@ public class GameManager : SingleMonobehaviour<GameManager>
     public GameObject katana;
     public GameObject endingPanel;
     public AudioSource walk;
-    public Transform enemyStartPos;
+    public Text dayText;
+    public Transform badendingPos;
+    public GameObject blood;
+    public GameObject endingPlayer;
     [HideInInspector] public bool hasHeartKey;
     [HideInInspector] public bool hasDiamondKey;
     [HideInInspector] public bool hasSpadeKey;
@@ -64,19 +69,26 @@ public class GameManager : SingleMonobehaviour<GameManager>
     public void Restart()
     {
         playerDeathStack += 1;
-        ghost.transform.position = enemyStartPos.position;
         StartCoroutine(GetAtk());
     }
 
     private IEnumerator GetAtk()
     {
+        walk.enabled = false;
         fadePanel.SetActive(true);
+        dayText.text = "Day " + playerDeathStack.ToString();
+        dayText.gameObject.SetActive(true);
         fadeImage.DOFade(0, 4);
+        dayText.DOFade(0, 4);
         yield return new WaitForSeconds(4f);
         controller.enabled = true;
         DOTween.Kill(fadeImage);
+        DOTween.Kill(dayText);
         fadePanel.SetActive(false);
+        dayText.gameObject.SetActive(false);
         fadeImage.color = new Color(0, 0, 0, 1);
+        dayText.color = new Color(1, 1, 1, 1);
+        walk.enabled = true;
     }
 
     private void ObjectInit(GameObject g, Transform[] t)

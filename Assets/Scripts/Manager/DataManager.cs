@@ -1,3 +1,4 @@
+using InputSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,10 @@ public class DataManager : SingleMonobehaviour<DataManager>
 
     public void RestartInit()
     {
+        InputSystems.Instance.isPanel = true;
+        GameManager.Instance.backgroundmusic.clip = GameManager.Instance.startSceneMusic;
+        GameManager.Instance.backgroundmusic.Play();
+        GameManager.Instance.endingPlayer.SetActive(false);
         GameManager.Instance.drawerChilds = originDrawerPos;
         GameManager.Instance.doors = originDoorPos;
         GameManager.Instance.chestChilds = originChestPos;

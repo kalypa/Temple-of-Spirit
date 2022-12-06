@@ -49,7 +49,6 @@ namespace InputSystem
 		private float _rotationVelocity;
 		private float _verticalVelocity;
 		private float _terminalVelocity = 53.0f;
-		[SerializeField] private Light flashLight;
 		[SerializeField] private GameObject inventory;
 		[SerializeField] private GameObject pausePanel;
 		[SerializeField] private GameObject batteryUI;
@@ -168,7 +167,6 @@ namespace InputSystem
 			}
 
 			Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
-
 			if (_input.move != Vector2.zero)
 			{
 				inputDirection = transform.right * _input.move.x + transform.forward * _input.move.y;
@@ -216,11 +214,11 @@ namespace InputSystem
 
 		private void Flash()
 		{
-	        flashLight.enabled = _input.flash;
+            GameManager.Instance.flashLight.enabled = _input.flash;
             batteryUI.SetActive(GameManager.Instance.hasFlashLight);
 			if(_input.flash)
 			{
-                battery.value -= 0.05f * Time.deltaTime;
+                battery.value -= 0.005f * Time.deltaTime;
 			}
 			if(battery.value <= 0)
 			{
@@ -249,10 +247,12 @@ namespace InputSystem
             pausePanel.SetActive(_input.pause);
 			if(_input.pause == true)
 			{
+                walkSound.volume = 0f;
                 Time.timeScale = 0;
             }
 			else
 			{
+                walkSound.volume = 1f;
                 Time.timeScale = 1;
             }
         }

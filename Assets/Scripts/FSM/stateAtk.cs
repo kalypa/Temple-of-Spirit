@@ -1,9 +1,12 @@
 using DG.Tweening;
 using InputSystem;
+using ItemSystem;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
+using UnityEngine.Windows;
+
 public class stateAtk : State<MonsterFSM>
 {
     private Animator animator; 
@@ -18,12 +21,14 @@ public class stateAtk : State<MonsterFSM>
 
     public override void OnStart()
     {
-        if(!ClosetController.Instance.isHiding)
+        GameManager.Instance.isAtk = true;
+        if (!ClosetController.Instance.isHiding)
         {
             GameManager.Instance.player.transform.position = GameManager.Instance.startPos.position;
             GameManager.Instance.controller.enabled = false;
             InputSystems.Instance.flash = false;
             InputSystems.Instance.isFlash = false;
+            GameManager.Instance.flashLight.enabled = InputSystems.Instance.flash;
             GameManager.Instance.deadCam.gameObject.SetActive(true);
             AtkAnim();
         }
@@ -45,14 +50,16 @@ public class stateAtk : State<MonsterFSM>
     {
         if(!ClosetController.Instance.isHiding)
         {
-            if(GameManager.Instance.playerDeathStack <= 3)
+            if (GameManager.Instance.playerDeathStack < 3)
             {
                 GameManager.Instance.deadCam.gameObject.SetActive(false);
                 GameManager.Instance.Restart();
             }
             else
             {
-
+                GameManager.Instance.deadCam.gameObject.SetActive(false);
+                GameManager.Instance.endingPlayer.SetActive(true);
+                EndingController.Instance.SadEnding();
             }
         }
     }
@@ -60,5 +67,6 @@ public class stateAtk : State<MonsterFSM>
     private void AtkAnim()
     {
         animator?.SetTrigger(atkTriggerHash);
+        AudioManager.instance.Play("Scream");
     }
 }

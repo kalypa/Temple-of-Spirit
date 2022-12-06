@@ -8,7 +8,6 @@ public class EndingItemController : MonoBehaviour
     [SerializeField] private GameObject sword;
     [SerializeField] private GameObject grtar;
     [SerializeField] private GameObject halgr;
-    [SerializeField] private GameObject endingPlayer;
     [HideInInspector] public bool isEnd;
     public enum KatanaPiece
     { Sword, Grtar, Halgr }
@@ -18,7 +17,7 @@ public class EndingItemController : MonoBehaviour
     {
         if(sword.activeSelf && halgr.activeSelf && grtar.activeSelf)
         {
-            endingPlayer.SetActive(true);
+            GameManager.Instance.endingPlayer.SetActive(true);
             EndingController.Instance.HappyEnding();
         }
     }
