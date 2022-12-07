@@ -218,7 +218,7 @@ namespace InputSystem
             batteryUI.SetActive(GameManager.Instance.hasFlashLight);
 			if(_input.flash)
 			{
-                battery.value -= 0.005f * Time.deltaTime;
+                battery.value -= 0.01f * Time.deltaTime;
 			}
 			if(battery.value <= 0)
 			{
