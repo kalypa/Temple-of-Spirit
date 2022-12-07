@@ -60,6 +60,7 @@ public class EndingController : SingleMonobehaviour<EndingController>
     }
     private void EndSceneStart()
     {
+        OnClickManager.Instance.invisibleWall2.SetActive(false);
         GameManager.Instance.ghost.SetActive(false);
         GameManager.Instance.controller.enabled = false;
         GameManager.Instance.walk.enabled = false;
