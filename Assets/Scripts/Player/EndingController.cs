@@ -14,11 +14,6 @@ public class EndingController : SingleMonobehaviour<EndingController>
     private NavMeshAgent agent;
     [SerializeField] private GameObject endingEnemy;
     private bool isEnd;
-    private void Start()
-    {
-        agent = GetComponent<NavMeshAgent>();
-        characterController = GetComponent<CharacterController>();
-    }
 
     private void Update()
     {
@@ -68,10 +63,12 @@ public class EndingController : SingleMonobehaviour<EndingController>
     }
     private void Escape()
     {
+        agent = GetComponent<NavMeshAgent>();
         agent.SetDestination(GameManager.Instance.goodEndingPos.position);
         isEnd = true;
         if (agent.remainingDistance > agent.stoppingDistance)
         {
+            characterController = GetComponent<CharacterController>();
             characterController.Move(agent.velocity * Time.deltaTime);
             return;
         }
