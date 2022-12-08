@@ -51,7 +51,6 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
     [SerializeField] private GameObject playercamera;
     [SerializeField] private GameObject playerFirstPos;
     [SerializeField] private ItemRandomSpawn itemManager;
-    [SerializeField] private Transform enemyStartPos;
     [SerializeField] private PlayerRaycast playerRaycast;
     private InputSystems _input;
     public GameObject startPanel;
@@ -73,6 +72,8 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
     }
     public void OnClickStartButton()
     {
+        invisibleWall2.SetActive(false);
+        GameManager.Instance.ghost.transform.position = GameManager.Instance.enemyStartPos.position;
         GameManager.Instance.walk.enabled = false;
         GameManager.Instance.backgroundmusic.clip = GameManager.Instance.tutorialMusic;
         GameManager.Instance.backgroundmusic.Play();

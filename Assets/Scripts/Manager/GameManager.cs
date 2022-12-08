@@ -46,6 +46,7 @@ public class GameManager : SingleMonobehaviour<GameManager>
     public GameObject blood;
     public GameObject endingPlayer;
     public GameObject sacredSword;
+    public Transform enemyStartPos;
     [HideInInspector] public bool hasHeartKey;
     [HideInInspector] public bool hasDiamondKey;
     [HideInInspector] public bool hasSpadeKey;
@@ -71,6 +72,7 @@ public class GameManager : SingleMonobehaviour<GameManager>
     public void Restart()
     {
         playerDeathStack += 1;
+        ghost.transform.position = enemyStartPos.position;
         StartCoroutine(GetAtk());
     }
 
