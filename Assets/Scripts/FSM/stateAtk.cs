@@ -50,6 +50,7 @@ public class stateAtk : State<MonsterFSM>
         if (GameManager.Instance.playerDeathStack < 3)
         {
             GameManager.Instance.deadCam.gameObject.SetActive(false);
+            EnemySpawn();
             GameManager.Instance.Restart();
         }
         else
@@ -68,6 +69,11 @@ public class stateAtk : State<MonsterFSM>
         GameManager.Instance.flashLight.enabled = InputSystems.Instance.flash;
         GameManager.Instance.deadCam.gameObject.SetActive(true);
         AtkAnim();
+    }
+
+    private void EnemySpawn()
+    {
+        GameManager.Instance.ghost.SetActive(true);
     }
     private void AtkAnim()
     {

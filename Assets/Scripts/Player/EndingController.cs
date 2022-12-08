@@ -43,10 +43,8 @@ public class EndingController : SingleMonobehaviour<EndingController>
     private void SadSceneStart()
     {
         GameManager.Instance.flashLight.enabled = true;
+        EndingInit();
         GameManager.Instance.fadePanel.SetActive(true);
-        GameManager.Instance.ghost.SetActive(false);
-        GameManager.Instance.controller.enabled = false;
-        GameManager.Instance.walk.enabled = false;
     }
 
     private void EndingVolume()
@@ -58,11 +56,17 @@ public class EndingController : SingleMonobehaviour<EndingController>
     private void EndSceneStart()
     {
         OnClickManager.Instance.invisibleWall2.SetActive(false);
-        GameManager.Instance.ghost.SetActive(false);
-        GameManager.Instance.controller.enabled = false;
-        GameManager.Instance.walk.enabled = false;
+        EndingInit();
         GameManager.Instance.fadeImage.DOFade(0, 4);
         Invoke("KillDo", 4f);
+    }
+
+    private void EndingInit()
+    {
+        GameManager.Instance.ghost.SetActive(false);
+        GameManager.Instance.ghost.transform.position = GameManager.Instance.enemyStartPos.position;
+        GameManager.Instance.controller.enabled = false;
+        GameManager.Instance.walk.enabled = false;
     }
     private void Escape()
     {

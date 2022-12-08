@@ -8,6 +8,7 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.HighDefinition;
 using DG.Tweening;
 using UnityEngine.InputSystem;
+using System.Diagnostics;
 
 public class GameManager : SingleMonobehaviour<GameManager>
 {
@@ -72,7 +73,7 @@ public class GameManager : SingleMonobehaviour<GameManager>
     public void Restart()
     {
         playerDeathStack += 1;
-        ghost.transform.position = enemyStartPos.position;
+        EnemyInit();
         StartCoroutine(GetAtk());
     }
 
@@ -101,5 +102,11 @@ public class GameManager : SingleMonobehaviour<GameManager>
         {
             t[i] = g.transform.GetChild(i);
         }
+    }
+
+    private void EnemyInit()
+    {
+        UnityEngine.Debug.Log("EnemyInit");
+        ghost.transform.position = enemyStartPos.position;
     }
 }
