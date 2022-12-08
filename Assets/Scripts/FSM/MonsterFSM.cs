@@ -42,10 +42,10 @@ public class MonsterFSM : MonoBehaviour
 
     public virtual Transform SearchMonster()
     {
-        //if (!GameManager.Instance.isHiding)
+        if (!ClosetController.Instance.isHiding)
             return target;
-        //else
-        //    return null;
+        else
+            return null;
     }
 
 

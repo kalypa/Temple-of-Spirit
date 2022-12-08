@@ -25,6 +25,7 @@ public class ClosetController : SingleMonobehaviour<ClosetController>
                 GameManager.Instance.player.transform.position = getOutPos.transform.position;
                 closetDoor.transform.rotation = Quaternion.Euler(-90, 52.06f, -90);
                 GameManager.Instance.controller.enabled = true;
+                GameManager.Instance.walk.enabled = true;
                 playerRaycast.rayhitF = false;
                 InputSystem.InputSystems.Instance.pickup = false;
             }
@@ -40,6 +41,7 @@ public class ClosetController : SingleMonobehaviour<ClosetController>
             GameManager.Instance.player.transform.rotation = Quaternion.identity;
             closetDoor.transform.rotation = Quaternion.Euler(-90, 0, 0);
             GameManager.Instance.controller.enabled = false;
+            GameManager.Instance.walk.enabled = false;
             getOutText.SetActive(true);
         }
     }
