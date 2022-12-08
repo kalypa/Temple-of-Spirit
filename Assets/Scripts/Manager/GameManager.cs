@@ -42,6 +42,7 @@ public class GameManager : SingleMonobehaviour<GameManager>
     public AudioSource walk;
     public Text dayText;
     public Transform badendingPos;
+    public Transform goodEndingPos;
     public GameObject blood;
     public GameObject endingPlayer;
     public GameObject sacredSword;

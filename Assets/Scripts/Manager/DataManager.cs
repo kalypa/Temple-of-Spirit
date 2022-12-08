@@ -23,6 +23,7 @@ public class DataManager : SingleMonobehaviour<DataManager>
         controller = FindObjectsOfType<DrawerController>();
     }
 
+
     public void RestartInit()
     {
         InputSystems.Instance.isPanel = true;

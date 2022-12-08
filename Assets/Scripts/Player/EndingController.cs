@@ -12,7 +12,6 @@ public class EndingController : SingleMonobehaviour<EndingController>
 {
     private CharacterController characterController;
     private NavMeshAgent agent;
-    public Transform target;
     [SerializeField] private GameObject endingEnemy;
     private bool isEnd;
     private void Start()
@@ -69,7 +68,7 @@ public class EndingController : SingleMonobehaviour<EndingController>
     }
     private void Escape()
     {
-        agent.SetDestination(target.position);
+        agent.SetDestination(GameManager.Instance.goodEndingPos.position);
         isEnd = true;
         if (agent.remainingDistance > agent.stoppingDistance)
         {

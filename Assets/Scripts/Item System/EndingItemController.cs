@@ -17,6 +17,7 @@ public class EndingItemController : SingleMonobehaviour<EndingItemController>
     {
         if(sword.activeSelf && halgr.activeSelf && grtar.activeSelf)
         {
+            GameManager.Instance.player.SetActive(false);
             GameManager.Instance.endingPlayer.SetActive(true);
             EndingController.Instance.HappyEnding();
         }
