@@ -72,6 +72,8 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
     }
     public void OnClickStartButton()
     {
+        GameManager.Instance.player.transform.position = playerFirstPos.transform.position;
+        playercamera.transform.rotation = playerFirstPos.transform.rotation;
         invisibleWall2.SetActive(false);
         GameManager.Instance.ghost.transform.position = GameManager.Instance.enemyStartPos.position;
         GameManager.Instance.walk.enabled = false;
@@ -79,8 +81,6 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
         GameManager.Instance.backgroundmusic.Play();
         InputSystems.Instance.isPanel = false;
         GameManager.Instance.controller.enabled = false;
-        GameManager.Instance.player.transform.position = playerFirstPos.transform.position;
-        playercamera.transform.rotation = playerFirstPos.transform.rotation;
         GameManager.Instance.fog.SetActive(true);
         VolumeChange.Instance.volume.weight = 0.25f;
         invisibleWall.SetActive(true);

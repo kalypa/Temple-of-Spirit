@@ -23,15 +23,13 @@ public class stateAtk : State<MonsterFSM>
     public override void OnStart()
     {
         GameManager.Instance.isAtk = true;
-        if (!playerRaycast.closet.isHiding)
+        if (playerRaycast.closet != null && !playerRaycast.closet.isHiding)
         {
-            GameManager.Instance.player.transform.position = GameManager.Instance.startPos.position;
-            GameManager.Instance.controller.enabled = false;
-            InputSystems.Instance.flash = false;
-            InputSystems.Instance.isFlash = false;
-            GameManager.Instance.flashLight.enabled = InputSystems.Instance.flash;
-            GameManager.Instance.deadCam.gameObject.SetActive(true);
-            AtkAnim();
+            AtkStart();
+        }
+        else if (playerRaycast.closet == null)
+        {
+            AtkStart();
         }
         else
         {
@@ -49,22 +47,28 @@ public class stateAtk : State<MonsterFSM>
 
     public override void OnEnd()
     {
-        if(!playerRaycast.closet.isHiding)
+        if (GameManager.Instance.playerDeathStack < 3)
         {
-            if (GameManager.Instance.playerDeathStack < 3)
-            {
-                GameManager.Instance.deadCam.gameObject.SetActive(false);
-                GameManager.Instance.Restart();
-            }
-            else
-            {
-                GameManager.Instance.deadCam.gameObject.SetActive(false);
-                GameManager.Instance.endingPlayer.SetActive(true);
-                EndingController.Instance.SadEnding();
-            }
+            GameManager.Instance.deadCam.gameObject.SetActive(false);
+            GameManager.Instance.Restart();
+        }
+        else
+        {
+            GameManager.Instance.deadCam.gameObject.SetActive(false);
+            GameManager.Instance.endingPlayer.SetActive(true);
+            EndingController.Instance.SadEnding();
         }
     }
-
+    private void AtkStart()
+    {
+        GameManager.Instance.player.transform.position = GameManager.Instance.startPos.position;
+        GameManager.Instance.controller.enabled = false;
+        InputSystems.Instance.flash = false;
+        InputSystems.Instance.isFlash = false;
+        GameManager.Instance.flashLight.enabled = InputSystems.Instance.flash;
+        GameManager.Instance.deadCam.gameObject.SetActive(true);
+        AtkAnim();
+    }
     private void AtkAnim()
     {
         animator?.SetTrigger(atkTriggerHash);

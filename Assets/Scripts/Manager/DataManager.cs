@@ -7,19 +7,11 @@ using static DrawerController;
 
 public class DataManager : SingleMonobehaviour<DataManager>
 {
-    [HideInInspector] public Transform[] originDrawerPos;
-    [HideInInspector] public Transform[] originDoorPos;
-    [HideInInspector] public Transform[] originChestPos;
-    [HideInInspector] public GameObject originKatana;
     public InventoryObj inventoryObject;
     private DrawerController[] controller;
 
     private void Start()
     {
-        originDrawerPos = GameManager.Instance.drawerChilds;
-        originDoorPos = GameManager.Instance.doors;
-        originChestPos = GameManager.Instance.chestChilds;
-        originKatana = GameManager.Instance.katana;
         controller = FindObjectsOfType<DrawerController>();
     }
 
@@ -28,31 +20,46 @@ public class DataManager : SingleMonobehaviour<DataManager>
         InputSystems.Instance.isPanel = true;
         GameManager.Instance.backgroundmusic.clip = GameManager.Instance.startSceneMusic;
         GameManager.Instance.backgroundmusic.Play();
-        GameManager.Instance.endingPlayer.SetActive(false);
         inventoryObject.Clear();
 
         for(int i = 0; i < ItemRandomSpawn.Instance.spawnPos.Length; i++)
         {
-            GameObject child = ItemRandomSpawn.Instance.spawnPos[i].GetComponentInChildren<GameObject>();
-            Destroy(child);
+            if (ItemRandomSpawn.Instance.spawnPos[i].childCount != 0)
+            {
+                GameObject child = ItemRandomSpawn.Instance.spawnPos[i].GetChild(0).gameObject;
+                Destroy(child);
+            }
+            else
+                continue;
         }
 
         for (int i = 0; i < ItemRandomSpawn.Instance.spawnChestPos.Length; i++)
         {
-            GameObject child = ItemRandomSpawn.Instance.spawnChestPos[i].GetComponentInChildren<GameObject>();
-            Destroy(child);
+            if (ItemRandomSpawn.Instance.spawnPos[i].childCount != 0)
+            {
+                GameObject child = ItemRandomSpawn.Instance.spawnChestPos[i].GetChild(0).gameObject;
+                Destroy(child);
+            }
+            else
+                continue;
         }
 
         for (int i = 0; i < ItemRandomSpawn.Instance.spawnBatteryPos.Length; i++)
         {
-            GameObject child = ItemRandomSpawn.Instance.spawnBatteryPos[i].GetComponentInChildren<GameObject>();
-            Destroy(child);
+            if (ItemRandomSpawn.Instance.spawnPos[i].childCount > 0)
+            {
+                GameObject child = ItemRandomSpawn.Instance.spawnBatteryPos[i].GetChild(0).gameObject;
+                Destroy(child);
+            }
+            else
+                continue;
         }
 
         for(int i = 0; i < controller.Length; i++)
         {
             controller[i].drawerState = DrawerState.Close;
         }
+
         GameManager.Instance.sacredSword.SetActive(true);
         EndingItemController.Instance.sword.SetActive(false);
         EndingItemController.Instance.grtar.SetActive(false);
@@ -73,5 +80,6 @@ public class DataManager : SingleMonobehaviour<DataManager>
         GameManager.Instance.hasSacredSword = false;
         GameManager.Instance.hasFlashLight = false;
         GameManager.Instance.playerDeathStack = 1;
+        GameManager.Instance.endingPlayer.SetActive(false);
     }
 }
