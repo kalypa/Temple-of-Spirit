@@ -17,9 +17,12 @@ public class EndingController : SingleMonobehaviour<EndingController>
 
     private void Update()
     {
-        if (!agent.pathPending && (agent.remainingDistance <= agent.stoppingDistance + 0.01f) && isEnd == true)
+        if(agent.destination != null)
         {
-            Invoke("Good", 4f);
+            if (!agent.pathPending && (agent.remainingDistance <= agent.stoppingDistance + 0.01f) && isEnd == true)
+            {
+                Invoke("Good", 4f);
+            }
         }
     }
 
