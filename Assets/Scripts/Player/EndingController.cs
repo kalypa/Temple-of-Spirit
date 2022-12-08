@@ -58,6 +58,8 @@ public class EndingController : SingleMonobehaviour<EndingController>
         OnClickManager.Instance.invisibleWall2.SetActive(false);
         EndingInit();
         GameManager.Instance.fadeImage.DOFade(0, 4);
+        agent = GetComponent<NavMeshAgent>();
+        characterController = GetComponent<CharacterController>();
         Invoke("KillDo", 4f);
     }
 
@@ -70,12 +72,10 @@ public class EndingController : SingleMonobehaviour<EndingController>
     }
     private void Escape()
     {
-        agent = GetComponent<NavMeshAgent>();
         agent.SetDestination(GameManager.Instance.goodEndingPos.position);
         isEnd = true;
         if (agent.remainingDistance > agent.stoppingDistance)
         {
-            characterController = GetComponent<CharacterController>();
             characterController.Move(agent.velocity * Time.deltaTime);
             return;
         }

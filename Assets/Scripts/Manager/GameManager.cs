@@ -61,8 +61,9 @@ public class GameManager : SingleMonobehaviour<GameManager>
     [HideInInspector] public bool hasSacredSword;
     [HideInInspector] public bool hasFlashLight;
     [HideInInspector] public bool isAtk;
+    [HideInInspector] public bool isSafe;
     public float playerDeathStack = 1;
-
+    
     private void Start()
     {
         walk = player.GetComponent<AudioSource>();

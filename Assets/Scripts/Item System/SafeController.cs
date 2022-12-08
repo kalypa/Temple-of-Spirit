@@ -4,6 +4,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using System.Collections;
 using InputSystem;
+using Unity.VisualScripting;
 
 namespace ItemSystem
 {
@@ -101,6 +102,7 @@ namespace ItemSystem
                 triggerObject.SetActive(false);
             }
             safeUI.SetActive(true);
+            GameManager.Instance.isSafe = true;
             InputSystems.Instance.isPanel = true;
             AudioManager.instance.Play(interactSound);
         }
@@ -114,6 +116,7 @@ namespace ItemSystem
             {
                 InputSystems.Instance.isPanel = false;
                 safeUI.SetActive(false);
+                GameManager.Instance.isSafe = false;
                 safeModel.tag = "Untagged";
 
                 AudioManager.instance.Play(boltUnlock);
@@ -139,6 +142,7 @@ namespace ItemSystem
                 thirdNumberUI.text = "0";
                 fourthNumberUI.text = "0";
                 safeUI.SetActive(false);
+                GameManager.Instance.isSafe = false;
                 safeModel.tag = "Padlock";
                 firstNumber = true;
                 secondNumber = false;
