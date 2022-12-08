@@ -1,3 +1,4 @@
+using ItemSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,7 @@ public class MonsterFSM : MonoBehaviour
 
     protected StateMachine<MonsterFSM> fsmManager;
     public StateMachine<MonsterFSM> FsmManager => fsmManager;
-     
+    public PlayerRaycast playerRaycast;
     private FieldOfView fov;
     public Transform target => fov?.FirstTarget;
 
@@ -42,8 +43,12 @@ public class MonsterFSM : MonoBehaviour
 
     public virtual Transform SearchMonster()
     {
-        if (!ClosetController.Instance.isHiding)
+        if (playerRaycast.closet == null || !playerRaycast.closet.isHiding)
+        {
             return target;
+        }
+        else if (playerRaycast.closet != null && !playerRaycast.closet.isHiding)
+            return null;
         else
             return null;
     }

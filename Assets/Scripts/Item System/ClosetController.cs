@@ -4,7 +4,7 @@ using UnityEngine;
 using ItemSystem;
 using DG.Tweening.Core.Easing;
 
-public class ClosetController : SingleMonobehaviour<ClosetController>
+public class ClosetController : MonoBehaviour
 {
     [SerializeField] private GameObject hidePos;
     [SerializeField] private GameObject getOutPos;

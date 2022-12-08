@@ -9,20 +9,21 @@ using UnityEngine.Windows;
 
 public class stateAtk : State<MonsterFSM>
 {
-    private Animator animator; 
-    
+    private Animator animator;
+    private PlayerRaycast playerRaycast;
     protected int atkTriggerHash = Animator.StringToHash("Atk");
     protected int atkIndexHash = Animator.StringToHash("AtkIdx");
 
     public override void OnAwake()
     {
+        playerRaycast = stateMachineClass.playerRaycast;
         animator = stateMachineClass.GetComponent<Animator>();
     }
 
     public override void OnStart()
     {
         GameManager.Instance.isAtk = true;
-        if (!ClosetController.Instance.isHiding)
+        if (!playerRaycast.closet.isHiding)
         {
             GameManager.Instance.player.transform.position = GameManager.Instance.startPos.position;
             GameManager.Instance.controller.enabled = false;
@@ -48,7 +49,7 @@ public class stateAtk : State<MonsterFSM>
 
     public override void OnEnd()
     {
-        if(!ClosetController.Instance.isHiding)
+        if(!playerRaycast.closet.isHiding)
         {
             if (GameManager.Instance.playerDeathStack < 3)
             {

@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using TMPro;
 using ItemInven;
+using Unity.VisualScripting;
 
 namespace ItemSystem
 {
@@ -22,6 +23,7 @@ namespace ItemSystem
         [SerializeField] private GameObject putText = null;
         [SerializeField] private Image pickUpTextImage = null;
         [HideInInspector] public bool doOnce;
+        [HideInInspector] public ClosetController closet = null;
         [HideInInspector] public bool rayhitE = false;
         [HideInInspector] public bool rayhitF = false;
 
@@ -118,9 +120,10 @@ namespace ItemSystem
                         {
                             rayhitF = true;
                             rayhitE = false;
+                            closet = hit.collider.gameObject.GetComponent<ClosetController>();
                             raycasted_obj = hit.collider.gameObject.GetComponent<ItemController>();
                             CrosshairChange(true);
-                            if(!ClosetController.Instance.isHiding)
+                            if(!closet.isHiding)
                             {
                                 hideText.gameObject.SetActive(true);
                             }

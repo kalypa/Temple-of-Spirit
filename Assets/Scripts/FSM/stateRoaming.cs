@@ -1,3 +1,4 @@
+using ItemSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,7 @@ public class stateRoaming : State<MonsterFSM>
     private Animator animator;
     private CharacterController characterController; 
     private NavMeshAgent agent;
-    
+    private PlayerRaycast playerRayCast;
     private MonsterFSM monsterFSM;
     
     protected int hashMove = Animator.StringToHash("Move");
@@ -40,8 +41,7 @@ public class stateRoaming : State<MonsterFSM>
     }
     public override void OnUpdate(float deltaTime)
     {
-        Transform target = stateMachineClass.SearchMonster(); 
-
+        Transform target = stateMachineClass.SearchMonster();
         if (target)
         {
             if (stateMachineClass.getFlagAtk)
