@@ -13,13 +13,13 @@ public class EndingController : SingleMonobehaviour<EndingController>
     private CharacterController characterController;
     private NavMeshAgent agent;
     [SerializeField] private GameObject endingEnemy;
-    private bool isEnd;
+    private bool isEnd = false;
 
     private void Update()
     {
-        if(agent.destination != null)
+        if(isEnd == true)
         {
-            if (!agent.pathPending && (agent.remainingDistance <= agent.stoppingDistance + 0.01f) && isEnd == true)
+            if (!agent.pathPending && (agent.remainingDistance <= agent.stoppingDistance + 0.01f))
             {
                 Invoke("Good", 4f);
             }
