@@ -46,8 +46,8 @@ namespace InputSystem
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
         public void OnMove(InputValue value)
 		{
-			if(!startPanel.activeSelf)
-			MoveInput(value.Get<Vector2>());
+			if(!startPanel.activeSelf && GameManager.Instance.controller.enabled == true)
+			  MoveInput(value.Get<Vector2>());
 		}
 
 		public void OnLook(InputValue value)

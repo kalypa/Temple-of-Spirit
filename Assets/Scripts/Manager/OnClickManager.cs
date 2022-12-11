@@ -87,9 +87,13 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
         GameManager.Instance.fadePanel.SetActive(true);
         startPanel.SetActive(false);
         GameManager.Instance.fadeImage.DOFade(0, time);
-        GameManager.Instance.walk.enabled = true;
+        TutorialManager.Instance.KeyTutorial();
         Invoke("KillDo", 4f);
-        PlayerLock();
+        if (TutorialManager.Instance.isFirst)
+        {
+            GameManager.Instance.walk.enabled = true;
+            PlayerLock();
+        }
         itemManager.ItemSpawn();
         VolumeChange.Instance.vignette.center.value = new Vector2(0.5f, 0.5f);
         VolumeChange.Instance.vignette.intensity.value = 1;
