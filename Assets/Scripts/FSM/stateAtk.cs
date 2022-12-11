@@ -73,6 +73,8 @@ public class stateAtk : State<MonsterFSM>
 
     private void EnemySpawn()
     {
+        GameManager.Instance.ghost.SetActive(false);
+        GameManager.Instance.ghost.transform.position = GameManager.Instance.enemyStartPos.position;
         GameManager.Instance.ghost.SetActive(true);
     }
     private void AtkAnim()

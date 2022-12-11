@@ -17,6 +17,7 @@ public class DataManager : SingleMonobehaviour<DataManager>
 
     public void RestartInit()
     {
+        GameManager.Instance.endingPlayer.SetActive(false);
         InputSystems.Instance.isPanel = true;
         GameManager.Instance.backgroundmusic.clip = GameManager.Instance.startSceneMusic;
         GameManager.Instance.backgroundmusic.Play();
@@ -59,7 +60,6 @@ public class DataManager : SingleMonobehaviour<DataManager>
         {
             controller[i].drawerState = DrawerState.Close;
         }
-
         GameManager.Instance.sacredSword.SetActive(true);
         EndingItemController.Instance.sword.SetActive(false);
         EndingItemController.Instance.grtar.SetActive(false);
@@ -80,6 +80,5 @@ public class DataManager : SingleMonobehaviour<DataManager>
         GameManager.Instance.hasSacredSword = false;
         GameManager.Instance.hasFlashLight = false;
         GameManager.Instance.playerDeathStack = 1;
-        GameManager.Instance.endingPlayer.SetActive(false);
     }
 }

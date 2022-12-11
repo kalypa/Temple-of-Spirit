@@ -85,7 +85,7 @@ public class EndingController : SingleMonobehaviour<EndingController>
         AudioManager.instance.Play("Blood");
         GameManager.Instance.blood.SetActive(true);
         Invoke("End", 9f);
-        Invoke("ReGame", 13f);
+        Invoke("ReGame", 11f);
 
     }
 
