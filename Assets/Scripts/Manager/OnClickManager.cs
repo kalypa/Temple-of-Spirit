@@ -86,18 +86,28 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
         invisibleWall.SetActive(true);
         GameManager.Instance.fadePanel.SetActive(true);
         startPanel.SetActive(false);
-        GameManager.Instance.fadeImage.DOFade(0, time);
-        TutorialManager.Instance.KeyTutorial();
-        Invoke("KillDo", 4f);
-        if (TutorialManager.Instance.isFirst)
-        {
-            GameManager.Instance.walk.enabled = true;
-            PlayerLock();
-        }
+        StartCoroutine(TutorialText.Instance.OnType(0.1f, TutorialText.Instance.TutorialStoryText));
+        Invoke("Fade", 15f);
+        Invoke("KillDo", 19f);
         itemManager.ItemSpawn();
         VolumeChange.Instance.vignette.center.value = new Vector2(0.5f, 0.5f);
         VolumeChange.Instance.vignette.intensity.value = 1;
     }
+
+    private void Fade()
+    {
+        GameManager.Instance.fadeImage.DOFade(0, time);
+        if (!TutorialManager.Instance.isFirst)
+        {
+            TutorialManager.Instance.KeyTutorial();
+        }
+        else if (TutorialManager.Instance.isFirst)
+        {
+            GameManager.Instance.walk.enabled = true;
+            PlayerLock();
+        }
+    }
+
     private void KillDo()
     {
         DOTween.Kill(GameManager.Instance.fadeImage);
