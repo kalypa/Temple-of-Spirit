@@ -72,13 +72,13 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
     }
     public void OnClickStartButton()
     {
+        GameManager.Instance.backgroundmusic.Stop(); 
+        AudioManager.instance.Play("KeyBoard");
         GameManager.Instance.player.transform.position = playerFirstPos.transform.position;
         playercamera.transform.rotation = playerFirstPos.transform.rotation;
         invisibleWall2.SetActive(false);
         GameManager.Instance.ghost.transform.position = GameManager.Instance.enemyStartPos.position;
         GameManager.Instance.walk.enabled = false;
-        GameManager.Instance.backgroundmusic.clip = GameManager.Instance.tutorialMusic;
-        GameManager.Instance.backgroundmusic.Play();
         InputSystems.Instance.isPanel = false;
         GameManager.Instance.controller.enabled = false;
         GameManager.Instance.fog.SetActive(true);
@@ -87,7 +87,7 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
         GameManager.Instance.fadePanel.SetActive(true);
         startPanel.SetActive(false);
         StartCoroutine(TutorialText.Instance.OnType(0.1f, TutorialText.Instance.TutorialStoryText));
-        Invoke("Fade", 15f);
+        Invoke("Fade", 12.5f);
         Invoke("KillDo", 19f);
         itemManager.ItemSpawn();
         VolumeChange.Instance.vignette.center.value = new Vector2(0.5f, 0.5f);
@@ -96,6 +96,10 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
 
     private void Fade()
     {
+        AudioManager.instance.StopPlaying("KeyBoard");
+        GameManager.Instance.backgroundmusic.clip = GameManager.Instance.tutorialMusic;
+        GameManager.Instance.backgroundmusic.Play();
+        TutorialText.Instance.textUI.gameObject.SetActive(false);
         GameManager.Instance.fadeImage.DOFade(0, time);
         if (!TutorialManager.Instance.isFirst)
         {
