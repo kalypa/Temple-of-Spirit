@@ -14,12 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 6
   getFlagStackable: 1
-  itemIcon: {fileID: 21300000, guid: bdee2bc87667a75499daac6c0c5199d8, type: 3}
+  itemIcon: {fileID: 21300000, guid: 0b2a69c022362ca4b8ef1fe0e973342a, type: 3}
   objModelPrefab: {fileID: 100000, guid: d3ae8eefb954a364289840529c9faa79, type: 3}
   itemData:
-    item_id: 11
+    item_id: 10
     item_name: Flashlight Battery
-    ability:
-    - batteryStack: 1
-      valStack: 25
   itemSummery: "\uC190\uC804\uB4F1 \uBC30\uD130\uB9AC\uB2E4."

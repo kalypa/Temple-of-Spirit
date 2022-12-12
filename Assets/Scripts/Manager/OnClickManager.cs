@@ -123,15 +123,11 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
         GameManager.Instance.controller.enabled = true;
     }
 
-    public void OnClickSettingButton()
+    public void OnClickContinueButton()
     {
-        settingPanel.SetActive(true);
-        Time.timeScale = 0;
-    }
-
-    public void OnClickCloseButtonSetting()
-    {
-        settingPanel.SetActive(false);
+        InputSystems.Instance.pause = false;
+        pausePanel.SetActive(false);
+        GameManager.Instance.walk.volume = 1f;
         Time.timeScale = 1;
     }
 
