@@ -103,6 +103,7 @@ namespace ItemSystem
             }
             safeUI.SetActive(true);
             GameManager.Instance.isSafe = true;
+            GameManager.Instance.walk.enabled = false;
             InputSystems.Instance.isPanel = true;
             AudioManager.instance.Play(interactSound);
         }
@@ -116,6 +117,7 @@ namespace ItemSystem
             {
                 InputSystems.Instance.isPanel = false;
                 safeUI.SetActive(false);
+                GameManager.Instance.walk.enabled = true;
                 GameManager.Instance.isSafe = false;
                 safeModel.tag = "Untagged";
 
@@ -142,6 +144,7 @@ namespace ItemSystem
                 thirdNumberUI.text = "0";
                 fourthNumberUI.text = "0";
                 safeUI.SetActive(false);
+                GameManager.Instance.walk.enabled = true;
                 GameManager.Instance.isSafe = false;
                 safeModel.tag = "Padlock";
                 firstNumber = true;
