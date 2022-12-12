@@ -20,6 +20,7 @@ public class EndingController : SingleMonobehaviour<EndingController>
         {
             if (!agent.pathPending && (agent.remainingDistance <= agent.stoppingDistance + 0.01f))
             {
+                AudioManager.instance.StopPlaying("Walk");
                 Invoke("Good", 4f);
             }
         }
@@ -75,6 +76,7 @@ public class EndingController : SingleMonobehaviour<EndingController>
         isEnd = true;
         if (agent.remainingDistance > agent.stoppingDistance)
         {
+            AudioManager.instance.Play("Walk");
             characterController.Move(agent.velocity * Time.deltaTime);
             return;
         }

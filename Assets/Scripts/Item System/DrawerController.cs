@@ -59,13 +59,11 @@ public class DrawerController : MonoBehaviour
 
     public void DrawerOpenSound()
     {
-        Debug.Log("Open");
         AudioManager.instance.Play(drawerOpenSound);
     }
 
     public void DrawerCloseSound()
     {
-        Debug.Log("Close");
         AudioManager.instance.Play(drawerCloseSound);
     }
 }
