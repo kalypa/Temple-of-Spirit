@@ -126,6 +126,7 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
     public void OnClickContinueButton()
     {
         InputSystems.Instance.pause = false;
+        InputSystems.Instance.isPanel = false;
         pausePanel.SetActive(false);
         GameManager.Instance.walk.volume = 1f;
         Time.timeScale = 1;
