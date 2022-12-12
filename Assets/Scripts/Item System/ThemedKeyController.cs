@@ -20,7 +20,7 @@ namespace ItemInven
         private Quaternion falling = Quaternion.Euler(0, 180, 106.6f);
         private Vector3 enemySurprise;
         private DG.Tweening.Sequence sequence;
-        public enum KeyTheme { None, Heart, Diamond, Club, Spade, Red, Blue, Grtar, Halgr, Sword, SacredSword, Battery, Flashlight, Note }
+        public enum KeyTheme { None, Heart, Diamond, Club, Spade, Red, Blue, Grtar, Halgr, Sword, SacredSword, Battery, Flashlight, Note, First }
         public void KeyPickup()
         {
             switch (keyType)
@@ -58,6 +58,9 @@ namespace ItemInven
                     gameObject.SetActive(false);
                     GameStart();
                     break;
+                case KeyTheme.First:
+                    ThemedKeyInventoryController.Instance.UpdateInventory("First");
+                    break;
                 case KeyTheme.Battery:
                     ThemedKeyInventoryController.Instance.UpdateInventory("Battery");
                     break;
@@ -88,6 +91,7 @@ namespace ItemInven
                 case KeyTheme.Spade:
                 case KeyTheme.Red:
                 case KeyTheme.Blue:
+                case KeyTheme.First:
                     AudioManager.instance.Play(keySound);
                     break;
                 case KeyTheme.Grtar:
@@ -153,6 +157,8 @@ namespace ItemInven
             VolumeChange.Instance.vignette.intensity.value = 0;
             GameManager.Instance.enemy.SetActive(false);
             GameManager.Instance.flashlight.SetActive(true);
+            GameManager.Instance.firstDoor.SetActive(true);
+            GameManager.Instance.firstKey.SetActive(true);
             GameManager.Instance.note.SetActive(true);
             GameManager.Instance.note2.SetActive(true);
             GameManager.Instance.fog.SetActive(false);
@@ -178,7 +184,6 @@ namespace ItemInven
             GameManager.Instance.walk.enabled = true;
             GameManager.Instance.playerInput.enabled = true;
             GameManager.Instance.walk.enabled = true;
-            GameManager.Instance.ghost.SetActive(true);
 
         }
     }

@@ -64,6 +64,11 @@ public class DataManager : SingleMonobehaviour<DataManager>
         EndingItemController.Instance.sword.SetActive(false);
         EndingItemController.Instance.grtar.SetActive(false);
         EndingItemController.Instance.halgr.SetActive(false);
+        GameManager.Instance.flashlight.SetActive(false);
+        GameManager.Instance.firstDoor.SetActive(false);
+        GameManager.Instance.firstKey.SetActive(false);
+        GameManager.Instance.note.SetActive(false);
+        GameManager.Instance.note2.SetActive(false);
         ItemRandomSpawn.Instance.notContain = new int[100];
         ItemRandomSpawn.Instance.notContain2 = new int[100];
         ItemRandomSpawn.Instance.notContain3 = new int[100];

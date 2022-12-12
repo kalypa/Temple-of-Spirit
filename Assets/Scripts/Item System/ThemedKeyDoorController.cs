@@ -11,7 +11,7 @@ namespace ItemInven
     {
         [Header("Door Properties")]
         [SerializeField] private DoorType _doorType = DoorType.None;
-        private enum DoorType { None, HeartDoor, DiamondDoor, SpadeDoor, CloverDoor }
+        private enum DoorType { None, HeartDoor, DiamondDoor, SpadeDoor, CloverDoor, FirstDoor }
 
         [SerializeField] private GameObject animatedDoorKey = null;
 
@@ -83,6 +83,19 @@ namespace ItemInven
                     {                      
                         StartCoroutine(PlayAnimation());
                         ThemedKeyInventoryController.Instance.DeleteInventory("Spade");
+                    }
+                    else
+                    {
+                        StartCoroutine(DoorLockedText());
+                        LockedDoorSound();
+                    }
+                    break;
+                case DoorType.FirstDoor:
+                    if (GameManager.Instance.hasFirstKey)
+                    {
+                        StartCoroutine(PlayAnimation());
+                        ThemedKeyInventoryController.Instance.DeleteInventory("First");
+                        GameManager.Instance.ghost.SetActive(true);
                     }
                     else
                     {

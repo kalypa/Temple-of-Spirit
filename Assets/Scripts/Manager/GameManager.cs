@@ -23,6 +23,8 @@ public class GameManager : SingleMonobehaviour<GameManager>
     public GameObject ghost;
     public GameObject endingEnemy;
     public GameObject flashlight;
+    public GameObject firstDoor;
+    public GameObject firstKey;
     public GameObject note;
     public GameObject note2;
     public AudioClip startSceneMusic;
@@ -52,6 +54,7 @@ public class GameManager : SingleMonobehaviour<GameManager>
     [HideInInspector] public bool hasDiamondKey;
     [HideInInspector] public bool hasSpadeKey;
     [HideInInspector] public bool hasClubKey;
+    [HideInInspector] public bool hasFirstKey;
     [HideInInspector] public bool hasRedKey;
     [HideInInspector] public bool hasBlueKey;
     [HideInInspector] public bool hasGrtar;

@@ -16,6 +16,7 @@ namespace ItemInven
         public ItemDBObj databaseObject;
         ItemObj cloverKey;
         ItemObj spadeKey;
+        ItemObj firstKey;
         ItemObj heartKey;
         ItemObj diamondKey;
         ItemObj redKey;
@@ -64,6 +65,13 @@ namespace ItemInven
                 {
                     GameManager.Instance.hasSpadeKey = true;
                     key = new Item(spadeKey);
+                    inventoryObject.AddItem(key, 1);
+                }
+
+                else if (keyName == "First")
+                {
+                    GameManager.Instance.hasFirstKey = true;
+                    key = new Item(firstKey);
                     inventoryObject.AddItem(key, 1);
                 }
 
@@ -234,6 +242,7 @@ namespace ItemInven
             sacredSword = databaseObject.itemObjs[9];
             battery = databaseObject.itemObjs[10];
             flashLight = databaseObject.itemObjs[11];
+            firstKey = databaseObject.itemObjs[12];
         }
     }
 }
