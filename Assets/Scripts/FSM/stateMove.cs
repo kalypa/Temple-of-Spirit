@@ -7,7 +7,8 @@ using UnityEngine.AI;
 
 public class stateMove : State<MonsterFSM>
 {
-    private Animator animator; 
+    private Animator animator;
+    private AudioSource audioSource;
     private CharacterController characterController; 
     private NavMeshAgent agent;
      
@@ -18,12 +19,13 @@ public class stateMove : State<MonsterFSM>
     { 
         animator = stateMachineClass.GetComponent<Animator>();
         characterController = stateMachineClass.GetComponent<CharacterController>();
-
+        audioSource = stateMachineClass.GetComponent<AudioSource>();
         agent = stateMachineClass.GetComponent<NavMeshAgent>();
     }
     
     public override void OnStart()
     {
+        audioSource.Stop();
         GameManager.Instance.backgroundmusic.clip = GameManager.Instance.escapeMusic;
         GameManager.Instance.backgroundmusic.Play();
         agent?.SetDestination(stateMachineClass.target.position);

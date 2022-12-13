@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public class stateRoaming : State<MonsterFSM>
 {
     private Animator animator;
+    private AudioSource audioSource;
     private CharacterController characterController; 
     private NavMeshAgent agent;
     private PlayerRaycast playerRayCast;
@@ -19,7 +20,8 @@ public class stateRoaming : State<MonsterFSM>
     
     public override void OnAwake()
     {
-        animator = stateMachineClass.GetComponent<Animator>(); 
+        animator = stateMachineClass.GetComponent<Animator>();
+        audioSource = stateMachineClass.GetComponent<AudioSource>();
         characterController = stateMachineClass.GetComponent<CharacterController>(); 
         agent = stateMachineClass.GetComponent<UnityEngine.AI.NavMeshAgent>();
 
@@ -27,6 +29,7 @@ public class stateRoaming : State<MonsterFSM>
     }
     public override void OnStart()
     {
+        audioSource.Play();
         if (stateMachineClass.posTarget == null)
         {
             stateMachineClass.SearchNextTargetPosition();

@@ -101,7 +101,7 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
         invisibleWall.SetActive(true);
         GameManager.Instance.fadePanel.SetActive(true);
         startPanel.SetActive(false);
-        if(TutorialManager.Instance.isFirst)
+        if(!TutorialManager.Instance.isFirst)
         {
             AudioManager.instance.Play("KeyBoard");
             StartCoroutine(TutorialText.Instance.OnType(0.1f, TutorialText.Instance.TutorialStoryText));
