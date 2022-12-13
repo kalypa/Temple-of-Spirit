@@ -8,7 +8,7 @@ using Unity.VisualScripting;
 
 namespace ItemSystem
 {
-    public class SafeController : MonoBehaviour
+    public class SafeController : SingleMonobehaviour<SafeController>
     {
         [Header("Safe Model Reference")]
         [SerializeField] private GameObject safeModel = null;
@@ -16,7 +16,7 @@ namespace ItemSystem
 
         [Header("Animation References")]
         [SerializeField] private string safeAnimationName = "SafeDoorOpen";
-        private Animator safeAnim;
+        public Animator safeAnim;
         private BoxCollider safeBoxCollider;
         [Header("Animation Timers - Default: 1.0f / 0.5f")]
         [SerializeField] private float beforeAnimationStart = 1.0f;
@@ -65,7 +65,7 @@ namespace ItemSystem
         [Header("Unity Event - What happens when you open the safe?")]
         [SerializeField] private UnityEvent safeOpened = null;
 
-        void Awake()
+        void Start()
         {
             firstNumber = true;
             safeAnim = safeModel.gameObject.GetComponent<Animator>();
@@ -137,45 +137,11 @@ namespace ItemSystem
             }
             else
             {
-                InputSystems.Instance.isPanel = false;
-                AudioManager.instance.Play(lockRattle);
-                firstNumberUI.text = "0";
-                secondNumberUI.text = "0";
-                thirdNumberUI.text = "0";
-                fourthNumberUI.text = "0";
-                safeUI.SetActive(false);
                 GameManager.Instance.walk.enabled = true;
                 GameManager.Instance.isSafe = false;
-                safeModel.tag = "Padlock";
-                firstNumber = true;
-                secondNumber = false;
-                thirdNumber = false;
-                fourthNumber = false;
-
-                firstArrowUI.interactable = true;
-                secondArrowUI.interactable = false;
-                thirdArrowUI.interactable = false;
-                fourthArrowUI.interactable = false;
-
-                firstNumberUI.color = Color.white;
-                secondNumberUI.color = Color.gray;
-                thirdNumberUI.color = Color.gray;
-                fourthNumberUI.color = Color.gray;
-
-                ColorBlock firstArrowCB = firstArrowUI.colors; 
-                firstArrowCB.normalColor = Color.white; 
-                firstArrowUI.colors = firstArrowCB;
-                ColorBlock secondArrowCB = secondArrowUI.colors; 
-                secondArrowCB.normalColor = Color.gray; 
-                secondArrowUI.colors = secondArrowCB;
-                ColorBlock thirdArrowCB = thirdArrowUI.colors; 
-                thirdArrowCB.normalColor = Color.gray; 
-                thirdArrowUI.colors = thirdArrowCB;
-                ColorBlock fourthArrowCB = fourthArrowUI.colors;
-                fourthArrowCB.normalColor = Color.gray;
-                fourthArrowUI.colors = fourthArrowCB;
-                safeDial.transform.localEulerAngles = new Vector3(90.0f, 0.0f, 0.0f);
-                lockNumberInt = 0;
+                AudioManager.instance.Play(lockRattle);
+                InputSystems.Instance.isPanel = false;
+                SafeUIFalse();
             }
         }
 
@@ -374,6 +340,45 @@ namespace ItemSystem
                     fourthNumberUI.text = lockNumberInt.ToString("0");
                 }
             }
+        }
+
+        public void SafeUIFalse()
+        {
+            firstNumberUI.text = "0";
+            secondNumberUI.text = "0";
+            thirdNumberUI.text = "0";
+            fourthNumberUI.text = "0";
+            safeUI.SetActive(false);
+            safeModel.tag = "Padlock";
+            firstNumber = true;
+            secondNumber = false;
+            thirdNumber = false;
+            fourthNumber = false;
+
+            firstArrowUI.interactable = true;
+            secondArrowUI.interactable = false;
+            thirdArrowUI.interactable = false;
+            fourthArrowUI.interactable = false;
+
+            firstNumberUI.color = Color.white;
+            secondNumberUI.color = Color.gray;
+            thirdNumberUI.color = Color.gray;
+            fourthNumberUI.color = Color.gray;
+
+            ColorBlock firstArrowCB = firstArrowUI.colors;
+            firstArrowCB.normalColor = Color.white;
+            firstArrowUI.colors = firstArrowCB;
+            ColorBlock secondArrowCB = secondArrowUI.colors;
+            secondArrowCB.normalColor = Color.gray;
+            secondArrowUI.colors = secondArrowCB;
+            ColorBlock thirdArrowCB = thirdArrowUI.colors;
+            thirdArrowCB.normalColor = Color.gray;
+            thirdArrowUI.colors = thirdArrowCB;
+            ColorBlock fourthArrowCB = fourthArrowUI.colors;
+            fourthArrowCB.normalColor = Color.gray;
+            fourthArrowUI.colors = fourthArrowCB;
+            safeDial.transform.localEulerAngles = new Vector3(90.0f, 0.0f, 0.0f);
+            lockNumberInt = 0;
         }
     }
 }

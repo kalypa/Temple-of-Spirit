@@ -13,36 +13,36 @@ using ItemInven;
 public class OnClickManager : SingleMonobehaviour<OnClickManager>
 {
     [SerializeField] private GameObject inventory;
-    [SerializeField] private GameObject notePanel1;
-    [SerializeField] private GameObject notePanel2;
-    [SerializeField] private GameObject notePanel3;
-    [SerializeField] private GameObject notePanel4;
-    [SerializeField] private GameObject notePanel5;
-    [SerializeField] private GameObject notePanel6;
-    [SerializeField] private GameObject notePanel7;
-    [SerializeField] private GameObject notePanel8;
-    [SerializeField] private GameObject notePanel9;
-    [SerializeField] private GameObject notePanel10;
-    [SerializeField] private GameObject notePanel11;
-    [SerializeField] private GameObject notePanel12;
-    [SerializeField] private GameObject notePanel13;
-    [SerializeField] private GameObject notePanel14;
-    [SerializeField] private GameObject notePanel15;
-    [SerializeField] private GameObject note1;
-    [SerializeField] private GameObject note2;
-    [SerializeField] private GameObject note3;
-    [SerializeField] private GameObject note4;
-    [SerializeField] private GameObject note5;
-    [SerializeField] private GameObject note6;
-    [SerializeField] private GameObject note7;
-    [SerializeField] private GameObject note8;
-    [SerializeField] private GameObject note9;
-    [SerializeField] private GameObject note10;
-    [SerializeField] private GameObject note11;
-    [SerializeField] private GameObject note12;
-    [SerializeField] private GameObject note13;
-    [SerializeField] private GameObject note14;
-    [SerializeField] private GameObject note15;
+    public GameObject notePanel1;
+    public GameObject notePanel2;
+    public GameObject notePanel3;
+    public GameObject notePanel4;
+    public GameObject notePanel5;
+    public GameObject notePanel6;
+    public GameObject notePanel7;
+    public GameObject notePanel8;
+    public GameObject notePanel9;
+    public GameObject notePanel10;
+    public GameObject notePanel11;
+    public GameObject notePanel12;
+    public GameObject notePanel13;
+    public GameObject notePanel14;
+    public GameObject notePanel15;
+    public GameObject note1;
+    public GameObject note2;
+    public GameObject note3;
+    public GameObject note4;
+    public GameObject note5;
+    public GameObject note6;
+    public GameObject note7;
+    public GameObject note8;
+    public GameObject note9;
+    public GameObject note10;
+    public GameObject note11;
+    public GameObject note12;
+    public GameObject note13;
+    public GameObject note14;
+    public GameObject note15;
     [SerializeField] private GameObject settingPanel;
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private Sprite sprite_sound_Off;
@@ -55,6 +55,7 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
     [SerializeField] private PlayerRaycast playerRaycast;
     private ChestController[] chestController;
     private ThemedKeyDoorController[] doorController;
+    private SafeController safeController;
     private InputSystems _input;
     public GameObject startPanel;
     public GameObject invisibleWall;
@@ -67,6 +68,7 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
         GameManager.Instance.fadeImage = GameManager.Instance.fadePanel.GetComponent<Image>();
         chestController = FindObjectsOfType<ChestController>();
         doorController = FindObjectsOfType<ThemedKeyDoorController>();
+        safeController = FindObjectOfType<SafeController>();
     }
 
     public void OnClickInvenQuit()
@@ -90,6 +92,8 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
                 d.anim.SetBool("isRestart", false);
                 d.gameObject.tag = "Door";
             }
+            safeController.safeAnim.SetBool("isRestart", false);
+            safeController.gameObject.tag = "Padlock";
         }
         GameManager.Instance.backgroundmusic.Stop(); 
         GameManager.Instance.player.transform.position = playerFirstPos.transform.position;

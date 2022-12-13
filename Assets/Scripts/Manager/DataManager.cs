@@ -12,10 +12,12 @@ public class DataManager : SingleMonobehaviour<DataManager>
     public InventoryObj inventoryObject;
     private DrawerController[] controller;
     private ThemedKeyDoorController[] doorController;
+    private SafeController safeController;
     private void Start()
     {
         controller = FindObjectsOfType<DrawerController>();
         chestController = FindObjectsOfType<ChestController>();
+        safeController = FindObjectOfType<SafeController>();
     }
 
     public void RestartInit()
@@ -73,7 +75,8 @@ public class DataManager : SingleMonobehaviour<DataManager>
         {
             door.anim.SetBool("isRestart", true);
         }
-
+        safeController.safeAnim.SetBool("isRestart", true);
+        safeController.SafeUIFalse();
         GameManager.Instance.sacredSword.SetActive(true);
         EndingItemController.Instance.sword.SetActive(false);
         EndingItemController.Instance.grtar.SetActive(false);

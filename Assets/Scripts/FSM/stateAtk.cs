@@ -22,6 +22,7 @@ public class stateAtk : State<MonsterFSM>
 
     public override void OnStart()
     {
+        PanelDown();
         GameManager.Instance.isAtk = true;
         if (playerRaycast.closet != null && !playerRaycast.closet.isHiding)
         {
@@ -81,5 +82,32 @@ public class stateAtk : State<MonsterFSM>
     {
         animator?.SetTrigger(atkTriggerHash);
         AudioManager.instance.Play("Scream");
+    }
+
+    private void PanelDown()
+    {
+        SafeController.Instance.SafeUIFalse();
+        InputSystems.Instance.isInven = false;
+        InputSystems.Instance.isPanel = false;
+        OnClickManager.Instance.note1.tag = "InteractiveObject";
+        OnClickManager.Instance.note2.tag = "InteractiveObject";
+        OnClickManager.Instance.note3.tag = "InteractiveObject";
+        OnClickManager.Instance.note4.tag = "InteractiveObject";
+        OnClickManager.Instance.note5.tag = "InteractiveObject";
+        OnClickManager.Instance.note6.tag = "InteractiveObject";
+        OnClickManager.Instance.note7.tag = "InteractiveObject";
+        OnClickManager.Instance.note8.tag = "InteractiveObject";
+        OnClickManager.Instance.note9.tag = "InteractiveObject";
+        OnClickManager.Instance.note10.tag = "InteractiveObject";
+        OnClickManager.Instance.notePanel1.SetActive(false);
+        OnClickManager.Instance.notePanel2.SetActive(false);
+        OnClickManager.Instance.notePanel3.SetActive(false);
+        OnClickManager.Instance.notePanel4.SetActive(false);
+        OnClickManager.Instance.notePanel5.SetActive(false);
+        OnClickManager.Instance.notePanel6.SetActive(false);
+        OnClickManager.Instance.notePanel7.SetActive(false);
+        OnClickManager.Instance.notePanel8.SetActive(false);
+        OnClickManager.Instance.notePanel9.SetActive(false);
+        OnClickManager.Instance.notePanel10.SetActive(false);
     }
 }

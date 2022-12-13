@@ -77,5 +77,6 @@ public class stateRoaming : State<MonsterFSM>
         Transform posTarget = monsterFSM.SearchNextTargetPosition();
         if (posTarget != null) agent?.SetDestination(posTarget.position);
     }
+
 }
 
