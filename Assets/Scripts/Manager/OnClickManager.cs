@@ -102,7 +102,7 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
         GameManager.Instance.fadePanel.SetActive(true);
         startPanel.SetActive(false);
         StartCoroutine(TutorialText.Instance.OnType(0.1f, TutorialText.Instance.TutorialStoryText));
-        Invoke("Fade", 12.5f);
+        Invoke("Fade", 12.7f);
         Invoke("KillDo", 19f);
         itemManager.ItemSpawn();
         VolumeChange.Instance.vignette.center.value = new Vector2(0.5f, 0.5f);
