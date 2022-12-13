@@ -66,6 +66,7 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
         GameManager.Instance.controller = GameManager.Instance.player.GetComponent<FirstPersonController>();
         GameManager.Instance.fadeImage = GameManager.Instance.fadePanel.GetComponent<Image>();
         chestController = FindObjectsOfType<ChestController>();
+        doorController = FindObjectsOfType<ThemedKeyDoorController>();
     }
 
     public void OnClickInvenQuit()
