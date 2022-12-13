@@ -39,7 +39,7 @@ public class DataManager : SingleMonobehaviour<DataManager>
 
         for (int i = 0; i < ItemRandomSpawn.Instance.spawnChestPos.Length; i++)
         {
-            if (ItemRandomSpawn.Instance.spawnPos[i].childCount != 0)
+            if (ItemRandomSpawn.Instance.spawnChestPos[i].childCount != 0)
             {
                 GameObject child = ItemRandomSpawn.Instance.spawnChestPos[i].GetChild(0).gameObject;
                 Destroy(child);
@@ -50,7 +50,7 @@ public class DataManager : SingleMonobehaviour<DataManager>
 
         for(int i = 0; i < ItemRandomSpawn.Instance.spawnBatteryPos.Length; i++)
         {
-            if (ItemRandomSpawn.Instance.spawnPos[i].childCount > 0)
+            if (ItemRandomSpawn.Instance.spawnBatteryPos[i].childCount > 0)
             {
                 GameObject child = ItemRandomSpawn.Instance.spawnBatteryPos[i].GetChild(0).gameObject;
                 Destroy(child);

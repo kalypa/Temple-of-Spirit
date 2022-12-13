@@ -89,7 +89,6 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
             d.gameObject.tag = "Door";
         }
         GameManager.Instance.backgroundmusic.Stop(); 
-        AudioManager.instance.Play("KeyBoard");
         GameManager.Instance.player.transform.position = playerFirstPos.transform.position;
         playercamera.transform.rotation = playerFirstPos.transform.rotation;
         invisibleWall2.SetActive(false);
@@ -102,7 +101,11 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
         invisibleWall.SetActive(true);
         GameManager.Instance.fadePanel.SetActive(true);
         startPanel.SetActive(false);
-        StartCoroutine(TutorialText.Instance.OnType(0.1f, TutorialText.Instance.TutorialStoryText));
+        if(TutorialManager.Instance.isFirst)
+        {
+            AudioManager.instance.Play("KeyBoard");
+            StartCoroutine(TutorialText.Instance.OnType(0.1f, TutorialText.Instance.TutorialStoryText));
+        }
         Invoke("Fade", 12.6f);
         Invoke("KillDo", 19f);
         itemManager.ItemSpawn();
