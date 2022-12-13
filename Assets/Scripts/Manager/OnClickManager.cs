@@ -108,13 +108,8 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
         invisibleWall.SetActive(true);
         GameManager.Instance.fadePanel.SetActive(true);
         startPanel.SetActive(false);
-        if(!TutorialManager.Instance.isFirst)
-        {
-            AudioManager.instance.Play("KeyBoard");
-            StartCoroutine(TutorialText.Instance.OnType(0.1f, TutorialText.Instance.TutorialStoryText));
-        }
-        Invoke("Fade", 12.6f);
-        Invoke("KillDo", 19f);
+        Fade();
+        Invoke("KillDo", 4f);
         itemManager.ItemSpawn();
         VolumeChange.Instance.vignette.center.value = new Vector2(0.5f, 0.5f);
         VolumeChange.Instance.vignette.intensity.value = 1;
@@ -122,11 +117,11 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
 
     private void Fade()
     {
-        AudioManager.instance.StopPlaying("KeyBoard");
         GameManager.Instance.backgroundmusic.clip = GameManager.Instance.tutorialMusic;
         GameManager.Instance.backgroundmusic.Play();
         TutorialText.Instance.textUI.gameObject.SetActive(false);
         GameManager.Instance.fadeImage.DOFade(0, time);
+        GameManager.Instance.playerInput.enabled = false;
         if (!TutorialManager.Instance.isFirst)
         {
             TutorialManager.Instance.KeyTutorial();
@@ -134,6 +129,7 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
         else if (TutorialManager.Instance.isFirst)
         {
             GameManager.Instance.walk.enabled = true;
+            GameManager.Instance.playerInput.enabled = true;
             PlayerLock();
         }
     }

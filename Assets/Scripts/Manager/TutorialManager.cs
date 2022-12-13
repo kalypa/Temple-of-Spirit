@@ -26,7 +26,8 @@ public class TutorialManager : SingleMonobehaviour<TutorialManager>
         DOTween.Kill(tutorialPanel);
         InputSystems.Instance.isPanel = false;
         tutorialPanel.gameObject.SetActive(false);
-        GameManager.Instance.controller.enabled = true;
         GameManager.Instance.walk.enabled = true;
+        GameManager.Instance.playerInput.enabled = true;
+        GameManager.Instance.controller.enabled = true;
     }
 }

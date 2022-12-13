@@ -138,7 +138,7 @@ namespace ItemInven
 
         private void SurpriseEnemy()    
         {
-            enemySurprise = new Vector3(GameManager.Instance.player.transform.position.x, 11, GameManager.Instance.player.transform.position.z - 0.5f);
+            enemySurprise = new Vector3(GameManager.Instance.player.transform.position.x, 11, GameManager.Instance.player.transform.position.z - 0.8f);
             GameManager.Instance.enemy.transform.position = enemySurprise;
             GameManager.Instance.enemy.SetActive(true);
             AudioManager.instance.Play("Rising");
