@@ -8,7 +8,7 @@ using InputSystem;
 using DG.Tweening;
 public class ChestController : MonoBehaviour
 {
-    private Animation anim;
+    public Animator animator;
 
     [SerializeField] private ChestType _chestType = ChestType.None;
     [SerializeField] private string doorOpenSound = "ThemedKeyDoorOpen";
@@ -19,7 +19,7 @@ public class ChestController : MonoBehaviour
     private enum ChestType { None, Red, Blue }
     private void Start()
     {
-        anim = GetComponent<Animation>();
+        animator = GetComponent<Animator>();
         colliders = GetComponent<MeshCollider>();
     }
 
@@ -62,7 +62,7 @@ public class ChestController : MonoBehaviour
     public IEnumerator PlayAnimation()
     {
         gameObject.tag = "Untagged";
-        anim.Play();
+        animator.Play("ChestAnim");
         DoorOpenSound();
         yield return null;
     }

@@ -4,15 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using ItemSystem;
 using static DrawerController;
+using ItemInven;
 
 public class DataManager : SingleMonobehaviour<DataManager>
 {
+    private ChestController[] chestController;
     public InventoryObj inventoryObject;
     private DrawerController[] controller;
-
+    private ThemedKeyDoorController[] doorController;
     private void Start()
     {
         controller = FindObjectsOfType<DrawerController>();
+        chestController = FindObjectsOfType<ChestController>();
     }
 
     public void RestartInit()
@@ -45,7 +48,7 @@ public class DataManager : SingleMonobehaviour<DataManager>
                 continue;
         }
 
-        for (int i = 0; i < ItemRandomSpawn.Instance.spawnBatteryPos.Length; i++)
+        for(int i = 0; i < ItemRandomSpawn.Instance.spawnBatteryPos.Length; i++)
         {
             if (ItemRandomSpawn.Instance.spawnPos[i].childCount > 0)
             {
@@ -56,10 +59,21 @@ public class DataManager : SingleMonobehaviour<DataManager>
                 continue;
         }
 
-        for(int i = 0; i < controller.Length; i++)
+        foreach(DrawerController d in controller)
         {
-            controller[i].drawerState = DrawerState.Close;
+            d.drawerState = DrawerState.Close;
         }
+
+        foreach(ChestController c in chestController)
+        {
+            c.animator.SetBool("isRestart", true);
+        }
+
+        foreach(ThemedKeyDoorController door in doorController)
+        {
+            door.anim.SetBool("isRestart", true);
+        }
+
         GameManager.Instance.sacredSword.SetActive(true);
         EndingItemController.Instance.sword.SetActive(false);
         EndingItemController.Instance.grtar.SetActive(false);

@@ -31,7 +31,7 @@ namespace ItemInven
         [SerializeField] private UnityEvent onUnlock = null;
         [SerializeField] private Text lockedDoorText = null;
 
-        private Animator anim;
+        public Animator anim;
 
         private void Start()
         {

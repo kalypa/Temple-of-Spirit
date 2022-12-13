@@ -8,6 +8,7 @@ using UnityEngine.InputSystem.XR;
 using UnityEngine.Rendering;
 using DG.Tweening;
 using UnityEngine.Windows;
+using ItemInven;
 
 public class OnClickManager : SingleMonobehaviour<OnClickManager>
 {
@@ -52,6 +53,8 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
     [SerializeField] private GameObject playerFirstPos;
     [SerializeField] private ItemRandomSpawn itemManager;
     [SerializeField] private PlayerRaycast playerRaycast;
+    private ChestController[] chestController;
+    private ThemedKeyDoorController[] doorController;
     private InputSystems _input;
     public GameObject startPanel;
     public GameObject invisibleWall;
@@ -62,6 +65,7 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
         InputSystems.Instance.isPanel = true;
         GameManager.Instance.controller = GameManager.Instance.player.GetComponent<FirstPersonController>();
         GameManager.Instance.fadeImage = GameManager.Instance.fadePanel.GetComponent<Image>();
+        chestController = FindObjectsOfType<ChestController>();
     }
 
     public void OnClickInvenQuit()
@@ -72,6 +76,17 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
     }
     public void OnClickStartButton()
     {
+        foreach(ChestController c in chestController)
+        {
+            c.animator.SetBool("isRestart", false);
+            c.gameObject.tag = "Door";
+        }
+
+        foreach (ThemedKeyDoorController d in doorController)
+        {
+            d.anim.SetBool("isRestart", false);
+            d.gameObject.tag = "Door";
+        }
         GameManager.Instance.backgroundmusic.Stop(); 
         AudioManager.instance.Play("KeyBoard");
         GameManager.Instance.player.transform.position = playerFirstPos.transform.position;
