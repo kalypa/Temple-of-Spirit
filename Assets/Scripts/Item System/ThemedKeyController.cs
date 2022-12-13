@@ -138,11 +138,12 @@ namespace ItemInven
 
         private void SurpriseEnemy()    
         {
-            enemySurprise = new Vector3(GameManager.Instance.player.transform.position.x, 11, GameManager.Instance.player.transform.position.z - 0.8f);
+            enemySurprise = new Vector3(GameManager.Instance.player.transform.position.x + 0.7f, 10.7f, GameManager.Instance.player.transform.position.z -0.6f);
             GameManager.Instance.enemy.transform.position = enemySurprise;
+            GameManager.Instance.enemy.transform.rotation = Quaternion.Euler(0, GameManager.Instance.player.transform.eulerAngles.y - 125, -180);
             GameManager.Instance.enemy.SetActive(true);
             AudioManager.instance.Play("Rising");
-            GameManager.Instance.enemy.transform.DOMoveY(10.1f, 1.5f);
+            GameManager.Instance.enemy.transform.DOMoveY(9.6f, 1.5f);
         }
 
         private void Game()
