@@ -77,16 +77,19 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
     }
     public void OnClickStartButton()
     {
-        foreach(ChestController c in chestController)
+        if (TutorialManager.Instance.isFirst)
         {
-            c.animator.SetBool("isRestart", false);
-            c.gameObject.tag = "Door";
-        }
+            foreach (ChestController c in chestController)
+            {
+                c.animator.SetBool("isRestart", false);
+                c.gameObject.tag = "Door";
+            }
 
-        foreach (ThemedKeyDoorController d in doorController)
-        {
-            d.anim.SetBool("isRestart", false);
-            d.gameObject.tag = "Door";
+            foreach (ThemedKeyDoorController d in doorController)
+            {
+                d.anim.SetBool("isRestart", false);
+                d.gameObject.tag = "Door";
+            }
         }
         GameManager.Instance.backgroundmusic.Stop(); 
         GameManager.Instance.player.transform.position = playerFirstPos.transform.position;
