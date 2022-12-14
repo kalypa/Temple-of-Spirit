@@ -123,6 +123,7 @@ namespace ItemSystem
 
                 AudioManager.instance.Play(boltUnlock);
                 yield return new WaitForSeconds(beforeAnimationStart);
+                safeAnim.speed = 1;
                 safeAnim.Play(safeAnimationName, 0, 0.0f);
                 AudioManager.instance.Play(handleSpin);
                 yield return new WaitForSeconds(beforeOpenDoor);
