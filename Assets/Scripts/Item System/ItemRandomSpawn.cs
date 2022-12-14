@@ -38,6 +38,7 @@ public class ItemRandomSpawn : SingleMonobehaviour<ItemRandomSpawn>
             DeleteString(keys[i]);  
             keys[i].transform.rotation = Quaternion.Euler(keys[i].transform.rotation.x, keys[i].transform.rotation.y, 180);
             keys[i].transform.SetParent(spawnDoorKey);
+            keys[i].SetActive(true);
         }
     }
 
@@ -51,6 +52,7 @@ public class ItemRandomSpawn : SingleMonobehaviour<ItemRandomSpawn>
             chestkeys[i] = Instantiate(chestkeys[i], spawnChestKey.position, Quaternion.identity);
             DeleteString(chestkeys[i]);
             chestkeys[i].transform.SetParent(spawnChestKey);
+            chestkeys[i].SetActive(true);
         }
     }
     private void BatterySpawn()
@@ -63,6 +65,7 @@ public class ItemRandomSpawn : SingleMonobehaviour<ItemRandomSpawn>
             battery[i] = Instantiate(battery[i], spawnBattery.position, Quaternion.identity);
             DeleteString(battery[i]);
             battery[i].transform.SetParent(spawnBattery);
+            battery[i].SetActive(true);
         }
     }
 
@@ -78,6 +81,7 @@ public class ItemRandomSpawn : SingleMonobehaviour<ItemRandomSpawn>
         int index = random.Next(min, max - exclude.Count);
         return range.ElementAt(index);
     }
+
     private void DeleteString(GameObject k)
     {
         int index = k.name.IndexOf("(Clone)");

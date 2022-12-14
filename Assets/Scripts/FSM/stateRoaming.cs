@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
+using InputSystem;
 public class stateRoaming : State<MonsterFSM>
 {
     private Animator animator;
@@ -44,6 +44,14 @@ public class stateRoaming : State<MonsterFSM>
     }
     public override void OnUpdate(float deltaTime)
     {
+        if(InputSystems.Instance.isPause == true)
+        {
+            audioSource.volume = 0f;
+        }
+        else
+        {
+            audioSource.volume = 1f;
+        }
         Transform target = stateMachineClass.SearchMonster();
         if (target)
         {

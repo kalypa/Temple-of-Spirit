@@ -62,6 +62,7 @@ public class ChestController : MonoBehaviour
     public IEnumerator PlayAnimation()
     {
         gameObject.tag = "Untagged";
+        animator.speed = 1;
         animator.Play("ChestAnim");
         DoorOpenSound();
         yield return null;

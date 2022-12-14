@@ -16,7 +16,6 @@ public class TutorialManager : SingleMonobehaviour<TutorialManager>
 
     public void OnclickTutorialPanelBackButton()
     {
-        isFirst = true;
         tutorialPanel.rectTransform.DOAnchorPosX(-1420, 1f);
         Invoke("Kill", 1f);
     }
@@ -29,5 +28,6 @@ public class TutorialManager : SingleMonobehaviour<TutorialManager>
         GameManager.Instance.walk.enabled = true;
         GameManager.Instance.playerInput.enabled = true;
         GameManager.Instance.controller.enabled = true;
+        isFirst = true;
     }
 }

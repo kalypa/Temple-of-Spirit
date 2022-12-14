@@ -33,7 +33,6 @@ public class SingleMonobehaviour<T> : MonoBehaviour where T : Component
                 retObj = transform.root.gameObject;
             }
              
-            DontDestroyOnLoad(retObj);
         }
     }
 }

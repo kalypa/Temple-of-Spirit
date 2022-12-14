@@ -42,7 +42,6 @@ public class EndingController : SingleMonobehaviour<EndingController>
 
     private void SadSceneStart()
     {
-        GameManager.Instance.flashLight.enabled = true;
         EndingInit();
         GameManager.Instance.fadePanel.SetActive(true);
     }
@@ -68,6 +67,7 @@ public class EndingController : SingleMonobehaviour<EndingController>
         GameManager.Instance.ghost.SetActive(false);
         GameManager.Instance.ghost.transform.position = GameManager.Instance.enemyStartPos.position;
         GameManager.Instance.controller.enabled = false;
+        GameManager.Instance.playerInput.enabled = false;
         GameManager.Instance.walk.enabled = false;
     }
     private void Escape()

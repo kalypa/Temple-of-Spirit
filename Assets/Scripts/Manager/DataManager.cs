@@ -10,14 +10,14 @@ public class DataManager : SingleMonobehaviour<DataManager>
 {
     private ChestController[] chestController;
     public InventoryObj inventoryObject;
-    private DrawerController[] controller;
     private ThemedKeyDoorController[] doorController;
     private SafeController safeController;
+
     private void Start()
     {
-        controller = FindObjectsOfType<DrawerController>();
         chestController = FindObjectsOfType<ChestController>();
         safeController = FindObjectOfType<SafeController>();
+        doorController = FindObjectsOfType<ThemedKeyDoorController>();
     }
 
     public void RestartInit()
@@ -33,7 +33,7 @@ public class DataManager : SingleMonobehaviour<DataManager>
             if (ItemRandomSpawn.Instance.spawnPos[i].childCount != 0)
             {
                 GameObject child = ItemRandomSpawn.Instance.spawnPos[i].GetChild(0).gameObject;
-                Destroy(child);
+                child.SetActive(false);
             }
             else
                 continue;
@@ -44,7 +44,7 @@ public class DataManager : SingleMonobehaviour<DataManager>
             if (ItemRandomSpawn.Instance.spawnChestPos[i].childCount != 0)
             {
                 GameObject child = ItemRandomSpawn.Instance.spawnChestPos[i].GetChild(0).gameObject;
-                Destroy(child);
+                child.SetActive(false);
             }
             else
                 continue;
@@ -52,30 +52,14 @@ public class DataManager : SingleMonobehaviour<DataManager>
 
         for(int i = 0; i < ItemRandomSpawn.Instance.spawnBatteryPos.Length; i++)
         {
-            if (ItemRandomSpawn.Instance.spawnBatteryPos[i].childCount > 0)
+            if (ItemRandomSpawn.Instance.spawnBatteryPos[i].childCount != 0)
             {
                 GameObject child = ItemRandomSpawn.Instance.spawnBatteryPos[i].GetChild(0).gameObject;
-                Destroy(child);
+                child.SetActive(false);
             }
             else
                 continue;
         }
-
-        foreach(DrawerController d in controller)
-        {
-            d.drawerState = DrawerState.Close;
-        }
-
-        foreach(ChestController c in chestController)
-        {
-            c.animator.SetBool("isRestart", true);
-        }
-
-        foreach(ThemedKeyDoorController door in doorController)
-        {
-            door.anim.SetBool("isRestart", true);
-        }
-        safeController.safeAnim.SetBool("isRestart", true);
         safeController.SafeUIFalse();
         GameManager.Instance.sacredSword.SetActive(true);
         EndingItemController.Instance.sword.SetActive(false);
@@ -101,6 +85,10 @@ public class DataManager : SingleMonobehaviour<DataManager>
         GameManager.Instance.hasSword = false;
         GameManager.Instance.hasSacredSword = false;
         GameManager.Instance.hasFlashLight = false;
+        InputSystems.Instance.flash = false;
+        InputSystems.Instance.isFlash = false;
+        GameManager.Instance.flashLight.enabled = false;
         GameManager.Instance.playerDeathStack = 1;
+        VolumeChange.Instance.vignette.intensity.value = 1;
     }
 }

@@ -8,7 +8,7 @@ namespace ItemInven
     {
         private Animator doorAnim;
 
-        [SerializeField] private string animationName = null;
+        public string animationName = null;
 
         private void Start()
         {
@@ -17,6 +17,7 @@ namespace ItemInven
 
         public void PlayAnimation()
         {
+            doorAnim.speed = 1;
             doorAnim.Play(animationName, 0, 0.0f);         
         }
     }

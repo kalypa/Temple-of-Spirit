@@ -17,6 +17,10 @@ namespace ItemInven
         [SerializeField] private string otherSound = "OtherPickUp";
         [SerializeField] private string noteSound = "NoteOpen";
         [SerializeField] private string coughSound = "Cough";
+        private DrawerController[] controller;
+        private ChestController[] chestController;
+        private ThemedKeyDoorController[] doorController;
+        private SafeController safeController;
         private Quaternion falling = Quaternion.Euler(0, 180, 106.6f);
         private Vector3 enemySurprise;
         private DG.Tweening.Sequence sequence;
@@ -116,7 +120,6 @@ namespace ItemInven
             GameManager.Instance.backgroundmusic.Play();
             ThemedKeyInventoryController.Instance.DeleteInventory("SacredSword");
             GameManager.Instance.controller.enabled = false;
-            GameManager.Instance.walk.enabled = false;
             GameManager.Instance.playerInput.enabled = false;
             sequence = DOTween.Sequence();
             Vignette playerEyeDown = VolumeChange.Instance.vignette;
@@ -138,12 +141,12 @@ namespace ItemInven
 
         private void SurpriseEnemy()    
         {
-            enemySurprise = new Vector3(GameManager.Instance.player.transform.position.x + 0.7f, 10.7f, GameManager.Instance.player.transform.position.z -0.6f);
+            enemySurprise = new Vector3(GameManager.Instance.player.transform.position.x + 1f, 11f, GameManager.Instance.player.transform.position.z -0.6f);
             GameManager.Instance.enemy.transform.position = enemySurprise;
             GameManager.Instance.enemy.transform.rotation = Quaternion.Euler(0, GameManager.Instance.player.transform.eulerAngles.y - 125, -180);
             GameManager.Instance.enemy.SetActive(true);
             AudioManager.instance.Play("Rising");
-            GameManager.Instance.enemy.transform.DOMoveY(9.6f, 1.5f);
+            GameManager.Instance.enemy.transform.DOMoveY(10.1f, 1.5f);
         }
 
         private void Game()
@@ -175,6 +178,35 @@ namespace ItemInven
 
         private void KillDo()
         {
+            controller = FindObjectsOfType<DrawerController>();
+            chestController = FindObjectsOfType<ChestController>();
+            doorController = FindObjectsOfType<ThemedKeyDoorController>();
+            safeController = FindObjectOfType<SafeController>();
+            if (TutorialManager.Instance.isFirst)
+            {
+                foreach (DrawerController d in controller)
+                {
+                    d.drawerState = DrawerController.DrawerState.Close;
+                }
+
+                foreach (ChestController c in chestController)
+                {
+                    c.animator.speed = -1;
+                    c.animator.Play("ChestAnim");
+                    c.animator.SetBool("isRestart", false);
+                    c.gameObject.tag = "Door";
+                }
+
+                foreach (ThemedKeyDoorController d in doorController)
+                {
+                    d.anim.speed = -1;
+                    d.anim.Play(d.gameObject.GetComponent<GenericDoorOpen>().animationName);
+                    d.anim.SetBool("isRestart", false);
+                    d.gameObject.tag = "Door";
+                }
+                safeController.safeAnim.SetBool("isRestart", false);
+                safeController.gameObject.tag = "Padlock";
+            }
             DOTween.Kill(GameManager.Instance.fadeImage);
             DOTween.Kill(GameManager.Instance.dayText);
             GameManager.Instance.fadeImage.color = new Color(0, 0, 0, 1);

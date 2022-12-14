@@ -45,17 +45,10 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
     public GameObject note15;
     [SerializeField] private GameObject settingPanel;
     [SerializeField] private GameObject pausePanel;
-    [SerializeField] private Sprite sprite_sound_Off;
-    [SerializeField] private Sprite sprite_sound_On;
-    [SerializeField] private Image  sound_Current;
     [SerializeField] private string noteSound = "NoteOpen";
     [SerializeField] private GameObject playercamera;
     [SerializeField] private GameObject playerFirstPos;
     [SerializeField] private ItemRandomSpawn itemManager;
-    [SerializeField] private PlayerRaycast playerRaycast;
-    private ChestController[] chestController;
-    private ThemedKeyDoorController[] doorController;
-    private SafeController safeController;
     private InputSystems _input;
     public GameObject startPanel;
     public GameObject invisibleWall;
@@ -66,35 +59,17 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
         InputSystems.Instance.isPanel = true;
         GameManager.Instance.controller = GameManager.Instance.player.GetComponent<FirstPersonController>();
         GameManager.Instance.fadeImage = GameManager.Instance.fadePanel.GetComponent<Image>();
-        chestController = FindObjectsOfType<ChestController>();
-        doorController = FindObjectsOfType<ThemedKeyDoorController>();
-        safeController = FindObjectOfType<SafeController>();
     }
 
     public void OnClickInvenQuit()
     {
         InputSystems.Instance.isInven = false;
         InputSystems.Instance.inven = false;
+        InputSystems.Instance.isPanel = false;
         inventory.SetActive(false);
     }
     public void OnClickStartButton()
     {
-        if (TutorialManager.Instance.isFirst)
-        {
-            foreach (ChestController c in chestController)
-            {
-                c.animator.SetBool("isRestart", false);
-                c.gameObject.tag = "Door";
-            }
-
-            foreach (ThemedKeyDoorController d in doorController)
-            {
-                d.anim.SetBool("isRestart", false);
-                d.gameObject.tag = "Door";
-            }
-            safeController.safeAnim.SetBool("isRestart", false);
-            safeController.gameObject.tag = "Padlock";
-        }
         GameManager.Instance.backgroundmusic.Stop(); 
         GameManager.Instance.player.transform.position = playerFirstPos.transform.position;
         playercamera.transform.rotation = playerFirstPos.transform.rotation;
@@ -128,8 +103,6 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
         }
         else if (TutorialManager.Instance.isFirst)
         {
-            GameManager.Instance.walk.enabled = true;
-            GameManager.Instance.playerInput.enabled = true;
             PlayerLock();
         }
     }
@@ -142,6 +115,8 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
     }
     private void PlayerLock()
     {
+        GameManager.Instance.walk.enabled = true;
+        GameManager.Instance.playerInput.enabled = true;
         GameManager.Instance.controller.enabled = true;
     }
 
@@ -158,21 +133,6 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
     public void OnClickQuitButton()
     {
         Application.Quit();
-    }
-
-    public void OnClickSoundButton()
-    {
-
-        AudioListener.volume = AudioListener.volume == 0 ? 1 : 0;
-        if(AudioListener.volume <= 0)
-        {
-
-            sound_Current.sprite = sprite_sound_Off;
-        }
-        else if(AudioListener.volume > 0f)
-        {
-            sound_Current.sprite = sprite_sound_On;
-        }
     }
 
     public void OnclickNoteQuit1()
