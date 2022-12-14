@@ -7,7 +7,7 @@ public class DrawerController : MonoBehaviour
 {
     [Header("Drawer Animation Name")]
     [SerializeField] private string drawerOpenAnimation;
-    [SerializeField] private string drawerCloseAnimation;
+    public string drawerCloseAnimation;
 
     [Header("Drawer Sounds")]
     [SerializeField] private string drawerOpenSound = "DrawerOpen";

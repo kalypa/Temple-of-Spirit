@@ -186,7 +186,7 @@ namespace ItemInven
             {
                 foreach (DrawerController d in controller)
                 {
-                    d.anim.Play("DrawerClose");
+                    d.anim.Play(d.drawerCloseAnimation);
                     d.drawerState = DrawerController.DrawerState.Close;
                     InputSystems.Instance.drawer = false;
                 }
