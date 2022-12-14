@@ -6,7 +6,7 @@ namespace ItemInven
 {
     public class GenericDoorOpen : MonoBehaviour
     {
-        private Animator doorAnim;
+        [HideInInspector] public Animator doorAnim;
 
         public string animationName = null;
 

@@ -48,6 +48,9 @@ public class GameManager : SingleMonobehaviour<GameManager>
     public Transform goodEndingPos;
     public GameObject blood;
     public GameObject endingPlayer;
+    public GameObject endingItem1;
+    public GameObject endingItem2;
+    public GameObject endingItem3;
     public GameObject sacredSword;
     public Transform enemyStartPos;
     [HideInInspector] public bool hasHeartKey;
@@ -98,7 +101,7 @@ public class GameManager : SingleMonobehaviour<GameManager>
         fadeImage.color = new Color(0, 0, 0, 1);
         dayText.color = new Color(1, 1, 1, 1);
         walk.enabled = true;
-        GameManager.Instance.playerInput.enabled = true;
+        playerInput.enabled = true;
     }
 
     private void ObjectInit(GameObject g, Transform[] t)

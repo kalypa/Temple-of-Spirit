@@ -48,6 +48,10 @@ namespace InputSystem
 		{
 			if(!startPanel.activeSelf && GameManager.Instance.controller.enabled == true)
 			  MoveInput(value.Get<Vector2>());
+			else
+			{
+				MoveInput(Vector2.zero);
+            }
 		}
 
 		public void OnLook(InputValue value)

@@ -68,11 +68,15 @@ public class DataManager : SingleMonobehaviour<DataManager>
             ItemRandomSpawn.Instance.exclude.Remove(ItemRandomSpawn.Instance.notContain3[i]);
         }
         GameManager.Instance.hasHeartKey = false;
+        GameManager.Instance.endingItem1.SetActive(true);
+        GameManager.Instance.endingItem2.SetActive(true);
+        GameManager.Instance.endingItem3.SetActive(true);
         GameManager.Instance.hasDiamondKey = false;
         GameManager.Instance.hasSpadeKey = false;
         GameManager.Instance.hasClubKey = false;
         GameManager.Instance.hasRedKey = false;
         GameManager.Instance.hasBlueKey = false;
+        GameManager.Instance.hasFirstKey = false;
         GameManager.Instance.hasGrtar = false;
         GameManager.Instance.hasHalgr = false;
         GameManager.Instance.hasBattery = false;

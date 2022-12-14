@@ -186,7 +186,10 @@ namespace ItemInven
             {
                 foreach (DrawerController d in controller)
                 {
+                    d.anim.speed = -1;
+                    d.anim.Play("DrawerClose");
                     d.drawerState = DrawerController.DrawerState.Close;
+                    InputSystems.Instance.drawer = false;
                 }
 
                 foreach (ChestController c in chestController)
@@ -199,9 +202,9 @@ namespace ItemInven
 
                 foreach (ThemedKeyDoorController d in doorController)
                 {
-                    d.anim.speed = -1;
-                    d.anim.Play(d.gameObject.GetComponent<GenericDoorOpen>().animationName);
-                    d.anim.SetBool("isRestart", false);
+                    d.gameObject.GetComponent<GenericDoorOpen>().doorAnim.speed = -1;
+                    d.gameObject.GetComponent<GenericDoorOpen>().doorAnim.Play(d.gameObject.GetComponent<GenericDoorOpen>().animationName);
+                    d.gameObject.GetComponent<GenericDoorOpen>().doorAnim.SetBool("isRestart", false);
                     d.gameObject.tag = "Door";
                 }
                 safeController.safeAnim.SetBool("isRestart", false);

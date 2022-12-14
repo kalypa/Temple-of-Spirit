@@ -63,7 +63,7 @@ public class stateAtk : State<MonsterFSM>
     }
     private void AtkStart()
     {
-        GameManager.Instance.player.transform.position = GameManager.Instance.startPos.position;
+       
         GameManager.Instance.controller.enabled = false;
         GameManager.Instance.walk.enabled = false;
         GameManager.Instance.playerInput.enabled = false;
@@ -72,6 +72,7 @@ public class stateAtk : State<MonsterFSM>
         GameManager.Instance.flashLight.enabled = InputSystems.Instance.flash;
         GameManager.Instance.deadCam.gameObject.SetActive(true);
         AtkAnim();
+        GameManager.Instance.player.transform.position = GameManager.Instance.startPos.position;
     }
 
     private void EnemySpawn()

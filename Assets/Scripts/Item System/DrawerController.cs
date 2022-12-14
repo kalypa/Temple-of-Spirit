@@ -13,7 +13,7 @@ public class DrawerController : MonoBehaviour
     [SerializeField] private string drawerOpenSound = "DrawerOpen";
     [SerializeField] private string drawerCloseSound = "DrawerClose";
     [SerializeField] private GameObject drawer = null;
-    private Animator anim;
+    [HideInInspector] public Animator anim;
     public enum DrawerState { Close, Open }
     public DrawerState drawerState = DrawerState.Close;
 
@@ -41,6 +41,7 @@ public class DrawerController : MonoBehaviour
 
     public IEnumerator PlayDrawerOpenAnimation()
     {
+        anim.speed = 1;
         gameObject.tag = "Untagged";
         anim.Play(drawerOpenAnimation, 0, 0.0f);
         DrawerOpenSound();
@@ -50,6 +51,7 @@ public class DrawerController : MonoBehaviour
 
     public IEnumerator PlayDrawerCloseAnimation()
     {
+        anim.speed = 1;
         gameObject.tag = "Untagged";
         anim.Play(drawerCloseAnimation, 0, 0.0f);
         DrawerCloseSound();

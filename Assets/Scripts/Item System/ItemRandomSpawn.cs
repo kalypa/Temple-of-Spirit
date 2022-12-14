@@ -17,6 +17,9 @@ public class ItemRandomSpawn : SingleMonobehaviour<ItemRandomSpawn>
     public int[] notContain = new int[100];
     public int[] notContain2 = new int[100];
     public int[] notContain3 = new int[100];
+    GameObject[] clone1 = new GameObject[100];
+    GameObject[] clone2 = new GameObject[100];
+    GameObject[] clone3 = new GameObject[100];
     public HashSet<int> exclude;
     public void ItemSpawn()
     {
@@ -29,22 +32,22 @@ public class ItemRandomSpawn : SingleMonobehaviour<ItemRandomSpawn>
     {
         for (int i = 0; i < keys.Length; i++)
         {
-            GameObject[] clone = null;
             int random = GetRandomNotContain(start, end, notContain);
             notContain[i] = random;
-            if(clone[i] == null)
+            if(clone1[i] == null)
             {
-                clone[i] = Instantiate(keys[i], spawnPos[random].position, Quaternion.identity);
+                clone1[i] = Instantiate(keys[i], spawnPos[random].position, Quaternion.identity);
+                clone1[i].SetActive(true);
             }
             else
             {
-                clone[i].transform.position = spawnPos[random].position;
-                clone[i].transform.rotation = Quaternion.identity;
-                clone[i].SetActive(true);
+                clone1[i].transform.position = spawnPos[random].position;
+                clone1[i].transform.rotation = Quaternion.identity;
+                clone1[i].SetActive(true);
             }
-            DeleteString(keys[i]);
-            clone[i].transform.rotation = Quaternion.Euler(keys[i].transform.rotation.x, keys[i].transform.rotation.y, 180);
-            clone[i].transform.SetParent(spawnPos[random]);
+            DeleteString(clone1[i]);
+            clone1[i].transform.rotation = Quaternion.Euler(keys[i].transform.rotation.x, keys[i].transform.rotation.y, 180);
+            clone1[i].transform.SetParent(spawnPos[random]);
         }
     }
 
@@ -52,43 +55,43 @@ public class ItemRandomSpawn : SingleMonobehaviour<ItemRandomSpawn>
     {
         for (int i = 0; i < chestkeys.Length; i++)
         {
-            GameObject[] clone = null;
             int random = GetRandomNotContain(start2, end2, notContain2);
             notContain2[i] = random;
-            if (clone[i] == null)
+            if (clone2[i] == null)
             {
-                clone[i] = Instantiate(chestkeys[i], spawnChestPos[random].position, Quaternion.identity);
+                clone2[i] = Instantiate(chestkeys[i], spawnChestPos[random].position, Quaternion.identity);
+                clone2[i].SetActive(true);
 
             }
             else
             {
-                clone[i].transform.position = spawnChestPos[random].position;
-                clone[i].transform.rotation = Quaternion.identity;
-                clone[i].SetActive(true);
+                clone2[i].transform.position = spawnChestPos[random].position;
+                clone2[i].transform.rotation = Quaternion.identity;
+                clone2[i].SetActive(true);
             }
-            DeleteString(chestkeys[i]);
-            clone[i].transform.SetParent(spawnChestPos[random]);
+            DeleteString(clone2[i]);
+            clone2[i].transform.SetParent(spawnChestPos[random]);
         }
     }
     private void BatterySpawn()
     {
         for(int i = 0; i < battery.Length; i++)
         {
-            GameObject[] clone = null;
             int random = GetRandomNotContain(start3, end3, notContain3);
             notContain3[i] = random;
-            if (clone[i] == null)
+            if (clone3[i] == null)
             {
-                clone[i] = Instantiate(battery[i], spawnBatteryPos[random].position, Quaternion.identity);
+                clone3[i] = Instantiate(battery[i], spawnBatteryPos[random].position, Quaternion.identity);
+                clone3[i].SetActive(true);
             }
             else
             {
-                clone[i].transform.position = spawnBatteryPos[random].position;
-                clone[i].transform.rotation = Quaternion.identity;
-                clone[i].SetActive(true);
+                clone3[i].transform.position = spawnBatteryPos[random].position;
+                clone3[i].transform.rotation = Quaternion.identity;
+                clone3[i].SetActive(true);
             }
-            DeleteString(battery[i]);
-            clone[i].transform.SetParent(spawnBatteryPos[random]);
+            DeleteString(clone3[i]);
+            clone3[i].transform.SetParent(spawnBatteryPos[random]);
         }
     }
 
@@ -98,10 +101,6 @@ public class ItemRandomSpawn : SingleMonobehaviour<ItemRandomSpawn>
         for (int i = 0; i < notContainValue.Length; i++)
         {
             exclude.Add(notContainValue[i]);
-        }
-        for(int i = 0; i < notContainValue.Length; i++)
-        {
-            exclude.Remove(notContainValue[i]);
         }
         var range = Enumerable.Range(min, max).Where(i => !exclude.Contains(i));
         var random = new System.Random();

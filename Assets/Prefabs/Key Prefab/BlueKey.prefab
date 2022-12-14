@@ -21,7 +21,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &653239830567037054
 Transform:
   m_ObjectHideFlags: 0
@@ -126,10 +126,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca9083f84c7c8cd4e81574934e6350fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noteController: {fileID: 0}
   keyType: 6
   keySound: ThemedKeyPickup
   otherSound: OtherPickUp
   noteSound: NoteOpen
+  coughSound: Cough
 --- !u!114 &8380003278386795087
 MonoBehaviour:
   m_ObjectHideFlags: 0
