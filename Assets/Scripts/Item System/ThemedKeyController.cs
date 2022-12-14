@@ -186,7 +186,6 @@ namespace ItemInven
             {
                 foreach (DrawerController d in controller)
                 {
-                    d.anim.speed = -1;
                     d.anim.Play("DrawerClose");
                     d.drawerState = DrawerController.DrawerState.Close;
                     InputSystems.Instance.drawer = false;
@@ -220,7 +219,6 @@ namespace ItemInven
             GameManager.Instance.walk.enabled = true;
             GameManager.Instance.playerInput.enabled = true;
             GameManager.Instance.walk.enabled = true;
-
         }
     }
 }

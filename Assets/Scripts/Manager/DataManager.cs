@@ -88,5 +88,6 @@ public class DataManager : SingleMonobehaviour<DataManager>
         GameManager.Instance.flashLight.enabled = false;
         GameManager.Instance.playerDeathStack = 1;
         VolumeChange.Instance.vignette.intensity.value = 1;
+        GameManager.Instance.battery.value = 1;
     }
 }

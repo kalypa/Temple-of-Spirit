@@ -52,7 +52,6 @@ namespace InputSystem
 		[SerializeField] private GameObject inventory;
 		[SerializeField] private GameObject pausePanel;
 		[SerializeField] private GameObject batteryUI;
-		[SerializeField] private Slider battery;
         [SerializeField] private ThemedKeyInventoryController controller;
         private float _jumpTimeoutDelta;
 		private float _fallTimeoutDelta;
@@ -221,9 +220,9 @@ namespace InputSystem
             batteryUI.SetActive(GameManager.Instance.hasFlashLight);
 			if(_input.flash)
 			{
-                battery.value -= 0.01f * Time.deltaTime;
+                GameManager.Instance.battery.value -= 0.01f * Time.deltaTime;
 			}
-			if(battery.value <= 0)
+			if(GameManager.Instance.battery.value <= 0)
 			{
 				_input.flash = false;
 			}
@@ -238,7 +237,7 @@ namespace InputSystem
 		{
 			if(_input.battery)
 			{
-				battery.value += 0.3f;
+                GameManager.Instance.battery.value += 0.3f;
 				controller?.DeleteInventory("Battery");
 				_input.battery = false;
 
