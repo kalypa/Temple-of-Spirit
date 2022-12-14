@@ -12,7 +12,7 @@ public class DataManager : SingleMonobehaviour<DataManager>
     public InventoryObj inventoryObject;
     private ThemedKeyDoorController[] doorController;
     private SafeController safeController;
-
+    public bool isRestart = false;
     private void Start()
     {
         chestController = FindObjectsOfType<ChestController>();
@@ -28,37 +28,22 @@ public class DataManager : SingleMonobehaviour<DataManager>
         GameManager.Instance.backgroundmusic.Play();
         inventoryObject.Clear();
 
-        for(int i = 0; i < ItemRandomSpawn.Instance.spawnPos.Length; i++)
+        for(int i = 0; i < ItemRandomSpawn.Instance.keys.Length; i++)
         {
-            if (ItemRandomSpawn.Instance.spawnPos[i].childCount != 0)
-            {
-                GameObject child = ItemRandomSpawn.Instance.spawnPos[i].GetChild(0).gameObject;
-                child.SetActive(false);
-            }
-            else
-                continue;
+            GameObject child = ItemRandomSpawn.Instance.keys[i];
+            child.SetActive(false);
         }
 
-        for (int i = 0; i < ItemRandomSpawn.Instance.spawnChestPos.Length; i++)
+        for (int i = 0; i < ItemRandomSpawn.Instance.chestkeys.Length; i++)
         {
-            if (ItemRandomSpawn.Instance.spawnChestPos[i].childCount != 0)
-            {
-                GameObject child = ItemRandomSpawn.Instance.spawnChestPos[i].GetChild(0).gameObject;
-                child.SetActive(false);
-            }
-            else
-                continue;
+            GameObject child = ItemRandomSpawn.Instance.chestkeys[i];
+            child.SetActive(false);
         }
 
-        for(int i = 0; i < ItemRandomSpawn.Instance.spawnBatteryPos.Length; i++)
+        for(int i = 0; i < ItemRandomSpawn.Instance.battery.Length; i++)
         {
-            if (ItemRandomSpawn.Instance.spawnBatteryPos[i].childCount != 0)
-            {
-                GameObject child = ItemRandomSpawn.Instance.spawnBatteryPos[i].GetChild(0).gameObject;
-                child.SetActive(false);
-            }
-            else
-                continue;
+            GameObject child = ItemRandomSpawn.Instance.battery[i];
+            child.SetActive(false);
         }
         safeController.SafeUIFalse();
         GameManager.Instance.sacredSword.SetActive(true);
@@ -70,9 +55,18 @@ public class DataManager : SingleMonobehaviour<DataManager>
         GameManager.Instance.firstKey.SetActive(false);
         GameManager.Instance.note.SetActive(false);
         GameManager.Instance.note2.SetActive(false);
-        ItemRandomSpawn.Instance.notContain = new int[100];
-        ItemRandomSpawn.Instance.notContain2 = new int[100];
-        ItemRandomSpawn.Instance.notContain3 = new int[100];
+        for (int i = 0; i < ItemRandomSpawn.Instance.notContain.Length; i++)
+        {
+            ItemRandomSpawn.Instance.exclude.Remove(ItemRandomSpawn.Instance.notContain[i]);
+        }
+        for (int i = 0; i < ItemRandomSpawn.Instance.notContain2.Length; i++)
+        {
+            ItemRandomSpawn.Instance.exclude.Remove(ItemRandomSpawn.Instance.notContain2[i]);
+        }
+        for (int i = 0; i < ItemRandomSpawn.Instance.notContain3.Length; i++)
+        {
+            ItemRandomSpawn.Instance.exclude.Remove(ItemRandomSpawn.Instance.notContain3[i]);
+        }
         GameManager.Instance.hasHeartKey = false;
         GameManager.Instance.hasDiamondKey = false;
         GameManager.Instance.hasSpadeKey = false;

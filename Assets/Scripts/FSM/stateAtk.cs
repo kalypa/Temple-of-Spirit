@@ -66,6 +66,7 @@ public class stateAtk : State<MonsterFSM>
         GameManager.Instance.player.transform.position = GameManager.Instance.startPos.position;
         GameManager.Instance.controller.enabled = false;
         GameManager.Instance.walk.enabled = false;
+        GameManager.Instance.playerInput.enabled = false;
         InputSystems.Instance.flash = false;
         InputSystems.Instance.isFlash = false;
         GameManager.Instance.flashLight.enabled = InputSystems.Instance.flash;

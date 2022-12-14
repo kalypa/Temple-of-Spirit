@@ -11,15 +11,13 @@ public class ItemRandomSpawn : SingleMonobehaviour<ItemRandomSpawn>
     public GameObject[] keys;
     public GameObject[] chestkeys;
     public GameObject[] battery;
-    private Transform spawnDoorKey;
-    private Transform spawnChestKey;
-    private Transform spawnBattery;
     private int start = 0, end = 41;
     private int start2 = 0, end2 = 14;
     private int start3 = 0, end3 = 55;
     public int[] notContain = new int[100];
     public int[] notContain2 = new int[100];
     public int[] notContain3 = new int[100];
+    public HashSet<int> exclude;
     public void ItemSpawn()
     {
         DoorKeySpawn();
@@ -31,14 +29,22 @@ public class ItemRandomSpawn : SingleMonobehaviour<ItemRandomSpawn>
     {
         for (int i = 0; i < keys.Length; i++)
         {
+            GameObject[] clone = null;
             int random = GetRandomNotContain(start, end, notContain);
             notContain[i] = random;
-            spawnDoorKey = spawnPos[random];
-            keys[i] = Instantiate(keys[i], spawnDoorKey.position, Quaternion.identity);
-            DeleteString(keys[i]);  
-            keys[i].transform.rotation = Quaternion.Euler(keys[i].transform.rotation.x, keys[i].transform.rotation.y, 180);
-            keys[i].transform.SetParent(spawnDoorKey);
-            keys[i].SetActive(true);
+            if(clone[i] == null)
+            {
+                clone[i] = Instantiate(keys[i], spawnPos[random].position, Quaternion.identity);
+            }
+            else
+            {
+                clone[i].transform.position = spawnPos[random].position;
+                clone[i].transform.rotation = Quaternion.identity;
+                clone[i].SetActive(true);
+            }
+            DeleteString(keys[i]);
+            clone[i].transform.rotation = Quaternion.Euler(keys[i].transform.rotation.x, keys[i].transform.rotation.y, 180);
+            clone[i].transform.SetParent(spawnPos[random]);
         }
     }
 
@@ -46,35 +52,56 @@ public class ItemRandomSpawn : SingleMonobehaviour<ItemRandomSpawn>
     {
         for (int i = 0; i < chestkeys.Length; i++)
         {
+            GameObject[] clone = null;
             int random = GetRandomNotContain(start2, end2, notContain2);
             notContain2[i] = random;
-            spawnChestKey = spawnChestPos[random];
-            chestkeys[i] = Instantiate(chestkeys[i], spawnChestKey.position, Quaternion.identity);
+            if (clone[i] == null)
+            {
+                clone[i] = Instantiate(chestkeys[i], spawnChestPos[random].position, Quaternion.identity);
+
+            }
+            else
+            {
+                clone[i].transform.position = spawnChestPos[random].position;
+                clone[i].transform.rotation = Quaternion.identity;
+                clone[i].SetActive(true);
+            }
             DeleteString(chestkeys[i]);
-            chestkeys[i].transform.SetParent(spawnChestKey);
-            chestkeys[i].SetActive(true);
+            clone[i].transform.SetParent(spawnChestPos[random]);
         }
     }
     private void BatterySpawn()
     {
         for(int i = 0; i < battery.Length; i++)
         {
+            GameObject[] clone = null;
             int random = GetRandomNotContain(start3, end3, notContain3);
             notContain3[i] = random;
-            spawnBattery = spawnBatteryPos[random];
-            battery[i] = Instantiate(battery[i], spawnBattery.position, Quaternion.identity);
+            if (clone[i] == null)
+            {
+                clone[i] = Instantiate(battery[i], spawnBatteryPos[random].position, Quaternion.identity);
+            }
+            else
+            {
+                clone[i].transform.position = spawnBatteryPos[random].position;
+                clone[i].transform.rotation = Quaternion.identity;
+                clone[i].SetActive(true);
+            }
             DeleteString(battery[i]);
-            battery[i].transform.SetParent(spawnBattery);
-            battery[i].SetActive(true);
+            clone[i].transform.SetParent(spawnBatteryPos[random]);
         }
     }
 
     public int GetRandomNotContain(int min, int max, int[] notContainValue)
     {
-        HashSet<int> exclude = new HashSet<int>();
+        exclude = new HashSet<int>();
         for (int i = 0; i < notContainValue.Length; i++)
         {
             exclude.Add(notContainValue[i]);
+        }
+        for(int i = 0; i < notContainValue.Length; i++)
+        {
+            exclude.Remove(notContainValue[i]);
         }
         var range = Enumerable.Range(min, max).Where(i => !exclude.Contains(i));
         var random = new System.Random();

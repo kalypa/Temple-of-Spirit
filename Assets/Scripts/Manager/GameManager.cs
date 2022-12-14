@@ -98,6 +98,7 @@ public class GameManager : SingleMonobehaviour<GameManager>
         fadeImage.color = new Color(0, 0, 0, 1);
         dayText.color = new Color(1, 1, 1, 1);
         walk.enabled = true;
+        GameManager.Instance.playerInput.enabled = true;
     }
 
     private void ObjectInit(GameObject g, Transform[] t)
