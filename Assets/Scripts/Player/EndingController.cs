@@ -57,6 +57,7 @@ public class EndingController : SingleMonobehaviour<EndingController>
         GameManager.Instance.fog.SetActive(true);
         VolumeChange.Instance.volume.weight = 0.25f;
     }
+
     private void EndSceneStart()
     {
         OnClickManager.Instance.invisibleWall2.SetActive(false);
@@ -86,6 +87,7 @@ public class EndingController : SingleMonobehaviour<EndingController>
             return;
         }
     }
+
     private void PlayerDead()
     {
         gameObject.transform.position = GameManager.Instance.badendingPos.position;
