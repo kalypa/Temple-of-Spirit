@@ -21,7 +21,7 @@ public class EndingController : SingleMonobehaviour<EndingController>
         {
             if (!agent.pathPending && (agent.remainingDistance <= agent.stoppingDistance + 0.01f))
             {
-                if (!isRestart)
+                if (isRestart == false)
                 {
                     isRestart = true;
                     AudioManager.instance.StopPlaying("Walk");
