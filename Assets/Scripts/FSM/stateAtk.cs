@@ -28,7 +28,7 @@ public class stateAtk : State<MonsterFSM>
         {
             AtkStart();
         }
-        else if (playerRaycast.closet == null)
+        else if (playerRaycast.closet == null && !playerRaycast.closet.isHiding)
         {
             AtkStart();
         }
@@ -84,7 +84,7 @@ public class stateAtk : State<MonsterFSM>
     private void AtkAnim()
     {
         Debug.Log("AtkSuccess");
-        animator?.SetTrigger(atkTriggerHash);
+        animator.SetTrigger(atkTriggerHash);
         AudioManager.instance.Play("Scream");
     }
 

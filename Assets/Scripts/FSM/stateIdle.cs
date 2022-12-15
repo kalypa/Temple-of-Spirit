@@ -26,7 +26,8 @@ public class stateIdle : State<MonsterFSM>
 
     public override void OnStart()
     {
-        animator?.SetBool(hashMove, false);
+        GameManager.Instance.isAtk = false;
+        animator.SetBool(hashMove, false);
         animator.SetFloat(hashMoveSpd, 0);
         characterController?.Move(Vector3.zero);
 
