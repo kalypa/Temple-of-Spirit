@@ -83,6 +83,7 @@ public class stateAtk : State<MonsterFSM>
     }
     private void AtkAnim()
     {
+        Debug.Log("AtkSuccess");
         animator?.SetTrigger(atkTriggerHash);
         AudioManager.instance.Play("Scream");
     }
