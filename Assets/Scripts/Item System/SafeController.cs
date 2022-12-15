@@ -17,7 +17,7 @@ namespace ItemSystem
         [Header("Animation References")]
         [SerializeField] private string safeAnimationName = "SafeDoorOpen";
         public Animator safeAnim;
-        private BoxCollider safeBoxCollider;
+        [HideInInspector] public BoxCollider safeBoxCollider;
         [Header("Animation Timers - Default: 1.0f / 0.5f")]
         [SerializeField] private float beforeAnimationStart = 1.0f;
         [SerializeField] private float beforeOpenDoor = 0.5f;

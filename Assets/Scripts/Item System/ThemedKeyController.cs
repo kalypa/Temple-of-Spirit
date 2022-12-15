@@ -210,6 +210,7 @@ namespace ItemInven
                 safeController.safeModel.gameObject.GetComponent<Animator>().Play("SafeDoorOpen", 0, 0.0f);
                 safeController.safeAnim.SetBool("isRestart", false);
                 safeController.gameObject.tag = "Padlock";
+                safeController.safeBoxCollider.enabled = true;
             }
             DOTween.Kill(GameManager.Instance.fadeImage);
             DOTween.Kill(GameManager.Instance.dayText);
