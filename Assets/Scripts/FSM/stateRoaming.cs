@@ -84,6 +84,19 @@ public class stateRoaming : State<MonsterFSM>
                 }
             }
         }
+        else
+        {
+            if (!agent.pathPending && (agent.remainingDistance <= agent.stoppingDistance + 0.01f))
+            {
+                stateMachineClass.SearchNextTargetPosition();
+                stateMachine.ChangeState<stateIdle>();
+            }
+            else
+            {
+                characterController.Move(agent.velocity * deltaTime);
+                animator.SetFloat(hashMoveSpeed, agent.velocity.magnitude / agent.speed, 0.1f, deltaTime);
+            }
+        }
     }
     public override void OnEnd() { 
         agent.stoppingDistance = stateMachineClass.atkRange;
