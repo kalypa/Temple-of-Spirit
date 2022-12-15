@@ -59,6 +59,6 @@ public class stateMove : State<MonsterFSM>
         animator?.SetBool(hashMove, false);
         animator?.SetFloat(hashMoveSpeed, 0); 
         agent.ResetPath();
-        agent.speed = 0.2f;
+        agent.speed = 1.5f;
     }
 }
