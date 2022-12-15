@@ -107,6 +107,7 @@ public class EndingController : SingleMonobehaviour<EndingController>
 
     private void Good()
     {
+        Debug.Log("HappyEnding");
         endingEnemy.SetActive(true);
         this.gameObject.transform.DORotate(new Vector3(0, 270, 0), 8f);
         AudioManager.instance.Play("Rising");

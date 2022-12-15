@@ -77,10 +77,7 @@ public class GameManager : SingleMonobehaviour<GameManager>
         ObjectInit(drawers, drawerChilds);
         ObjectInit(chests, chestChilds);
     }
-    private void Update()
-    {
-        UnityEngine.Debug.Log(isAtk);
-    }
+
     public void Restart()
     {
         playerDeathStack += 1;

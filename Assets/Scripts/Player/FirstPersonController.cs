@@ -51,7 +51,6 @@ namespace InputSystem
 		private float _terminalVelocity = 53.0f;
 		[SerializeField] private GameObject inventory;
 		[SerializeField] private GameObject pausePanel;
-		[SerializeField] private GameObject batteryUI;
         [SerializeField] private ThemedKeyInventoryController controller;
         private float _jumpTimeoutDelta;
 		private float _fallTimeoutDelta;
@@ -217,7 +216,7 @@ namespace InputSystem
 		private void Flash()
 		{
             GameManager.Instance.flashLight.enabled = _input.flash;
-            batteryUI.SetActive(GameManager.Instance.hasFlashLight);
+            OnClickManager.Instance.batteryUI.SetActive(GameManager.Instance.hasFlashLight);
 			if(_input.flash)
 			{
                 GameManager.Instance.battery.value -= 0.01f * Time.deltaTime;

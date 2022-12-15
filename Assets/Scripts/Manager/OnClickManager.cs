@@ -43,6 +43,7 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
     public GameObject note13;
     public GameObject note14;
     public GameObject note15;
+    public GameObject batteryUI;
     [SerializeField] private GameObject settingPanel;
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private string noteSound = "NoteOpen";
@@ -101,7 +102,7 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
         {
             TutorialManager.Instance.KeyTutorial();
         }
-        else if (TutorialManager.Instance.isFirst)
+        else
         {
             PlayerLock();
         }
@@ -113,8 +114,10 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
         GameManager.Instance.fadePanel.SetActive(false);
         GameManager.Instance.fadeImage.color = new Color(0, 0, 0, 1);
     }
+
     private void PlayerLock()
     {
+        InputSystems.Instance.isPanel = false;
         GameManager.Instance.walk.enabled = true;
         GameManager.Instance.playerInput.enabled = true;
         GameManager.Instance.controller.enabled = true;

@@ -89,5 +89,6 @@ public class DataManager : SingleMonobehaviour<DataManager>
         GameManager.Instance.playerDeathStack = 1;
         VolumeChange.Instance.vignette.intensity.value = 1;
         GameManager.Instance.battery.value = 1;
+        OnClickManager.Instance.batteryUI.SetActive(false);
     }
 }
