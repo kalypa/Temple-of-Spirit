@@ -28,7 +28,7 @@ public class stateAtk : State<MonsterFSM>
         {
             AtkStart();
         }
-        else if (playerRaycast.closet == null && !playerRaycast.closet.isHiding)
+        else if (playerRaycast.closet == null)
         {
             AtkStart();
         }
