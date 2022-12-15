@@ -125,7 +125,6 @@ namespace ItemSystem
                 yield return new WaitForSeconds(beforeAnimationStart);
                 safeAnim.speed = 1;
                 safeAnim.Play(safeAnimationName, 0, 0.0f);
-                safeAnim.SetBool("isRestart", true);
                 AudioManager.instance.Play(handleSpin);
                 yield return new WaitForSeconds(beforeOpenDoor);
                 AudioManager.instance.Play(doorOpen);
