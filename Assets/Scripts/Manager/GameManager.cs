@@ -54,6 +54,7 @@ public class GameManager : SingleMonobehaviour<GameManager>
     public Slider battery;
     public GameObject sacredSword;
     public Transform enemyStartPos;
+    public GameObject inventory;
     [HideInInspector] public bool hasHeartKey;
     [HideInInspector] public bool hasDiamondKey;
     [HideInInspector] public bool hasSpadeKey;

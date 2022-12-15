@@ -91,7 +91,9 @@ public class stateAtk : State<MonsterFSM>
     private void PanelDown()
     {
         SafeController.Instance.SafeUIFalse();
+        InputSystems.Instance.inven = false;
         InputSystems.Instance.isInven = false;
+        GameManager.Instance.inventory.SetActive(false);
         InputSystems.Instance.isPanel = false;
         OnClickManager.Instance.note1.tag = "InteractiveObject";
         OnClickManager.Instance.note2.tag = "InteractiveObject";

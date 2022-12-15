@@ -49,7 +49,6 @@ namespace InputSystem
 		private float _rotationVelocity;
 		private float _verticalVelocity;
 		private float _terminalVelocity = 53.0f;
-		[SerializeField] private GameObject inventory;
 		[SerializeField] private GameObject pausePanel;
         [SerializeField] private ThemedKeyInventoryController controller;
         private float _jumpTimeoutDelta;
@@ -229,7 +228,7 @@ namespace InputSystem
 
 		private void Inven()
 		{
-			inventory.SetActive(_input.inven);
+			GameManager.Instance.inventory.SetActive(_input.inven);
 		}
 
 		private void ChargeBattery()
