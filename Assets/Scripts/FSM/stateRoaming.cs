@@ -44,7 +44,15 @@ public class stateRoaming : State<MonsterFSM>
     }
     public override void OnUpdate(float deltaTime)
     {
-        if(InputSystems.Instance.isPause == true)
+        if (Mathf.Abs(GameManager.Instance.player.transform.position.y - GameManager.Instance.ghost.transform.position.y) > 1)
+        {
+            audioSource.volume = 0f;
+        }
+        else
+        {
+            audioSource.volume = 1f;
+        }
+        if (InputSystems.Instance.isPause == true)
         {
             audioSource.volume = 0f;
         }
