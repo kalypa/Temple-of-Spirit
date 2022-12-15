@@ -11,7 +11,7 @@ namespace ItemSystem
     public class SafeController : SingleMonobehaviour<SafeController>
     {
         [Header("Safe Model Reference")]
-        [SerializeField] private GameObject safeModel = null;
+        public GameObject safeModel = null;
         [SerializeField] private Transform safeDial = null;
 
         [Header("Animation References")]
@@ -125,6 +125,7 @@ namespace ItemSystem
                 yield return new WaitForSeconds(beforeAnimationStart);
                 safeAnim.speed = 1;
                 safeAnim.Play(safeAnimationName, 0, 0.0f);
+                safeAnim.SetBool("isRestart", true);
                 AudioManager.instance.Play(handleSpin);
                 yield return new WaitForSeconds(beforeOpenDoor);
                 AudioManager.instance.Play(doorOpen);

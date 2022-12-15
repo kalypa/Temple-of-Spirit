@@ -206,8 +206,8 @@ namespace ItemInven
                     d.gameObject.GetComponent<GenericDoorOpen>().doorAnim.SetBool("isRestart", false);
                     d.gameObject.tag = "Door";
                 }
-                safeController.safeAnim.speed = -1;
-                safeController.safeAnim.Play("SafeDoorOpen");
+                safeController.safeModel.gameObject.GetComponent<Animator>().speed = -1;
+                safeController.safeModel.gameObject.GetComponent<Animator>().Play("SafeDoorOpen", 0, 0.0f);
                 safeController.safeAnim.SetBool("isRestart", false);
                 safeController.gameObject.tag = "Padlock";
             }
