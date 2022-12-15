@@ -44,44 +44,44 @@ public class stateRoaming : State<MonsterFSM>
     }
     public override void OnUpdate(float deltaTime)
     {
-        if (Mathf.Abs(GameManager.Instance.player.transform.position.y - GameManager.Instance.ghost.transform.position.y) > 1)
-        {
-            audioSource.volume = 0f;
-        }
-        else
-        {
-            audioSource.volume = 1f;
-        }
         if (InputSystems.Instance.isPause == true)
         {
             audioSource.volume = 0f;
         }
-        else
+        else if(InputSystems.Instance.isPause == false && Mathf.Abs(GameManager.Instance.player.transform.position.y - GameManager.Instance.ghost.transform.position.y) <= 6)
         {
             audioSource.volume = 1f;
         }
-        Transform target = stateMachineClass.SearchMonster();
-        if (target)
+        else if (Mathf.Abs(GameManager.Instance.player.transform.position.y - GameManager.Instance.ghost.transform.position.y) > 6)
         {
-            if (stateMachineClass.getFlagAtk)
-            {
-                stateMachine.ChangeState<stateAtk>();
-            }
-            else
-            {
-                stateMachine.ChangeState<stateMove>();
-            }
+            audioSource.volume = 0f;
         }
-        else
+        if(Mathf.Abs(GameManager.Instance.player.transform.position.y - GameManager.Instance.ghost.transform.position.y) <= 4)
         {
-            if (!agent.pathPending && (agent.remainingDistance <= agent.stoppingDistance + 0.01f)) {
-                stateMachineClass.SearchNextTargetPosition();
-                stateMachine.ChangeState<stateIdle>();
+            Transform target = stateMachineClass.SearchMonster();
+            if (target)
+            {
+                if (stateMachineClass.getFlagAtk)
+                {
+                    stateMachine.ChangeState<stateAtk>();
+                }
+                else
+                {
+                    stateMachine.ChangeState<stateMove>();
+                }
             }
             else
-            { 
-                characterController.Move(agent.velocity * deltaTime); 
-                animator.SetFloat(hashMoveSpeed, agent.velocity.magnitude / agent.speed, 0.1f, deltaTime);
+            {
+                if (!agent.pathPending && (agent.remainingDistance <= agent.stoppingDistance + 0.01f))
+                {
+                    stateMachineClass.SearchNextTargetPosition();
+                    stateMachine.ChangeState<stateIdle>();
+                }
+                else
+                {
+                    characterController.Move(agent.velocity * deltaTime);
+                    animator.SetFloat(hashMoveSpeed, agent.velocity.magnitude / agent.speed, 0.1f, deltaTime);
+                }
             }
         }
     }
