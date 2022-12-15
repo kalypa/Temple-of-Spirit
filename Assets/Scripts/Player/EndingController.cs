@@ -13,6 +13,7 @@ public class EndingController : SingleMonobehaviour<EndingController>
     private NavMeshAgent agent;
     [SerializeField] private GameObject endingEnemy;
     private bool isEnd = false;
+    private bool isRestart = false;
 
     private void Update()
     {
@@ -20,8 +21,11 @@ public class EndingController : SingleMonobehaviour<EndingController>
         {
             if (!agent.pathPending && (agent.remainingDistance <= agent.stoppingDistance + 0.01f))
             {
-                AudioManager.instance.StopPlaying("Walk");
-                Invoke("Good", 4f);
+                if (!isRestart)
+                {
+                    AudioManager.instance.StopPlaying("Walk");
+                    Invoke("Good", 4f);
+                }
             }
         }
     }
@@ -100,11 +104,12 @@ public class EndingController : SingleMonobehaviour<EndingController>
 
     private void Good()
     {
+        isRestart = true;
         endingEnemy.SetActive(true);
         this.gameObject.transform.DORotate(new Vector3(0, 270, 0), 8f);
         AudioManager.instance.Play("Rising");
         Invoke("End", 9f);
-        Invoke("ReGame", 13f);
+        Invoke("ReGame", 11f);
     }
 
     private void End()
