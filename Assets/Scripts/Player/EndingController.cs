@@ -23,6 +23,7 @@ public class EndingController : SingleMonobehaviour<EndingController>
             {
                 if (!isRestart)
                 {
+                    isRestart = true;
                     AudioManager.instance.StopPlaying("Walk");
                     Invoke("Good", 4f);
                 }
@@ -104,7 +105,6 @@ public class EndingController : SingleMonobehaviour<EndingController>
 
     private void Good()
     {
-        isRestart = true;
         endingEnemy.SetActive(true);
         this.gameObject.transform.DORotate(new Vector3(0, 270, 0), 8f);
         AudioManager.instance.Play("Rising");
