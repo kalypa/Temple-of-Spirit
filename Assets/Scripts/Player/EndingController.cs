@@ -24,7 +24,7 @@ public class EndingController : SingleMonobehaviour<EndingController>
                 if (isRestart == false)
                 {
                     isRestart = true;
-                    AudioManager.instance.StopPlaying("Walk");
+                    AudioManager.instance.StopPlaying("Run");
                     Invoke("Good", 4f);
                 }
             }
@@ -48,7 +48,6 @@ public class EndingController : SingleMonobehaviour<EndingController>
     private void SadSceneStart()
     {
         EndingInit();
-        GameManager.Instance.fadePanel.SetActive(true);
     }
 
     private void EndingVolume()
@@ -60,6 +59,7 @@ public class EndingController : SingleMonobehaviour<EndingController>
 
     private void EndSceneStart()
     {
+        GameManager.Instance.fadePanel.SetActive(true);
         OnClickManager.Instance.invisibleWall2.SetActive(false);
         EndingInit();
         GameManager.Instance.fadeImage.DOFade(0, 4);
@@ -82,7 +82,7 @@ public class EndingController : SingleMonobehaviour<EndingController>
         isEnd = true;
         if (agent.remainingDistance > agent.stoppingDistance)
         {
-            AudioManager.instance.Play("Walk");
+            AudioManager.instance.Play("Run");
             characterController.Move(agent.velocity * Time.deltaTime);
             return;
         }
