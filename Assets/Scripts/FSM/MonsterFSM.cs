@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class MonsterFSM : SingleMonobehaviour<MonsterFSM>
 {
-
     protected StateMachine<MonsterFSM> fsmManager;
     public StateMachine<MonsterFSM> FsmManager => fsmManager;
     public PlayerRaycast playerRaycast;
