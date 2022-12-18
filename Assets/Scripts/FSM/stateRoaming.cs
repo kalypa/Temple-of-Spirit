@@ -59,7 +59,7 @@ public class stateRoaming : State<MonsterFSM>
         if(Mathf.Abs(GameManager.Instance.player.transform.position.y - GameManager.Instance.ghost.transform.position.y) <= 4)
         {
             Transform target = stateMachineClass.SearchMonster();
-            if (target)
+            if (target && GameManager.Instance.hiding == false)
             {
                 if (stateMachineClass.getFlagAtk)
                 {

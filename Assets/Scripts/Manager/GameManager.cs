@@ -55,6 +55,7 @@ public class GameManager : SingleMonobehaviour<GameManager>
     public GameObject sacredSword;
     public Transform enemyStartPos;
     public GameObject inventory;
+    public GameObject pausePanel;
     [HideInInspector] public bool hasHeartKey;
     [HideInInspector] public bool hasDiamondKey;
     [HideInInspector] public bool hasSpadeKey;
@@ -70,6 +71,7 @@ public class GameManager : SingleMonobehaviour<GameManager>
     [HideInInspector] public bool hasFlashLight;
     [HideInInspector] public bool isAtk;
     [HideInInspector] public bool isSafe;
+    [HideInInspector] public bool hiding = false;
     public float playerDeathStack = 1;
     
     private void Start()
@@ -79,6 +81,10 @@ public class GameManager : SingleMonobehaviour<GameManager>
         ObjectInit(chests, chestChilds);
     }
 
+    private void Update()
+    {
+        UnityEngine.Debug.Log(hiding);
+    }
     public void Restart()
     {
         playerDeathStack += 1;

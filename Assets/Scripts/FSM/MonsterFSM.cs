@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterFSM : MonoBehaviour
+public class MonsterFSM : SingleMonobehaviour<MonsterFSM>
 {
 
     protected StateMachine<MonsterFSM> fsmManager;
@@ -38,7 +38,8 @@ public class MonsterFSM : MonoBehaviour
 
     protected virtual void Update()
     {
-        fsmManager.Update(Time.deltaTime);  
+        fsmManager.Update(Time.deltaTime);
+        Debug.Log(fsmManager.getNowState);
     }
 
     public virtual Transform SearchMonster()

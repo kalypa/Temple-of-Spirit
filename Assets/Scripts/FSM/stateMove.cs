@@ -38,7 +38,7 @@ public class stateMove : State<MonsterFSM>
     {
 
         Transform target = stateMachineClass.SearchMonster();
-        if (target !=  null && !stateMachineClass.getFlagAtk)
+        if (target !=  null && !stateMachineClass.getFlagAtk && GameManager.Instance.hiding == false)
         { 
             agent.SetDestination(stateMachineClass.target.position);
              
@@ -48,8 +48,15 @@ public class stateMove : State<MonsterFSM>
                 animator.SetFloat(hashMoveSpeed, agent.velocity.magnitude / agent.speed, 0.1f, Time.deltaTime);
                 return;
             }
-        } 
-        stateMachine.ChangeState<stateIdle>();
+        }
+        else if(GameManager.Instance.hiding == true)
+        {
+            stateMachine.ChangeState<stateIdle>();
+        }
+        else
+        {
+            stateMachine.ChangeState<stateIdle>();
+        }
     }
      
     public override void OnEnd()

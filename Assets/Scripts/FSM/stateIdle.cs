@@ -41,13 +41,17 @@ public class stateIdle : State<MonsterFSM>
     {
         if (stateMachineClass.target)
         {
-            if (stateMachineClass.getFlagAtk)
+            if (stateMachineClass.getFlagAtk && !GameManager.Instance.hiding)
             {
                 stateMachine.ChangeState<stateAtk>();
             }
-            else
+            else if(!GameManager.Instance.hiding)
             {
                 stateMachine.ChangeState<stateMove>();
+            }
+            else if(flagRoaming && stateMachine.getStateDurationTime > roamingIdleTime)
+            {
+                stateMachine.ChangeState<stateRoaming>();
             }
         }
         else if (flagRoaming && stateMachine.getStateDurationTime > roamingIdleTime)

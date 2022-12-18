@@ -24,11 +24,11 @@ public class stateAtk : State<MonsterFSM>
     {
         PanelDown();
         GameManager.Instance.isAtk = true;
-        if (playerRaycast.closet != null && !playerRaycast.closet.isHiding)
+        if (playerRaycast.closet != null && !playerRaycast.closet.isHiding && GameManager.Instance.hiding == false)
         {
             AtkStart();
         }
-        else if (playerRaycast.closet == null)
+        else if (playerRaycast.closet == null && GameManager.Instance.hiding == false)
         {
             AtkStart();
         }

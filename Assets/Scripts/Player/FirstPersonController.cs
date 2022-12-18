@@ -49,7 +49,6 @@ namespace InputSystem
 		private float _rotationVelocity;
 		private float _verticalVelocity;
 		private float _terminalVelocity = 53.0f;
-		[SerializeField] private GameObject pausePanel;
         [SerializeField] private ThemedKeyInventoryController controller;
         private float _jumpTimeoutDelta;
 		private float _fallTimeoutDelta;
@@ -244,7 +243,7 @@ namespace InputSystem
 
 		private void Pause()
 		{
-            pausePanel.SetActive(_input.pause);
+            GameManager.Instance.pausePanel.SetActive(_input.pause);
 			if(_input.pause == true)
 			{
                 walkSound.volume = 0f;
