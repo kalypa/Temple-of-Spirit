@@ -81,10 +81,6 @@ public class GameManager : SingleMonobehaviour<GameManager>
         ObjectInit(chests, chestChilds);
     }
 
-    private void Update()
-    {
-        UnityEngine.Debug.Log(hiding);
-    }
     public void Restart()
     {
         playerDeathStack += 1;

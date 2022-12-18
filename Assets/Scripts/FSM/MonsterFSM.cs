@@ -39,7 +39,6 @@ public class MonsterFSM : SingleMonobehaviour<MonsterFSM>
     protected virtual void Update()
     {
         fsmManager.Update(Time.deltaTime);
-        Debug.Log(fsmManager.getNowState);
     }
 
     public virtual Transform SearchMonster()
