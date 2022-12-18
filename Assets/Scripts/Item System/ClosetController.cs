@@ -59,11 +59,6 @@ public class ClosetController : MonoBehaviour
     private void Flash()
     {
         GameManager.Instance.flashLight.enabled = InputSystems.Instance.flash;
-        OnClickManager.Instance.batteryUI.SetActive(GameManager.Instance.hasFlashLight);
-        if (InputSystems.Instance.flash)
-        {
-            GameManager.Instance.battery.value -= 0.01f * Time.deltaTime;
-        }
         if (GameManager.Instance.battery.value <= 0)
         {
             InputSystems.Instance.flash = false;
