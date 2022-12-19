@@ -98,11 +98,11 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
         TutorialText.Instance.textUI.gameObject.SetActive(false);
         GameManager.Instance.fadeImage.DOFade(0, time);
         GameManager.Instance.playerInput.enabled = false;
-        if (!TutorialManager.Instance.isFirst)
+        if (TutorialManager.Instance.isFirst == false)
         {
             TutorialManager.Instance.KeyTutorial();
         }
-        else
+        else if(TutorialManager.Instance.isFirst == true)
         {
             PlayerLock();
         }
@@ -117,6 +117,7 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
 
     private void PlayerLock()
     {
+        GameManager.Instance.player.SetActive(true);
         InputSystems.Instance.isPanel = false;
         GameManager.Instance.walk.enabled = true;
         GameManager.Instance.playerInput.enabled = true;

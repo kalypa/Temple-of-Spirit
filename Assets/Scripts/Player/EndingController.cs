@@ -59,11 +59,12 @@ public class EndingController : SingleMonobehaviour<EndingController>
 
     private void EndSceneStart()
     {
-        GameManager.Instance.backgroundmusic.clip = GameManager.Instance.startSceneMusic;
-        GameManager.Instance.fadePanel.SetActive(true);
-        OnClickManager.Instance.invisibleWall2.SetActive(false);
+        GameManager.Instance.backgroundmusic.clip = GameManager.Instance.tutorialMusic;
+        GameManager.Instance.backgroundmusic.Play();
         EndingInit();
-        GameManager.Instance.fadeImage.DOFade(0, 4);
+        GameManager.Instance.fadePanel.SetActive(true);
+        GameManager.Instance.fadeImage.DOFade(0, 6);
+        OnClickManager.Instance.invisibleWall2.SetActive(false);
         agent = GetComponent<NavMeshAgent>();
         characterController = GetComponent<CharacterController>();
         Invoke("KillDo", 4f);
