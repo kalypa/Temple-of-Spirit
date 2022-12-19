@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ItemInven;
+using UnityEngine.SocialPlatforms.Impl;
+
 public class EndingItemController : SingleMonobehaviour<EndingItemController>
 {
     [SerializeField] private ThemedKeyInventoryController themedKeyInventoryController;
@@ -17,6 +19,9 @@ public class EndingItemController : SingleMonobehaviour<EndingItemController>
     {
         if(sword.activeSelf && halgr.activeSelf && grtar.activeSelf)
         {
+            sword.SetActive(false);
+            halgr.SetActive(false);
+            grtar.SetActive(false);
             GameManager.Instance.player.SetActive(false);
             GameManager.Instance.endingPlayer.SetActive(true);
             EndingController.Instance.HappyEnding();

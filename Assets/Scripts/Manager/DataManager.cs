@@ -23,7 +23,6 @@ public class DataManager : SingleMonobehaviour<DataManager>
     public void RestartInit()
     {
         GameManager.Instance.endingPlayer.SetActive(false);
-        InputSystems.Instance.isPanel = true;
         GameManager.Instance.backgroundmusic.clip = GameManager.Instance.startSceneMusic;
         GameManager.Instance.backgroundmusic.Play();
         inventoryObject.Clear();

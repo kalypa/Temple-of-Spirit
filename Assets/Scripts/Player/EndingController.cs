@@ -1,5 +1,6 @@
 using Cinemachine;
 using DG.Tweening;
+using InputSystem;
 using ItemSystem;
 using System.Collections;
 using System.Collections.Generic;
@@ -35,7 +36,6 @@ public class EndingController : SingleMonobehaviour<EndingController>
     {
         EndingVolume();
         EndSceneStart();
-        Escape();
     }
 
     public void SadEnding()
@@ -59,6 +59,7 @@ public class EndingController : SingleMonobehaviour<EndingController>
 
     private void EndSceneStart()
     {
+        GameManager.Instance.backgroundmusic.clip = GameManager.Instance.startSceneMusic;
         GameManager.Instance.fadePanel.SetActive(true);
         OnClickManager.Instance.invisibleWall2.SetActive(false);
         EndingInit();
@@ -66,6 +67,7 @@ public class EndingController : SingleMonobehaviour<EndingController>
         agent = GetComponent<NavMeshAgent>();
         characterController = GetComponent<CharacterController>();
         Invoke("KillDo", 4f);
+        Invoke("Escape", 4f);
     }
 
     private void EndingInit()
@@ -80,9 +82,9 @@ public class EndingController : SingleMonobehaviour<EndingController>
     {
         agent.SetDestination(GameManager.Instance.goodEndingPos.position);
         isEnd = true;
+        AudioManager.instance.Play("Run");
         if (agent.remainingDistance > agent.stoppingDistance)
         {
-            AudioManager.instance.Play("Run");
             characterController.Move(agent.velocity * Time.deltaTime);
             return;
         }
@@ -107,7 +109,6 @@ public class EndingController : SingleMonobehaviour<EndingController>
 
     private void Good()
     {
-        Debug.Log("HappyEnding");
         endingEnemy.SetActive(true);
         this.gameObject.transform.DORotate(new Vector3(0, 270, 0), 8f);
         AudioManager.instance.Play("Rising");
@@ -120,6 +121,7 @@ public class EndingController : SingleMonobehaviour<EndingController>
         GameManager.Instance.fadePanel.SetActive(false);
         GameManager.Instance.endingPanel.SetActive(true);
         OnClickManager.Instance.startPanel.SetActive(true);
+        InputSystems.Instance.isPanel = true;
     }
 
     private void ReGame()
