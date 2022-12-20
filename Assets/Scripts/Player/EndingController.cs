@@ -116,7 +116,7 @@ public class EndingController : SingleMonobehaviour<EndingController>
         Invoke("End", 9f);
         Invoke("ReGame", 11f);
     }
-
+      
     private void End()
     {
         GameManager.Instance.fadePanel.SetActive(false);
