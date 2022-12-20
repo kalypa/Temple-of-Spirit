@@ -73,7 +73,7 @@ public class OnClickManager : SingleMonobehaviour<OnClickManager>
     {
         GameManager.Instance.backgroundmusic.Stop(); 
         GameManager.Instance.player.transform.position = playerFirstPos.transform.position;
-        playercamera.transform.rotation = playerFirstPos.transform.rotation;
+        playercamera.transform.eulerAngles = playerFirstPos.transform.eulerAngles;
         invisibleWall2.SetActive(false);
         GameManager.Instance.ghost.transform.position = GameManager.Instance.enemyStartPos.position;
         GameManager.Instance.walk.enabled = false;

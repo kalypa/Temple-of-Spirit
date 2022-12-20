@@ -74,6 +74,7 @@ public class EndingController : SingleMonobehaviour<EndingController>
     private void EndingInit()
     {
         GameManager.Instance.ghost.SetActive(false);
+        OnClickManager.Instance.batteryUI.SetActive(false);
         GameManager.Instance.ghost.transform.position = GameManager.Instance.enemyStartPos.position;
         GameManager.Instance.controller.enabled = false;
         GameManager.Instance.playerInput.enabled = false;
