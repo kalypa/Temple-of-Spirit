@@ -23,9 +23,9 @@ public class ClosetController : MonoBehaviour
             {
                 AudioManager.instance.Play("ClosetOpen");
                 getOutText.SetActive(false);
-                isHiding = false;
                 closetDoor.transform.rotation = Quaternion.Euler(-90, 52.06f, -90);
                 GameManager.Instance.player.transform.position = getOutPos.transform.position;
+                isHiding = false;
                 playerRaycast.rayhitF = false;
                 InputSystems.Instance.pickup = false;
                 GameManager.Instance.controller.enabled = true;

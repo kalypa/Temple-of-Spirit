@@ -118,7 +118,6 @@ public class GameManager : SingleMonobehaviour<GameManager>
 
     private void EnemyInit()
     {
-        UnityEngine.Debug.Log("EnemyInit");
         ghost.transform.position = enemyStartPos.position;
     }
 }
