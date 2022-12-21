@@ -172,6 +172,13 @@ namespace ItemInven
                     inventoryObject?.seachItemInInven(key).destoryItem();
                 }
 
+                else if (keyName == "First")
+                {
+                    GameManager.Instance.hasFirstKey = false;
+                    key = new Item(firstKey);
+                    inventoryObject?.seachItemInInven(key).destoryItem();
+                }
+
                 else if (keyName == "Red")
                 {
                     GameManager.Instance.hasRedKey = true;

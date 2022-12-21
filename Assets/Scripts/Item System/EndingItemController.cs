@@ -35,14 +35,17 @@ public class EndingItemController : SingleMonobehaviour<EndingItemController>
             case KatanaPiece.Sword:
                 sword.SetActive(true);
                 this.gameObject.tag = "Untagged";
+                ThemedKeyInventoryController.Instance.DeleteInventory("Sword");
                 break;
             case KatanaPiece.Grtar:
                 grtar.SetActive(true);
                 this.gameObject.tag = "Untagged";
+                ThemedKeyInventoryController.Instance.DeleteInventory("Grtar");
                 break;
             case KatanaPiece.Halgr:
                 halgr.SetActive(true);
                 this.gameObject.tag = "Untagged";
+                ThemedKeyInventoryController.Instance.DeleteInventory("Halgr");
                 break;
         }
 
